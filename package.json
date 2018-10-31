@@ -1,8 +1,29 @@
 {
 	"name": "Dreamie",
 	"version": "1.0.0",
-	"main": "index.js",
+	"main": "",
 	"repository": "",
-	"author": "chungnq253@gmail.com",
-	"license": ""
+	"author": "Chung Nguyen Quan",
+	"license": "",
+	"devDependencies": {
+		"@babel/cli": "^7.1.2",
+		"@babel/core": "^7.1.2",
+		"@babel/node": "^7.0.0",
+		"@babel/preset-env": "^7.1.0",
+		"nodemon": "^1.18.5"
+	},
+	"dependencies": {
+		"body-parser": "^1.18.3",
+		"compression": "^1.7.3",
+		"cookie-parser": "^1.4.3",
+		"csurf": "^1.9.0",
+		"dotenv": "^6.1.0",
+		"express": "^4.16.4",
+		"express-session": "^1.15.6",
+		"morgan": "^1.9.1",
+		"multer": "^1.4.1"
+	},
+	"scripts": {
+		"start": "nodemon ./index.js --exec babel-node"
+	}
 }
