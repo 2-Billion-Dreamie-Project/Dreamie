@@ -29,6 +29,6 @@
 		"pug": "^2.0.3"
 	},
 	"scripts": {
-		"start": "nodemon ./index.js --exec babel-node"
+		"start": "nodemon ./index.js --inspect --exec babel-node"
 	}
 }

@@ -2,7 +2,7 @@ require('dotenv').config();
 import path from 'path';
 
 import express from 'express';
-import routers from './src/routes';
+import * as routers from './src/routes';
 import bodyParser from 'body-parser';
 
 import compression from 'compression';
@@ -29,6 +29,6 @@ app.use(session({
 }));
 app.use(csurf({ cookie: true }));
 
-app.use('/', routers);
+app.use('/auth', routers.AuthRouter);
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));

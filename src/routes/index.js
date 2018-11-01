@@ -1,9 +1,5 @@
-import express from 'express';
+import AuthRouter from './AuthRouter';
 
-const router = express.Router();
-
-router.get('/', function(req, res) {
-    res.render('index');
-});
-
-export default router;
+export {
+    AuthRouter
+}
