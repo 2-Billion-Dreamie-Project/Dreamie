@@ -1,15 +1,11 @@
 import express from 'express';
+import AuthController from '../controllers/AuthController';
 
 const AuthRouter = express.Router();
+const AuthCtlrIns = new AuthController();
 
-AuthRouter.get('/register', function(req, res) {
-    res.render('auth/register', { 
-        csrfToken: req.csrfToken(),
-    });
-});
+AuthRouter.get('/register', AuthCtlrIns.register);
 
-AuthRouter.post('/register', function(req, res) {
-    res.json(req.body);
-});
+AuthRouter.post('/register', AuthCtlrIns.createUser);
 
 export default AuthRouter;
