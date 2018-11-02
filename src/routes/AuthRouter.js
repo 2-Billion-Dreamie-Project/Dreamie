@@ -9,7 +9,7 @@ AuthRouter.get('/register', function(req, res) {
 });
 
 AuthRouter.post('/register', function(req, res) {
-    res.json(res.body)
+    res.json(req.body);
 });
 
 export default AuthRouter;

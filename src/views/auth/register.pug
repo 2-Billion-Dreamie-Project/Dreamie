@@ -9,8 +9,8 @@ html(lang='en')
 
     h1 Đăng ký
 
-    form(action="auth/register" method="POST")
-        input(type="text" name="_csrf" value=csrfToken)
+    form(action="register" method="POST")
+        input(type="hidden" name="_csrf" value=csrfToken)
 
         | Họ tên: 
         input(type="text" name="user_name" placeholder="Hãy nhập Họ tên..." value=xxs)
@@ -31,5 +31,3 @@ html(lang='en')
         br
 
         button(type="submit") Đăng ký
-
-xxs=xxs
