@@ -9,10 +9,12 @@
 		"@babel/cli": "^7.1.2",
 		"@babel/core": "^7.1.2",
 		"@babel/node": "^7.0.0",
+		"@babel/plugin-proposal-class-properties": "^7.1.0",
 		"@babel/preset-env": "^7.1.0",
 		"nodemon": "^1.18.5"
 	},
 	"dependencies": {
+		"bcrypt": "^3.0.2",
 		"body-parser": "^1.18.3",
 		"compression": "^1.7.3",
 		"cookie-parser": "^1.4.3",
