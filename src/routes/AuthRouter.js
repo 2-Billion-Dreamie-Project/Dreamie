@@ -9,4 +9,6 @@ AuthRouter.get('/register', AuthCtlrIns.register);
 
 AuthRouter.post('/register', AuthCtlrIns.createUser);
 
+AuthRouter.get('/login', AuthCtlrIns.login);
+
 export default AuthRouter;

@@ -7,16 +7,10 @@ html(lang='en')
     title Dreamie
   body
 
-    h1 Đăng ký
+    h1 Đăng nhập
 
     form(action="register" method="POST")
         input(type="hidden" name="_csrf" value=csrfToken)
-
-        | Họ tên: 
-        input(type="text" name="userName" placeholder="Hãy nhập Họ tên...")
-
-        br
-        br
 
         | Email: 
         input(type="text" name="email" placeholder="Hãy nhập Email...")
@@ -30,4 +24,4 @@ html(lang='en')
         br
         br
 
-        button(type="submit") Đăng ký
+        button(type="submit") Đăng nhập

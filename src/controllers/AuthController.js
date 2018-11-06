@@ -25,4 +25,10 @@ export default class AuthController {
             csrfToken: req.csrfToken(),
         });
     }
+
+    login(req, res) {
+        res.render('auth/login', { 
+            csrfToken: req.csrfToken(),
+        });
+    }
 }
