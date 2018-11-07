@@ -15,11 +15,13 @@ import passport from 'passport';
 import Strategy from 'passport-local';
 
 import flash from 'connect-flash';
-import ensureLoggedIn from 'connect-ensure-login';
+import connectMongo from 'connect-mongo';
 
 const app = express();
+
 const port = process.env.PORT || 3000;
 const LocalStrategy = Strategy.Strategy;
+const MongoStore = connectMongo(session);
 
 app.set('view engine', 'pug');
 app.set("views", path.join(__dirname, "src/views"));
@@ -41,19 +43,32 @@ passport.use(new LocalStrategy(
                 return done(null, false, { message: 'Incorrect password.' });
             }
 
-            return done(null, user);
+            return done(null, {
+                _id: user._id,
+                userName: user.userName,
+                email: user.email
+            });
+        }).catch(function(err) {
+            console.log(err);
         });
     })
 );
 
 passport.serializeUser(function(user, done) {
-    console.log('serializeUser');
-    done(null, 1);
+    done(null, user._id);
 });
   
-passport.deserializeUser(function(id, done) {
-    console.log('deserializeUser');
-    done(null, 2);
+passport.deserializeUser(function(_id, done) {
+    User.findById(_id, function (err, user) {
+        done(null, {
+            _id: user._id,
+            userName: user.userName,
+            email: user.email
+        });
+    }).catch(function (err) {
+        console.log(err);
+        done(err);
+    });
 });
 
 app.use(bodyParser.urlencoded({ extended: false })); // parse application/x-www-form-urlencoded
@@ -61,12 +76,16 @@ app.use(bodyParser.json()); // parse application/json
 app.use(compression()); // compress all responses
 
 app.use(cookieParser());
+app.use(csurf({ cookie: true }));
 app.use(session({
     secret: process.env.SESSION_SECRET_KEY,
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: { maxAge: 10000 },
+    store: new MongoStore({ 
+        url: process.env.DB_CONNECTION || 'mongodb://localhost:27017/mongoose'
+    })
 }));
-app.use(csurf({ cookie: true }));
 
 app.use(flash());
 app.use(passport.initialize());
@@ -84,7 +103,6 @@ app.use(function (err, req, res, next) {
 // app.use('/auth', routers.AuthRouter);
 
 app.get('/login', function(req, res) {
-    console.log(req.flash());
     res.render('auth/login', { 
         csrfToken: req.csrfToken(),
     });
@@ -102,8 +120,17 @@ app.post('/login',
         )
 );
 
-app.get('/', ensureLoggedIn.ensureLoggedIn('/login'), function(req, res) {
-    res.status(200).send('Pong!');
+function isAuthentication(req, res, next) {
+    if (req.isAuthenticated()) {
+        next();
+    } else {
+        req.flash('info', 'Sai');
+        res.redirect('/login');
+    }
+}
+
+app.get('/', isAuthentication, function(req, res) {
+    res.status(200).send('Ping Pong!');
 })
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));
