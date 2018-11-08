@@ -1,6 +1,6 @@
 require('dotenv').config();
 import path from 'path';
-import { User } from './src/db';
+import passportConfig from './src/middlewares/passportConfig';
 
 import express from 'express';
 import * as routers from './src/routes';
@@ -26,50 +26,8 @@ const MongoStore = connectMongo(session);
 app.set('view engine', 'pug');
 app.set("views", path.join(__dirname, "src/views"));
 
-passport.use(new LocalStrategy({
-    usernameField: 'email',
-    passwordField: 'password'
-  }, 
-  function(email, password, done) {
-    User.findOne({ email }, function (err, user) {
-      if (err) { return done(err); }
-
-      if (!user) {
-        return done(null, false, { message: 'Incorrect email.' });
-      }
-
-      if (!user.comparePassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-
-      return done(null, {
-        _id: user._id,
-        userName: user.userName,
-        email: user.email
-      });
-    }).catch(function (err) {
-      console.log(err);
-      done(err);
-    });
-  })
-);
-
-passport.serializeUser(function(user, done) {
-  done(null, user._id);
-});
-
-passport.deserializeUser(function(_id, done) {
-  User.findById(_id, function(err, user) {
-    done(null, {
-      _id: user._id,
-      userName: user.userName,
-      email: user.email
-    });
-  }).catch(function (err) {
-    console.log(err);
-    done(err);
-  });
-});
+// Config passport
+passportConfig(passport, LocalStrategy);
 
 app.use(bodyParser.urlencoded({ extended: false })); // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // parse application/json
@@ -103,6 +61,7 @@ app.use(function(err, req, res, next) {
 // app.use('/auth', routers.AuthRouter);
 
 app.get('/login', function(req, res) {
+  console.log(req.flash());
   res.render('auth/login', {
     csrfToken: req.csrfToken(),
   });
