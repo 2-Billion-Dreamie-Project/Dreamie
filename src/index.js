@@ -28,12 +28,12 @@ const MongoStore = connectMongo(session);
 app.set('view engine', 'pug');
 app.set("views", path.join(__dirname, "./views"));
 
-console.log(path.join(__dirname, "./views"));
-
 // Configuration passport
 passportConfig(passport, LocalStrategy);
+
 // Configuration timeout
-app.use(timeout('30s'));
+app.use(timeout('10s'));
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false })); 
 // parse application/json
@@ -61,10 +61,9 @@ app.use(passport.session());
 // Configuration Routers
 routes(app, passport);
 
-// error handler CSRF
+
 app.use(function(err, req, res, next) {
-  console.log(err);
-  if (err) {
+  if (err && process.env.NODE_ENV === 'production') {
     res.status(500).send('Error');
   }
 });
