@@ -6,9 +6,8 @@ const AuthRouter   = express.Router();
 const AuthCtlrIns  = new AuthController(new UserModel);
 
 AuthRouter.get('/register', AuthCtlrIns.register);
-
 AuthRouter.post('/register', AuthCtlrIns.createUser);
-
 AuthRouter.get('/login', AuthCtlrIns.login);
 
 export default AuthRouter;
+

@@ -16,19 +16,19 @@ db.once('open', function() {
 
 autoIncrement.initialize(db);
 
-UserSchema.plugin(autoIncrement.plugin, { model: 'Book', field: 'id',  startAt: 1});
+UserSchema.plugin(autoIncrement.plugin, { model: 'Book', field: 'id', startAt: 1 });
 UserSchema.methods.comparePassword = function(password) {
-    return bcrypt.compareSync(password, this.password);
+  return bcrypt.compareSync(password, this.password);
 }
 
 UserSchema.methods.generateHash = function(password) {
-    return bcrypt.hashSync(password, BCRYPT_SALT);
+  return bcrypt.hashSync(password, BCRYPT_SALT);
 }
 
 const User = mongoose.model('User', UserSchema);
 
 export {
-    User
+  User
 }
 
 
