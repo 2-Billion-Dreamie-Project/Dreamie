@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt';
 import UserSchema from './UserSchema';
 import { BCRYPT_SALT } from '../global/common';
 
-mongoose.connect(process.env.DB_CONNECTION || 'mongodb://localhost:27017/mongoose');
+mongoose.connect(process.env.DB_CONNECTIONSS || 'mongodb://localhost:27017/mongoose');
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection error:'));
