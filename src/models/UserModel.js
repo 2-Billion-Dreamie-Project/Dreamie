@@ -12,7 +12,6 @@ export default class UserModel {
     password = '',
   ) {
     let user;
-
     try {
       if (userName && email && password) {
         user = new this.userSchema({ userName, email, password });
@@ -21,8 +20,6 @@ export default class UserModel {
         user.save(function (err, user) {
           if (err) return console.error(err);
           return user;
-        }).catch(function (err) {
-          console.log(err);
         });
 
         return user;

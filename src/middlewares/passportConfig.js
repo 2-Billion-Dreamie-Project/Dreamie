@@ -6,26 +6,28 @@ export default function passportConfig(passport, LocalStrategy) {
       passwordField: 'password'
     }, 
     function(email, password, done) {
-      User.findOne({ email }, function (err, user) {
-        if (err) { return done(err); }
-
-        if (!user) {
-          return done(null, false, { message: 'Incorrect email.' });
-        }
-
-        if (!user.comparePassword(password)) {
-          return done(null, false, { message: 'Incorrect password.' });
-        }
-
-        return done(null, {
-          _id: user._id,
-          userName: user.userName,
-          email: user.email
+      try {
+        User.findOne({ email }, function (err, user) {
+          if (err) { return done(err); }
+  
+          if (!user) {
+            return done(null, false);
+          }
+  
+          if (!user.comparePassword(password)) {
+            return done(null, false);
+          }
+  
+          return done(null, {
+            _id: user._id,
+            userName: user.userName,
+            email: user.email
+          });
         });
-      }).catch(function (err) {
+      } catch (err) {
         console.log(err);
         done(err);
-      });
+      }
     })
   );
 
@@ -34,15 +36,27 @@ export default function passportConfig(passport, LocalStrategy) {
   });
 
   passport.deserializeUser(function(_id, done) {
-    User.findById(_id, function(err, user) {
-      done(null, {
-        _id: user._id,
-        userName: user.userName,
-        email: user.email
-      });
-    }).catch(function (err) {
+    try {
+      if (_id) {
+        User.findById(_id, function(err, user) {
+          if (err) { return done(err); }
+
+          if (!user) {
+            return done(null, false);
+          }
+
+          done(null, {
+            _id: user._id,
+            userName: user.userName,
+            email: user.email
+          });
+        })
+      } else {
+        done(null, false);
+      }
+    } catch (err) {
       console.log(err);
       done(err);
-    });
+    }
   });
 }

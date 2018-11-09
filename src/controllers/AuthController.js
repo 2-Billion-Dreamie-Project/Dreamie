@@ -7,14 +7,8 @@ export default class AuthController {
 
   createUser(req, res) {
     const { userName, email, password } = req.body;
-    let userModel;
-
-    if (userName && email && password) {
-      userModel = this.userModel.createUser(userName, email, password);
-      res.status(200).json(userModel);
-    } else {
-      res.status(400).send('Thông tin đăng ký không hợp lệ');
-    }
+    this.userModel.createUser(userName, email, password);
+    res.redirect('/auth/login')
   }
 
   register(req, res) {
@@ -24,8 +18,19 @@ export default class AuthController {
   }
 
   login(req, res) {
+    let { error, unAuthentication } = req.flash();
+    error = error ? error[0]: '';
+    unAuthentication = unAuthentication ? unAuthentication[0]: '';
+ 
     res.render('auth/login', {
       csrfToken: req.csrfToken(),
+      error,
+      unAuthentication
     });
+  }
+
+  logout(req, res) {
+    req.logout();
+    res.redirect('/');
   }
 }

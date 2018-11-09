@@ -9,7 +9,13 @@ html(lang='en')
 
     h1 Đăng nhập
 
-    form(action="login" method="POST")
+    h3 chưa có tài khoản đăng ký tài khoản 
+      a(href="/auth/register") Tại đây
+
+    h3(style="color: red;")=error
+    h3(style="color: red;")=unAuthentication
+
+    form(action="/auth/login" method="POST")
       input(type="hidden" name="_csrf" value=csrfToken)
 
       | Email: 

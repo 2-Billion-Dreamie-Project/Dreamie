@@ -9,6 +9,9 @@ html(lang='en')
 
     h1 Đăng ký
 
+    h3 Có tài khoản rồi đăng nhập
+      a(href="/auth/login") Tại đây
+
     form(action="register" method="POST")
       input(type="hidden" name="_csrf" value=csrfToken)
 
