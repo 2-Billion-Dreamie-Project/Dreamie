@@ -28,6 +28,6 @@ export default function routes(app, passport) {
 
   // Router index
   app.get('/', function (req, res) {
-    res.render('index');
+    res.render('home');
   });
 }

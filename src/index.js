@@ -3,7 +3,7 @@ import path from 'path';
 
 import express from 'express';
 import bodyParser from 'body-parser';
-import passportConfig from './src/middlewares/passportConfig';
+import passportConfig from './middlewares/passportConfig';
 
 import compression from 'compression';
 import session from 'express-session';
@@ -15,7 +15,7 @@ import Strategy from 'passport-local';
 
 import flash from 'connect-flash';
 import connectMongo from 'connect-mongo';
-import routes from './src/routes';
+import routes from './routes';
 
 import timeout from 'connect-timeout';
 
@@ -26,7 +26,9 @@ const LocalStrategy = Strategy.Strategy;
 const MongoStore = connectMongo(session);
 
 app.set('view engine', 'pug');
-app.set("views", path.join(__dirname, "src/views"));
+app.set("views", path.join(__dirname, "./views"));
+
+console.log(path.join(__dirname, "./views"));
 
 // Configuration passport
 passportConfig(passport, LocalStrategy);
