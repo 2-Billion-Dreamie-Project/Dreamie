@@ -1,5 +1,11 @@
 import { User } from '../db';
 
+/**
+ * @constructor
+ * passportConfig
+ * @param {object} passport - The passport of the middleware.
+ * @param {object} LocalStrategy - The LocalStrategy of the passpor-local.
+ */
 export default function passportConfig(passport, LocalStrategy) {
   passport.use(new LocalStrategy({
       usernameField: 'email',
