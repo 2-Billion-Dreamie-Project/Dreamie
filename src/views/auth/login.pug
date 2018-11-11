@@ -7,19 +7,16 @@ html(lang='en')
     title Dreamie
   body
 
-    h1 Đăng ký
+    h1 Đăng nhập
 
-    h3 Có tài khoản rồi đăng nhập
-      a(href="/auth/login") Tại đây
+    h3 chưa có tài khoản đăng ký tài khoản 
+      a(href="/auth/register") Tại đây
 
-    form(action="register" method="POST")
+    h3(style="color: red;")=error
+    h3(style="color: red;")=unAuthentication
+
+    form(action="/auth/login" method="POST")
       input(type="hidden" name="_csrf" value=csrfToken)
-
-      | Họ tên: 
-      input(type="text" name="userName" placeholder="Hãy nhập Họ tên...")
-
-      br
-      br
 
       | Email: 
       input(type="text" name="email" placeholder="Hãy nhập Email...")
@@ -33,4 +30,4 @@ html(lang='en')
       br
       br
 
-      button(type="submit") Đăng ký
+      button(type="submit") Đăng nhập
