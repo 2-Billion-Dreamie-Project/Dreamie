@@ -5,4 +5,7 @@
 /dist
 
 # Ignore dist
+/bower_components
+
+# Ignore dist
 /out
