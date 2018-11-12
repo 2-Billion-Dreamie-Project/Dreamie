@@ -6,3 +6,6 @@
 
 # Ignore docs
 /docs
+
+# Ignore bower_components
+/bower_components

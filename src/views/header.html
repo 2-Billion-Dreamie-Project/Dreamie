@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/owl.carousel/dist/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="bower_components/owl.carousel/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="bower_components/fancybox/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="bower_components/animate.css/animate.min.css">
+    <link rel="stylesheet" href="bower_components/xzoom/src/xzoom.css">
+    <link rel="stylesheet" href="bower_components/xzoom/example/magnific-popup/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="loader"></div>
+
+
+    <section class="menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 order-xl-4 col-lg-4 col-md-3 col-sm-3 col-6">
+                    <div class="main-menu text-center">
+                        <a class="toggleMenu" href="#"><i class="fa fa-bars" aria-hidden="true"></i></a>
+                        <a class="menu-close" href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
+
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a href="index.php">Trang chủ</a>
+                            </li>
+                            
+                            <li class="nav-item ">
+                                <a href="aboutus.php">Giới thiệu</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="product.php">Sản phẩm</a> <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                <ul>
+                                    <li>
+                                        <a href="product.php">Chuột máy tính</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="product.php">Bàn phím</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="product.php">Tai nghe</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="product.php">Bàn di chuột</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="product.php">Ghế gaming</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="product.php">Tay cầm</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="news.php">Tin tức</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="contact.php">Liên hệ</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-5 col-md-5 col-sm-5 col-12 order-sm-0 order-12">
+                    <div class="logo">
+                        <a href="index.php"><img src="public/img/logo.png" alt=""></a>
+                    </div>
+                </div>
+
+                <div class="col-xl-2 order-xl-4 col-lg-3 col-md-4 col-sm-4 col-6">
+                    <div class="custom-header text-right">
+                        <div class="accordion" id="accordionExample">
+                            <a title="Tìm kiếm" data-toggle="collapse" href="#search" role="button" aria-expanded="true" aria-controls="search">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </a>
+
+                            <a title="Danh sách yêu thích" href="wishlist.php" role="button" aria-expanded="true" aria-controls="wishlist">
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                                <span class="badge badge-light">0</span>
+                            </a>
+
+                            <a title="Giỏ hàng" data-toggle="collapse" href="#cart" role="button" aria-expanded="false" aria-controls="cart">
+                                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                                <span class="badge badge-light">2</span>
+                            </a>
+
+                            <div class="collapse" id="search" data-parent="#accordionExample">
+                                <div class="card card-body search-form">
+                                    <input type="text" name="search" id="search-form" placeholder="Nhập từ khóa">
+                                    <button><i class="fa fa-search" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="collapse" id="cart" data-parent="#accordionExample">
+                                <div class="card card-body cart-form">
+                                    <div class="cart-form-box-product">
+                                        <div class="cart-form-box-product-img">
+                                            <img src="public/img/product-1.png" alt="">
+                                        </div>
+
+                                        <div class="cart-form-box-product-detail">
+                                            <h5>
+                                                <a href="product-detail.php">Logitech G502 Proteus Spectrum</a>
+                                            </h5>
+
+                                            <h6>
+                                                <b>690.000 đ</b> x <span>1</span>
+                                            </h6>
+
+                                            <a href="#">
+                                                <i title="Xóa" class="fa fa-times" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="cart-form-box-product">
+                                        <div class="cart-form-box-product-img">
+                                            <img src="public/img/product-1.png" alt="">
+                                        </div>
+
+                                        <div class="cart-form-box-product-detail">
+                                            <h5>
+                                                <a href="product-detail.php">Logitech G502 Proteus Spectrum</a>
+                                            </h5>
+
+                                            <h6>
+                                                <b>690.000 đ</b> x <span>1</span>
+                                            </h6>
+
+                                            <a href="#">
+                                                <i title="Xóa" class="fa fa-times" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <h4>TỔNG TIỀN: <span>1.380.000 đ</span></h4>
+
+                                    <div class="cart-form-btn text-center">
+                                        <a href="cart.php">Vào giỏ hàng</a>
+                                        <a href="pay.php">Thanh toán</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+</body>
+</html>
