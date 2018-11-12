@@ -165,7 +165,7 @@ section {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background: url(../../public/img/loader.gif) center no-repeat black;
+  background: url(../../assets/img/loader.gif) center no-repeat black;
   animation-name: animateLoader;
   animation-duration: 2s;
   opacity: 0;
