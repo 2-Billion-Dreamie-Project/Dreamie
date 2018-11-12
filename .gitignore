@@ -4,5 +4,5 @@
 # Ignore dist
 /dist
 
-# Ignore dist
-/out
+# Ignore docs
+/docs
