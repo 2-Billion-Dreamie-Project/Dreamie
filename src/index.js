@@ -32,7 +32,7 @@ app.set("views", path.join(__dirname, "./views"));
 passportConfig(passport, LocalStrategy);
 
 // Configuration timeout
-app.use(timeout('10s'));
+app.use(timeout('120s'));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false })); 
