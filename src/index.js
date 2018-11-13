@@ -31,8 +31,6 @@ app.set("views", path.join(__dirname, "./views"));
 app.use('/bower_components', express.static(path.join(__dirname, '../bower_components')));
 app.use('/assets', express.static(path.join(__dirname, '/assets')));
 
-console.log(path.join(__dirname, '../bower_components'));
-
 // Configuration passport
 passportConfig(passport, LocalStrategy);
 
