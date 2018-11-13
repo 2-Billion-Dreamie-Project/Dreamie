@@ -22,7 +22,7 @@ export default function routes(app, passport) {
   // Router Authentication
   app.use('/auth', AuthRouter);
 
-  // Router Authentication
+  // Router Demo
   app.use('/demo', DemoRouter);
 
   // Router profile

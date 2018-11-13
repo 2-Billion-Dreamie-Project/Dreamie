@@ -1,0 +1,294 @@
+extends ../layouts/client/layout_client
+
+block title 
+  title Dreamie Gear - News Detail
+
+block append style
+  link(rel='stylesheet', href='/assets/css/layout.min.css')
+  link(rel='stylesheet', href='/assets/css/news.min.css')
+
+block content
+  article
+    section.breadcrumb
+      .container
+        nav(aria-label='breadcrumb')
+          ol.breadcrumb
+            li.breadcrumb-item
+              a(href='/demo/home') Trang chủ
+            li.breadcrumb-item
+              a(href='/demo/news') Tin tức
+            li.breadcrumb-item.active(aria-current='page') Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, cumque.
+    section
+      .news-page-detail
+        .container
+          .row
+            .col-lg-3.d-none.d-lg-block
+              .news-left
+                .news-left-title
+                  h4
+                    a tin tức mới nhất
+                .box-news-left
+                  .box-news-left-img
+                    a(href='/demo/news_detail')
+                      img(src='/assets/img/news-1.png', alt='')
+                  .box-news-left-detail
+                    h5
+                      a(href='/demo/news_detail') Lorem ipsum dolor sit amet.
+                    p
+                      i.fa.fa-clock-o(aria-hidden='true')
+                      |                                             08/11/2018
+                .box-news-left
+                  .box-news-left-img
+                    a(href='/demo/news_detail')
+                      img(src='/assets/img/news-1.png', alt='')
+                  .box-news-left-detail
+                    h5
+                      a(href='/demo/news_detail') Lorem ipsum dolor sit amet.
+                    p
+                      i.fa.fa-clock-o(aria-hidden='true')
+                      |                                             08/11/2018
+                .box-news-left
+                  .box-news-left-img
+                    a(href='/demo/news_detail')
+                      img(src='/assets/img/news-1.png', alt='')
+                  .box-news-left-detail
+                    h5
+                      a(href='/demo/news_detail') Lorem ipsum dolor sit amet.
+                    p
+                      i.fa.fa-clock-o(aria-hidden='true')
+                      |                                             08/11/2018
+                .box-news-left
+                  .box-news-left-img
+                    a(href='/demo/news_detail')
+                      img(src='/assets/img/news-1.png', alt='')
+                  .box-news-left-detail
+                    h5
+                      a(href='/demo/news_detail') Lorem ipsum dolor sit amet.
+                    p
+                      i.fa.fa-clock-o(aria-hidden='true')
+                      |                                             08/11/2018
+                .box-news-left
+                  .box-news-left-img
+                    a(href='/demo/news_detail')
+                      img(src='/assets/img/news-1.png', alt='')
+                  .box-news-left-detail
+                    h5
+                      a(href='/demo/news_detail') Lorem ipsum dolor sit amet.
+                    p
+                      i.fa.fa-clock-o(aria-hidden='true')
+                      |                                             08/11/2018
+            .col-lg-9
+              .news-page-detail-right
+                h2
+                  | Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, vel.
+                h5
+                  i.fa.fa-clock-o(aria-hidden='true')
+                  |                                     08/11/2018
+                h4
+                  | Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium exercitationem, eum voluptatem, laudantium laborum dolor quisquam expedita suscipit dicta, recusandae magnam nemo iste dignissimos illo. Ipsam aspernatur amet nisi iure!
+                img(src='/assets/img/news-1.png', alt='')
+                p
+                  | Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod alias nostrum rerum impedit praesentium dolores quasi exercitationem dolorem? Amet blanditiis voluptas totam enim labore, dignissimos aperiam non aliquam! Tenetur, quidem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias nostrum asperiores eveniet officia recusandae delectus cumque praesentium, ipsum velit nobis fugiat vitae explicabo nam maxime. Rem aliquam autem obcaecati tempore.
+                p
+                  | Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod alias nostrum rerum impedit praesentium dolores quasi exercitationem dolorem? Amet blanditiis voluptas totam enim labore, dignissimos aperiam non aliquam! Tenetur, quidem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias nostrum asperiores eveniet officia recusandae delectus cumque praesentium, ipsum velit nobis fugiat vitae explicabo nam maxime. Rem aliquam autem obcaecati tempore.
+                p
+                  | Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod alias nostrum rerum impedit praesentium dolores quasi exercitationem dolorem? Amet blanditiis voluptas totam enim labore, dignissimos aperiam non aliquam! Tenetur, quidem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias nostrum asperiores eveniet officia recusandae delectus cumque praesentium, ipsum velit nobis fugiat vitae explicabo nam maxime. Rem aliquam autem obcaecati tempore.
+                p
+                  | Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod alias nostrum rerum impedit praesentium dolores quasi exercitationem dolorem? Amet blanditiis voluptas totam enim labore, dignissimos aperiam non aliquam! Tenetur, quidem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias nostrum asperiores eveniet officia recusandae delectus cumque praesentium, ipsum velit nobis fugiat vitae explicabo nam maxime. Rem aliquam autem obcaecati tempore.
+          .similar
+            .similar-title.text-center
+              h1
+                a có thể bạn sẽ thích
+            .row
+              .col-lg-3.col-md-6.col-sm-6
+                .box-product
+                  .box-product-img
+                    .custom-product
+                      a.custom-quickview(href='#')
+                        i.fa.fa-eye(aria-hidden='true')
+                      a.custom-wishlist(href='#')
+                        i.fa.fa-heart(aria-hidden='true')
+                      a.custom-cart(href='#')
+                        i.fa.fa-shopping-bag(aria-hidden='true')
+                    a(href='/demo/product_detail')
+                      img(src='/assets/img/product-1.png', alt='')
+                  .box-product-detail.text-center
+                    h5
+                      a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                    h4.price-product
+                      | 699.000 đ 
+                      span.price-default 700.000 đ
+                    p
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+              .col-lg-3.col-md-6.col-sm-6
+                .box-product
+                  .box-product-img
+                    .custom-product
+                      a.custom-quickview(href='#')
+                        i.fa.fa-eye(aria-hidden='true')
+                      a.custom-wishlist(href='#')
+                        i.fa.fa-heart(aria-hidden='true')
+                      a.custom-cart(href='#')
+                        i.fa.fa-shopping-bag(aria-hidden='true')
+                    a(href='/demo/product_detail')
+                      img(src='/assets/img/product-1.png', alt='')
+                  .box-product-detail.text-center
+                    h5
+                      a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                    h4.price-product
+                      | 699.000 đ 
+                      span.price-default 700.000 đ
+                    p
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+              .col-lg-3.col-md-6.col-sm-6
+                .box-product
+                  .box-product-img
+                    .custom-product
+                      a.custom-quickview(href='#')
+                        i.fa.fa-eye(aria-hidden='true')
+                      a.custom-wishlist(href='#')
+                        i.fa.fa-heart(aria-hidden='true')
+                      a.custom-cart(href='#')
+                        i.fa.fa-shopping-bag(aria-hidden='true')
+                    a(href='/demo/product_detail')
+                      img(src='/assets/img/product-1.png', alt='')
+                  .box-product-detail.text-center
+                    h5
+                      a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                    h4.price-product
+                      | 699.000 đ 
+                      span.price-default 700.000 đ
+                    p
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+              .col-lg-3.col-md-6.col-sm-6
+                .box-product
+                  .box-product-img
+                    .custom-product
+                      a.custom-quickview(href='#')
+                        i.fa.fa-eye(aria-hidden='true')
+                      a.custom-wishlist(href='#')
+                        i.fa.fa-heart(aria-hidden='true')
+                      a.custom-cart(href='#')
+                        i.fa.fa-shopping-bag(aria-hidden='true')
+                    a(href='/demo/product_detail')
+                      img(src='/assets/img/product-1.png', alt='')
+                  .box-product-detail.text-center
+                    h5
+                      a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                    h4.price-product
+                      | 699.000 đ 
+                      span.price-default 700.000 đ
+                    p
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+              .col-lg-3.col-md-6.col-sm-6
+                .box-product
+                  .box-product-img
+                    .custom-product
+                      a.custom-quickview(href='#')
+                        i.fa.fa-eye(aria-hidden='true')
+                      a.custom-wishlist(href='#')
+                        i.fa.fa-heart(aria-hidden='true')
+                      a.custom-cart(href='#')
+                        i.fa.fa-shopping-bag(aria-hidden='true')
+                    a(href='/demo/product_detail')
+                      img(src='/assets/img/product-1.png', alt='')
+                  .box-product-detail.text-center
+                    h5
+                      a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                    h4.price-product
+                      | 699.000 đ 
+                      span.price-default 700.000 đ
+                    p
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+              .col-lg-3.col-md-6.col-sm-6
+                .box-product
+                  .box-product-img
+                    .custom-product
+                      a.custom-quickview(href='#')
+                        i.fa.fa-eye(aria-hidden='true')
+                      a.custom-wishlist(href='#')
+                        i.fa.fa-heart(aria-hidden='true')
+                      a.custom-cart(href='#')
+                        i.fa.fa-shopping-bag(aria-hidden='true')
+                    a(href='/demo/product_detail')
+                      img(src='/assets/img/product-1.png', alt='')
+                  .box-product-detail.text-center
+                    h5
+                      a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                    h4.price-product
+                      | 699.000 đ 
+                      span.price-default 700.000 đ
+                    p
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+              .col-lg-3.col-md-6.col-sm-6
+                .box-product
+                  .box-product-img
+                    .custom-product
+                      a.custom-quickview(href='#')
+                        i.fa.fa-eye(aria-hidden='true')
+                      a.custom-wishlist(href='#')
+                        i.fa.fa-heart(aria-hidden='true')
+                      a.custom-cart(href='#')
+                        i.fa.fa-shopping-bag(aria-hidden='true')
+                    a(href='/demo/product_detail')
+                      img(src='/assets/img/product-1.png', alt='')
+                  .box-product-detail.text-center
+                    h5
+                      a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                    h4.price-product
+                      | 699.000 đ 
+                      span.price-default 700.000 đ
+                    p
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+              .col-lg-3.col-md-6.col-sm-6
+                .box-product
+                  .box-product-img
+                    .custom-product
+                      a.custom-quickview(href='#')
+                        i.fa.fa-eye(aria-hidden='true')
+                      a.custom-wishlist(href='#')
+                        i.fa.fa-heart(aria-hidden='true')
+                      a.custom-cart(href='#')
+                        i.fa.fa-shopping-bag(aria-hidden='true')
+                    a(href='/demo/product_detail')
+                      img(src='/assets/img/product-1.png', alt='')
+                  .box-product-detail.text-center
+                    h5
+                      a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                    h4.price-product
+                      | 699.000 đ 
+                      span.price-default 700.000 đ
+                    p
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')
+                      i.fa.fa-star(aria-hidden='true')

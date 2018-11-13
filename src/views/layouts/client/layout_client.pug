@@ -16,10 +16,8 @@ html(lang='en')
       link(rel='stylesheet', href='/bower_components/animate.css/animate.min.css')
       link(rel='stylesheet', href='/bower_components/xzoom/src/xzoom.css')
       link(rel='stylesheet', href='/bower_components/xzoom/example/magnific-popup/css/magnific-popup.css')
-      link(rel='stylesheet', href='/assets/css/layout.min.css')
-      link(rel='stylesheet', href='/assets/css/custom.min.css')
   body
-    .loader
+    //- .loader
     
     block menu
       section.menu
@@ -33,39 +31,39 @@ html(lang='en')
                   i.fa.fa-times(aria-hidden='true')
                 ul.nav
                   li.nav-item
-                    a(href='index.php') Trang chủ
+                    a(href='/demo/home') Trang chủ
                   li.nav-item
-                    a(href='aboutus.php') Giới thiệu
+                    a(href='/demo/about_us') Giới thiệu
                   li.nav-item
-                    a(href='product.php') Sản phẩm
+                    a(href='/demo/product') Sản phẩm
                     i.fa.fa-caret-down(aria-hidden='true')
                     ul
                       li
-                        a(href='product.php') Chuột máy tính
+                        a(href='/demo/product') Chuột máy tính
                       li
-                        a(href='product.php') Bàn phím
+                        a(href='/demo/product') Bàn phím
                       li
-                        a(href='product.php') Tai nghe
+                        a(href='/demo/product') Tai nghe
                       li
-                        a(href='product.php') Bàn di chuột
+                        a(href='/demo/product') Bàn di chuột
                       li
-                        a(href='product.php') Ghế gaming
+                        a(href='/demo/product') Ghế gaming
                       li
-                        a(href='product.php') Tay cầm
+                        a(href='/demo/product') Tay cầm
                   li.nav-item
-                    a(href='news.php') Tin tức
+                    a(href='/demo/news') Tin tức
                   li.nav-item
-                    a(href='contact.php') Liên hệ
+                    a(href='/demo/contact') Liên hệ
             .col-xl-4.col-lg-5.col-md-5.col-sm-5.col-12.order-sm-0.order-12
               .logo
-                a(href='index.php')
+                a(href='/demo/home')
                   img(src='/assets/img/logo.png', alt='')
             .col-xl-2.order-xl-4.col-lg-3.col-md-4.col-sm-4.col-6
               .custom-header.text-right
                 #accordionExample.accordion
                   a(title='Tìm kiếm', data-toggle='collapse', href='#search', role='button', aria-expanded='true', aria-controls='search')
                     i.fa.fa-search(aria-hidden='true')
-                  a(title='Danh sách yêu thích', href='wishlist.php', role='button', aria-expanded='true', aria-controls='wishlist')
+                  a(title='Danh sách yêu thích', href='/demo/wishlist', role='button', aria-expanded='true', aria-controls='wishlist')
                     i.fa.fa-heart(aria-hidden='true')
                     span.badge.badge-light 0
                   a(title='Giỏ hàng', data-toggle='collapse', href='#cart', role='button', aria-expanded='false', aria-controls='cart')
@@ -83,7 +81,7 @@ html(lang='en')
                           img(src='/assets/img/product-1.png', alt='')
                         .cart-form-box-product-detail
                           h5
-                            a(href='product-detail.php') Logitech G502 Proteus Spectrum
+                            a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
                           h6
                             b 690.000 đ
                             |  x 
@@ -95,7 +93,7 @@ html(lang='en')
                           img(src='/assets/img/product-1.png', alt='')
                         .cart-form-box-product-detail
                           h5
-                            a(href='product-detail.php') Logitech G502 Proteus Spectrum
+                            a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
                           h6
                             b 690.000 đ
                             |  x 
@@ -106,8 +104,8 @@ html(lang='en')
                         | TỔNG TIỀN: 
                         span 1.380.000 đ
                       .cart-form-btn.text-center
-                        a(href='cart.php') Vào giỏ hàng
-                        a(href='pay.php') Thanh toán
+                        a(href='/demo/cart') Vào giỏ hàng
+                        a(href='/demo/pay') Thanh toán
 
     block content
 
@@ -167,29 +165,29 @@ html(lang='en')
                 .card.card-body.cate-footer
                   ul
                     li
-                      a(href='product.php')
+                      a(href='/demo/product')
                         i.fa.fa-circle-o(aria-hidden='true')
-                        |                                         Chuột máy tính
+                        | Chuột máy tính
                     li
-                      a(href='product.php')
+                      a(href='/demo/product')
                         i.fa.fa-circle-o(aria-hidden='true')
-                        |                                         Bàn phím
+                        | Bàn phím
                     li
-                      a(href='product.php')
+                      a(href='/demo/product')
                         i.fa.fa-circle-o(aria-hidden='true')
-                        |                                         Tai nghe
+                        | Tai nghe
                     li
-                      a(href='product.php')
+                      a(href='/demo/product')
                         i.fa.fa-circle-o(aria-hidden='true')
-                        |                                         Bàn di chuột
+                        | Bàn di chuột
                     li
-                      a(href='product.php')
+                      a(href='/demo/product')
                         i.fa.fa-circle-o(aria-hidden='true')
-                        |                                         Ghế gaming
+                        | Ghế gaming
                     li
-                      a(href='product.php')
+                      a(href='/demo/product')
                         i.fa.fa-circle-o(aria-hidden='true')
-                        |                                         Tay cầm
+                        | Tay cầm
             .col-lg-3
               .title-footer
                 h3
@@ -202,23 +200,23 @@ html(lang='en')
                     li
                       a(href='#')
                         i.fa.fa-circle-o(aria-hidden='true')
-                        |                                         Các câu hỏi thường gặp
+                        | Các câu hỏi thường gặp
                     li
                       a(href='#')
                         i.fa.fa-circle-o(aria-hidden='true')
-                        |                                         Gửi yêu cầu hỗ trợ
+                        | Gửi yêu cầu hỗ trợ
                     li
                       a(href='#')
                         i.fa.fa-circle-o(aria-hidden='true')
-                        |                                         Hướng dẫn đặt hàng
+                        | Hướng dẫn đặt hàng
                     li
                       a(href='#')
                         i.fa.fa-circle-o(aria-hidden='true')
-                        |                                         Phương thức vận chuyển
+                        | Phương thức vận chuyển
                     li
                       a(href='#')
                         i.fa.fa-circle-o(aria-hidden='true')
-                        |                                         Chính sách đổi trả
+                        | Chính sách đổi trả
             .col-lg-3
               .title-footer
                 h3
@@ -245,13 +243,14 @@ html(lang='en')
         i.fa.fa-gamepad(aria-hidden='true')
 
     block script
-      <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-      <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-      <script src="/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
-      <script src="/bower_components/fancybox/dist/jquery.fancybox.min.js"></script>
-      <script src="/bower_components/wow/dist/wow.min.js"></script>
-      <script src="/bower_components/xzoom/dist/xzoom.min.js"></script>
-      <script src="/bower_components/xzoom/example/magnific-popup/js/magnific-popup.js"></script>
-      <script src="/assets/js/index.js"></script>
+      script(src='/bower_components/jquery/dist/jquery.min.js')
+      script(src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
+      script(src='/bower_components/owl.carousel/dist/owl.carousel.min.js')
+      script(src='/bower_components/fancybox/dist/jquery.fancybox.min.js')
+      script(src='/bower_components/wow/dist/wow.min.js')
+      script(src='/bower_components/xzoom/dist/xzoom.min.js')
+      script(src='/bower_components/xzoom/example/magnific-popup/js/magnific-popup.js')
+      script(src='/assets/js/index.js')
+
 
                   

@@ -1,0 +1,528 @@
+extends ../layouts/client/layout_client
+
+block title 
+  title Dreamie Gear - Product
+
+block append style
+  link(rel='stylesheet', href='/assets/css/layout.min.css')
+  link(rel='stylesheet', href='/assets/css/product.min.css')
+
+block content
+  article
+    section.breadcrumb
+      .container
+        nav(aria-label='breadcrumb')
+          ol.breadcrumb
+            li.breadcrumb-item
+              a(href='/demo/home') Trang chủ
+            li.breadcrumb-item
+              a(href='/demo/product') Sản phẩm
+            li.breadcrumb-item.active(aria-current='page') Chuột máy tính
+            
+    section.product-page
+      .container
+        .row
+          .col-lg-9.order-lg-3
+            .main-product
+              .main-product-title
+                h4 chuột máy tính
+              .row.main-product-top
+                .col.d-lg-inline-block.d-sm-none.d-none
+                  .main-product-view
+                    a.view-product(title='Dạng lưới', href='/demo/product')
+                      i.fa.fa-th-large(aria-hidden='true')
+                    a.view-product.active(title='Dạng danh sách', href='/demo/product_2')
+                      i.fa.fa-list(aria-hidden='true')
+                    span Lựa chọn kiểu xem
+                .col.text-right
+                  .main-product-sort
+                    span Sắp xếp theo
+                    select#exampleFormControlSelect1.form-control
+                      option Mới nhất
+                      option Bán chạy nhất
+                      option Giá từ cao xuống thấp
+                      option Giá từ thấp lên cao
+              .row
+                .col-lg-12
+                  .box-product-2
+                    .row
+                      .col-xl-4.col-lg-4
+                        .box-product-img
+                          .custom-product
+                            a.custom-quickview(href='#')
+                              i.fa.fa-eye(aria-hidden='true')
+                            a.custom-wishlist(href='#')
+                              i.fa.fa-heart(aria-hidden='true')
+                          a(href='/demo/product_detail')
+                            img(src='/assets/img/product-1.png', alt='')
+                      .col-xl-6.col-lg-5
+                        .box-product-detail
+                          p
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                          h5
+                            a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                          h4.price-product
+                            | 699.000 đ 
+                            span.price-default 700.000 đ
+                          p
+                            | This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat
+                      .col-xl-2.col-lg-3.text-right
+                        .box-product-2-btn
+                          a(href='#') Thêm vào giỏ
+                          a(href='/demo/product_detail') xem chi tiết
+                  .box-product-2
+                    .row
+                      .col-xl-4.col-lg-4
+                        .box-product-img
+                          .custom-product
+                            a.custom-quickview(href='#')
+                              i.fa.fa-eye(aria-hidden='true')
+                            a.custom-wishlist(href='#')
+                              i.fa.fa-heart(aria-hidden='true')
+                          a(href='/demo/product_detail')
+                            img(src='/assets/img/product-1.png', alt='')
+                      .col-xl-6.col-lg-5
+                        .box-product-detail
+                          p
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                          h5
+                            a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                          h4.price-product
+                            | 699.000 đ 
+                            span.price-default 700.000 đ
+                          p
+                            | This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat
+                      .col-xl-2.col-lg-3.text-right
+                        .box-product-2-btn
+                          a(href='#') Thêm vào giỏ
+                          a(href='/demo/product_detail') xem chi tiết
+                  .box-product-2
+                    .row
+                      .col-xl-4.col-lg-4
+                        .box-product-img
+                          .custom-product
+                            a.custom-quickview(href='#')
+                              i.fa.fa-eye(aria-hidden='true')
+                            a.custom-wishlist(href='#')
+                              i.fa.fa-heart(aria-hidden='true')
+                          a(href='/demo/product_detail')
+                            img(src='/assets/img/product-1.png', alt='')
+                      .col-xl-6.col-lg-5
+                        .box-product-detail
+                          p
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                          h5
+                            a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                          h4.price-product
+                            | 699.000 đ 
+                            span.price-default 700.000 đ
+                          p
+                            | This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat
+                      .col-xl-2.col-lg-3.text-right
+                        .box-product-2-btn
+                          a(href='#') Thêm vào giỏ
+                          a(href='/demo/product_detail') xem chi tiết
+                  .box-product-2
+                    .row
+                      .col-xl-4.col-lg-4
+                        .box-product-img
+                          .custom-product
+                            a.custom-quickview(href='#')
+                              i.fa.fa-eye(aria-hidden='true')
+                            a.custom-wishlist(href='#')
+                              i.fa.fa-heart(aria-hidden='true')
+                          a(href='/demo/product_detail')
+                            img(src='/assets/img/product-1.png', alt='')
+                      .col-xl-6.col-lg-5
+                        .box-product-detail
+                          p
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                          h5
+                            a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                          h4.price-product
+                            | 699.000 đ 
+                            span.price-default 700.000 đ
+                          p
+                            | This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat
+                      .col-xl-2.col-lg-3.text-right
+                        .box-product-2-btn
+                          a(href='#') Thêm vào giỏ
+                          a(href='/demo/product_detail') xem chi tiết
+                  .box-product-2
+                    .row
+                      .col-xl-4.col-lg-4
+                        .box-product-img
+                          .custom-product
+                            a.custom-quickview(href='#')
+                              i.fa.fa-eye(aria-hidden='true')
+                            a.custom-wishlist(href='#')
+                              i.fa.fa-heart(aria-hidden='true')
+                          a(href='/demo/product_detail')
+                            img(src='/assets/img/product-1.png', alt='')
+                      .col-xl-6.col-lg-5
+                        .box-product-detail
+                          p
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                          h5
+                            a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                          h4.price-product
+                            | 699.000 đ 
+                            span.price-default 700.000 đ
+                          p
+                            | This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat
+                      .col-xl-2.col-lg-3.text-right
+                        .box-product-2-btn
+                          a(href='#') Thêm vào giỏ
+                          a(href='/demo/product_detail') xem chi tiết
+                  .box-product-2
+                    .row
+                      .col-xl-4.col-lg-4
+                        .box-product-img
+                          .custom-product
+                            a.custom-quickview(href='#')
+                              i.fa.fa-eye(aria-hidden='true')
+                            a.custom-wishlist(href='#')
+                              i.fa.fa-heart(aria-hidden='true')
+                          a(href='/demo/product_detail')
+                            img(src='/assets/img/product-1.png', alt='')
+                      .col-xl-6.col-lg-5
+                        .box-product-detail
+                          p
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                          h5
+                            a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                          h4.price-product
+                            | 699.000 đ 
+                            span.price-default 700.000 đ
+                          p
+                            | This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat
+                      .col-xl-2.col-lg-3.text-right
+                        .box-product-2-btn
+                          a(href='#') Thêm vào giỏ
+                          a(href='/demo/product_detail') xem chi tiết
+                  .box-product-2
+                    .row
+                      .col-xl-4.col-lg-4
+                        .box-product-img
+                          .custom-product
+                            a.custom-quickview(href='#')
+                              i.fa.fa-eye(aria-hidden='true')
+                            a.custom-wishlist(href='#')
+                              i.fa.fa-heart(aria-hidden='true')
+                          a(href='/demo/product_detail')
+                            img(src='/assets/img/product-1.png', alt='')
+                      .col-xl-6.col-lg-5
+                        .box-product-detail
+                          p
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                          h5
+                            a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                          h4.price-product
+                            | 699.000 đ 
+                            span.price-default 700.000 đ
+                          p
+                            | This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat
+                      .col-xl-2.col-lg-3.text-right
+                        .box-product-2-btn
+                          a(href='#') Thêm vào giỏ
+                          a(href='/demo/product_detail') xem chi tiết
+                  .box-product-2
+                    .row
+                      .col-xl-4.col-lg-4
+                        .box-product-img
+                          .custom-product
+                            a.custom-quickview(href='#')
+                              i.fa.fa-eye(aria-hidden='true')
+                            a.custom-wishlist(href='#')
+                              i.fa.fa-heart(aria-hidden='true')
+                          a(href='/demo/product_detail')
+                            img(src='/assets/img/product-1.png', alt='')
+                      .col-xl-6.col-lg-5
+                        .box-product-detail
+                          p
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                          h5
+                            a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                          h4.price-product
+                            | 699.000 đ 
+                            span.price-default 700.000 đ
+                          p
+                            | This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat
+                      .col-xl-2.col-lg-3.text-right
+                        .box-product-2-btn
+                          a(href='#') Thêm vào giỏ
+                          a(href='/demo/product_detail') xem chi tiết
+                  .box-product-2
+                    .row
+                      .col-xl-4.col-lg-4
+                        .box-product-img
+                          .custom-product
+                            a.custom-quickview(href='#')
+                              i.fa.fa-eye(aria-hidden='true')
+                            a.custom-wishlist(href='#')
+                              i.fa.fa-heart(aria-hidden='true')
+                          a(href='/demo/product_detail')
+                            img(src='/assets/img/product-1.png', alt='')
+                      .col-xl-6.col-lg-5
+                        .box-product-detail
+                          p
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                          h5
+                            a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                          h4.price-product
+                            | 699.000 đ 
+                            span.price-default 700.000 đ
+                          p
+                            | This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat
+                      .col-xl-2.col-lg-3.text-right
+                        .box-product-2-btn
+                          a(href='#') Thêm vào giỏ
+                          a(href='/demo/product_detail') xem chi tiết
+                  .box-product-2
+                    .row
+                      .col-xl-4.col-lg-4
+                        .box-product-img
+                          .custom-product
+                            a.custom-quickview(href='#')
+                              i.fa.fa-eye(aria-hidden='true')
+                            a.custom-wishlist(href='#')
+                              i.fa.fa-heart(aria-hidden='true')
+                          a(href='/demo/product_detail')
+                            img(src='/assets/img/product-1.png', alt='')
+                      .col-xl-6.col-lg-5
+                        .box-product-detail
+                          p
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                          h5
+                            a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                          h4.price-product
+                            | 699.000 đ 
+                            span.price-default 700.000 đ
+                          p
+                            | This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat
+                      .col-xl-2.col-lg-3.text-right
+                        .box-product-2-btn
+                          a(href='#') Thêm vào giỏ
+                          a(href='/demo/product_detail') xem chi tiết
+                  .box-product-2
+                    .row
+                      .col-xl-4.col-lg-4
+                        .box-product-img
+                          .custom-product
+                            a.custom-quickview(href='#')
+                              i.fa.fa-eye(aria-hidden='true')
+                            a.custom-wishlist(href='#')
+                              i.fa.fa-heart(aria-hidden='true')
+                          a(href='/demo/product_detail')
+                            img(src='/assets/img/product-1.png', alt='')
+                      .col-xl-6.col-lg-5
+                        .box-product-detail
+                          p
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                          h5
+                            a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                          h4.price-product
+                            | 699.000 đ 
+                            span.price-default 700.000 đ
+                          p
+                            | This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat
+                      .col-xl-2.col-lg-3.text-right
+                        .box-product-2-btn
+                          a(href='#') Thêm vào giỏ
+                          a(href='/demo/product_detail') xem chi tiết
+                  .box-product-2
+                    .row
+                      .col-xl-4.col-lg-4
+                        .box-product-img
+                          .custom-product
+                            a.custom-quickview(href='#')
+                              i.fa.fa-eye(aria-hidden='true')
+                            a.custom-wishlist(href='#')
+                              i.fa.fa-heart(aria-hidden='true')
+                          a(href='/demo/product_detail')
+                            img(src='/assets/img/product-1.png', alt='')
+                      .col-xl-6.col-lg-5
+                        .box-product-detail
+                          p
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                            i.fa.fa-star(aria-hidden='true')
+                          h5
+                            a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                          h4.price-product
+                            | 699.000 đ 
+                            span.price-default 700.000 đ
+                          p
+                            | This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat
+                      .col-xl-2.col-lg-3.text-right
+                        .box-product-2-btn
+                          a(href='#') Thêm vào giỏ
+                          a(href='/demo/product_detail') xem chi tiết
+              .row
+                .col-lg-12
+                  nav
+                    ul.pagination.justify-content-end
+                      li.page-item
+                        a.page-link(href='#', aria-label='Previous')
+                          span(aria-hidden='true') «
+                          span.sr-only Previous
+                      li.page-item
+                        a.page-link.active(href='#') 1
+                      li.page-item
+                        a.page-link(href='#') 2
+                      li.page-item
+                        a.page-link(href='#') 3
+                      li.page-item
+                        a.page-link(href='#', aria-label='Next')
+                          span(aria-hidden='true') »
+                          span.sr-only Next
+          .col-lg-3
+            .product-page-left
+              .cate-left
+                .cate-left-title
+                  h4
+                    a danh mục sản phẩm
+                #productCate
+                  a.list-cate-title(data-toggle='collapse', href='#cate-left-1', role='button', aria-expanded='true', aria-controls='cate-left-1')
+                    | Chuột máy tính
+                    i.fa.fa-plus(aria-hidden='true')
+                  #cate-left-1.collapse(data-parent='#productCate')
+                    .card.card-body.list-cate
+                      ul
+                        li
+                          a(href='/demo/product')
+                            i.fa.fa-minus(aria-hidden='true')
+                            |  Razer
+                        li
+                          a(href='/demo/product')
+                            i.fa.fa-minus(aria-hidden='true')
+                            |  Steelseries
+                        li
+                          a(href='/demo/product')
+                            i.fa.fa-minus(aria-hidden='true')
+                            |  Logitech
+                        li
+                          a(href='/demo/product')
+                            i.fa.fa-minus(aria-hidden='true')
+                            |  Zowie
+                        li
+                          a(href='/demo/product')
+                            i.fa.fa-minus(aria-hidden='true')
+                            |  Microsoft
+                        li
+                          a(href='/demo/product')
+                            i.fa.fa-minus(aria-hidden='true')
+                            |  Alienware
+                  a.list-cate-title(data-toggle='collapse', href='#cate-left-2', role='button', aria-expanded='true', aria-controls='cate-left-2')
+                    | Bàn phím
+                    i.fa.fa-plus(aria-hidden='true')
+                  #cate-left-2.collapse(data-parent='#productCate')
+                    .card.card-body.list-cate
+                      | abc234
+                  a.list-cate-title(data-toggle='collapse', href='#cate-left-3', role='button', aria-expanded='true', aria-controls='cate-left-3')
+                    | Tai nghe
+                    i.fa.fa-plus(aria-hidden='true')
+                  #cate-left-3.collapse(data-parent='#productCate')
+                    .card.card-body.list-cate
+                      | abc234234
+                  a.list-cate-title(data-toggle='collapse', href='#cate-left-4', role='button', aria-expanded='true', aria-controls='cate-left-4')
+                    | Bàn di chuột
+                    i.fa.fa-plus(aria-hidden='true')
+                  a.list-cate-title(data-toggle='collapse', href='#cate-left-5', role='button', aria-expanded='true', aria-controls='cate-left-5')
+                    | Ghế gaming
+                    i.fa.fa-plus(aria-hidden='true')
+                  a.list-cate-title(data-toggle='collapse', href='#cate-left-6', role='button', aria-expanded='true', aria-controls='cate-left-6')
+                    | Tay cầm
+                    i.fa.fa-plus(aria-hidden='true')
+              .cate-left
+                .cate-left-title
+                  h4
+                    a lọc theo giá
+                .filter-price
+                  input(type='range', min='0', max='1000', value='0')
+                  input(type='range', min='1000', max='10000', value='10000')
+                  p
+                    span 0 đ
+                    |  - 
+                    span 1.000.000 đ
+                  button(type='submit') Lọc
+              .cate-left
+                .cate-left-title
+                  h4
+                    a màu sắc
+                .blue
+                .green
+                .yellow
+                .black
+                .red
+              .cate-left
+                .cate-left-title
+                  h4
+                    a tình trạng sản phẩm
+                .status-product
+                  ul
+                    li
+                      input#defaultCheck1(type='checkbox', value='')
+                      label.form-check-label(for='defaultCheck1')
+                        | Sản phẩm mới
+                    li
+                      input#defaultCheck2(type='checkbox', value='')
+                      label.form-check-label(for='defaultCheck2')
+                        | Sản phẩm bán chạy
+                    li
+                      input#defaultCheck3(type='checkbox', value='')
+                      label.form-check-label(for='defaultCheck3')
+                        | Sản phẩm nổi bật
+                    li
+                      input#defaultCheck4(type='checkbox', value='')
+                      label.form-check-label(for='defaultCheck4')
+                        | Sản phẩm còn hàng
+                .cate-left-btn
+                  button(type='reset')
+                    a trở về mặc định

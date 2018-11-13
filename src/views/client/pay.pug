@@ -1,0 +1,121 @@
+extends ../layouts/client/layout_client
+
+block title 
+  title Dreamie Gear - Pay
+
+block append style
+  link(rel='stylesheet', href='/assets/css/layout.min.css')
+  link(rel='stylesheet', href='/assets/css/custom.min.css')
+
+block content
+  article
+    section.breadcrumb
+      .container
+        nav(aria-label='breadcrumb')
+          ol.breadcrumb
+            li.breadcrumb-item
+              a(href='/demo/home') Trang chủ
+            li.breadcrumb-item.active(aria-current='page') Thanh toán
+
+    section.pay-page
+      .container
+        form
+          .row
+            .col-lg-4
+              .pay-page-title
+                h4
+                  | Đơn hàng
+              .pay-order
+                p 3 sản phẩm trong giỏ hàng
+                .row
+                  .col-lg-12
+                    .box-pay-order
+                      img(src='/assets/img/product-1.png', alt='')
+                      h5
+                        a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                      h5 Số lượng: 1
+                      h4 Thành tiền: 690.000 đ
+                .row
+                  .col-lg-12
+                    .box-pay-order
+                      img(src='/assets/img/product-1.png', alt='')
+                      h5
+                        a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                      h5 Số lượng: 1
+                      h4 Thành tiền: 690.000 đ
+                .row
+                  .col-lg-12
+                    .box-pay-order
+                      img(src='/assets/img/product-1.png', alt='')
+                      h5
+                        a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                      h5 Số lượng: 1
+                      h4 Thành tiền: 690.000 đ
+            .col-lg-8.order-lg-4
+              .pay-info
+                .pay-page-title
+                  h4
+                    | Thông tin mua hàng
+                .pay-info-1
+                  .row
+                    .col-md-6
+                      .form-group
+                        label(for='name') Họ tên* :
+                        input#name.form-control(type='text', placeholder='Nhập họ tên')
+                    .col-md-6
+                      .form-group
+                        label(for='city') Tỉnh / Thành* :
+                        select#city.form-control
+                          option(value='') -- Chọn tỉnh thành ---
+                          option(value='') Thanh Hóa
+                          option(value='') Tiểu Vương Quốc
+                          option(value='') Hoa Thanh Quế
+                    .col-md-6.order-6.order-md-0
+                      .form-group
+                        label(for='email') Email* :
+                        input#email.form-control(type='email', placeholder='Nhập Email')
+                    .col-md-6
+                      .form-group
+                        label(for='district') Quận / Huyện* :
+                        select#district.form-control
+                          option(value='') -- Chọn quận huyện ---
+                          option(value='') Thị xã Bỉm Sơn
+                          option(value='') Thị xã Sầm Sơn
+                          option(value='') Huyện Đông Sơn
+                          option(value='') Huyện Tĩnh Gia
+                          option(value='') Huyện Hà Trung
+                          option(value='') Huyện Yên Định
+                          option(value='') Huyện Mường Lát
+                          option(value='') Huyện Nga Sơn
+                    .col-md-6
+                      .form-group
+                        label(for='phone') Số điện thoại* :
+                        input#phone.form-control(type='tel', placeholder='Nhập số điện thoại')
+                    .col-md-6
+                      .form-group
+                        label(for='address') Địa chỉ* :
+                        input#address.form-control(type='text', placeholder='Nhập địa chỉ')
+                    .col-md-12
+                      .form-group
+                        label(for='content') Ghi chú* :
+                        textarea#content.form-control(placeholder='Nhập ghi chú')
+                .pay-page-title
+                  h4
+                    | Ước tính thanh toán
+                .pay-info-2
+                  table.table.table-bordered.table-dark
+                    tbody
+                      tr
+                        td Tổng tiền
+                        td Phí vận chuyển
+                        td Tổng cộng
+                      tr
+                        td 699.000 đ
+                        td 20.000 đ
+                        td.pay-total 719.000 đ
+                  .pay-info-2-btn.text-right
+                    a(href='/demo/cart')
+                      i.fa.fa-undo(aria-hidden='true')
+                      |                                             Trở về giỏ hàng
+                    button(type='submit')
+                      a.order-btn Đặt hàng

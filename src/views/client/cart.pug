@@ -1,0 +1,125 @@
+extends ../layouts/client/layout_client
+
+block title 
+  title Dreamie Gear - Cart
+
+block append style
+  link(rel='stylesheet', href='/assets/css/layout.min.css')
+  link(rel='stylesheet', href='/assets/css/custom.min.css')
+
+block content
+  article
+    section.breadcrumb
+      .container
+        nav(aria-label='breadcrumb')
+          ol.breadcrumb
+            li.breadcrumb-item
+              a(href='/demo/home') Trang chủ
+            li.breadcrumb-item.active(aria-current='page') Giỏ hàng
+
+    section.cart-page
+      .container
+        .row
+          .col-lg-9
+            .cart-page-product
+              .table-responsive
+                table.table.table-dark.table-bordered
+                  thead
+                    tr
+                      th(scope='col') Sản phẩm
+                      th(scope='col') Giá
+                      th(scope='col') Số lượng
+                      th(scope='col') Thành tiền
+                  tbody
+                    tr
+                      td.cart-page-product-1
+                        img(src='/assets/img/product-1.png', alt='')
+                        h5
+                          a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                        .cart-remove
+                          a(title='Xóa sản phẩm', href='#')
+                            i.fa.fa-times(aria-hidden='true')
+                      td
+                        h4 1.699.000 đ
+                      td.cart-page-product-2
+                        a(href='#')
+                          i.fa.fa-minus(aria-hidden='true')
+                        input(type='number', value='1')
+                        a(href='#')
+                          i.fa.fa-plus(aria-hidden='true')
+                      td.cart-page-product-3
+                        h4 1.699.000 đ
+                    tr
+                      td.cart-page-product-1
+                        img(src='/assets/img/product-1.png', alt='')
+                        h5
+                          a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                        .cart-remove
+                          a(title='Xóa sản phẩm', href='#')
+                            i.fa.fa-times(aria-hidden='true')
+                      td
+                        h4 1.699.000 đ
+                      td.cart-page-product-2
+                        a(href='#')
+                          i.fa.fa-minus(aria-hidden='true')
+                        input(type='number', value='1')
+                        a(href='#')
+                          i.fa.fa-plus(aria-hidden='true')
+                      td.cart-page-product-3
+                        h4 1.699.000 đ
+                    tr
+                      td.cart-page-product-1
+                        img(src='/assets/img/product-1.png', alt='')
+                        h5
+                          a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                        .cart-remove
+                          a(title='Xóa sản phẩm', href='#')
+                            i.fa.fa-times(aria-hidden='true')
+                      td
+                        h4 1.699.000 đ
+                      td.cart-page-product-2
+                        a(href='#')
+                          i.fa.fa-minus(aria-hidden='true')
+                        input(type='number', value='1')
+                        a(href='#')
+                          i.fa.fa-plus(aria-hidden='true')
+                      td.cart-page-product-3
+                        h4 1.699.000 đ
+          .col-lg-3
+            .cart-page-total
+              .cart-page-total-title
+                p TẠM TÍNH
+              p Ước tính vận chuyển
+              table.table.table-dark.table-bordered
+                tbody
+                  tr
+                    td Tổng tiền
+                    td 1.999.000 đ
+                  tr
+                    td Phí vận chuyển
+                    td 20.000 đ
+                  tr
+                    td Tổng cộng
+                    td.total-over 2.999.000 đ
+              p Sử dụng mã giảm giá (nếu có)
+              input(type='text', placeholder='Nhập ở đây')
+              button(type='submit') Sử dụng
+              .cart-page-total-btn
+                button(type='submit')
+                  a(href='/demo/pay') tiến hành thanh toán
+        .row
+          .col-lg-5.col-md-4.text-center.text-md-left.order-md-0.order-12
+            .cart-page-btn
+              a(href='/demo/product')
+                i.fa.fa-undo(aria-hidden='true')
+                |                                 Tiếp tục mua sắm
+          .col-lg-4.order-lg-3.col-md-8
+            .cart-page-btn.text-lg-right.text-md-right.text-center
+              button
+                a
+                  i.fa.fa-refresh(aria-hidden='true')
+                  |                                     Cập nhật giỏ hàng
+              button
+                a
+                  i.fa.fa-times(aria-hidden='true')
+                  |                                     Xóa giỏ hàng
