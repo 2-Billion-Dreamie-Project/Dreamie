@@ -4,8 +4,8 @@
 # Ignore dist
 /dist
 
-# Ignore dist
-/bower_components
+# Ignore docs
+/docs
 
-# Ignore dist
-/out
+# Ignore bower_components
+/bower_components

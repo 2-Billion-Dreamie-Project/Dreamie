@@ -1,11 +1,11 @@
 $('.slider-carousel').owlCarousel({
     loop:true,
     autoplay: true,
-    autoplayTimeout: 3000,
+    autoplayTimeout: 5000,
     autoplayHoverPause: true,
     dots: true,
     nav: true,
-    navText: ["<i class='fa fa-long-arrow-left' aria-hidden='true'></i>","<i class='fa fa-long-arrow-right' aria-hidden='true'></i>" ] ,
+    navText: ["<i class='fa fa-angle-left' aria-hidden='true'></i>","<i class='fa fa-angle-right' aria-hidden='true'></i>" ] ,
     autoplaySpeed: 1000,
     responsive: {
         0: {
@@ -163,9 +163,19 @@ $('document').ready(function() {
         $('.list-cate-title').removeClass('active');
         $(this).addClass('active');
     });
-
+    $("#main-image, .xzoom-gallery").xzoom();
     $(".xzoom, .xzoom-gallery").xzoom({tint: '#333', Xoffset: 15});
 
-
+    $('#main-image').bind('click', function() {
+        var xzoom = $(this).data('xzoom');
+        xzoom.closezoom();
+        var gallery = xzoom.gallery().cgallery;
+        var i, images = new Array();
+        for (i in gallery) {
+          images[i] = {src: gallery[i]};
+        }
+        $.magnificPopup.open({items: images, type:'image', gallery: {enabled: true}});
+        event.preventDefault();
+    });
 });
 

@@ -1,5 +1,7 @@
-import isAuthentication from '../middlewares/isAuthentication';
 import AuthRouter from './AuthRouter';
+import DemoRouter from './DemoRouter';
+
+import isAuthentication from '../middlewares/isAuthentication';
 import validLogin from '../middlewares/validLogin';
 
 export default function routes(app, passport) {
@@ -20,14 +22,17 @@ export default function routes(app, passport) {
   // Router Authentication
   app.use('/auth', AuthRouter);
 
+  // Router Authentication
+  app.use('/demo', DemoRouter);
+
   // Router profile
-  app.get('/user/profile', isAuthentication, function (req, res) {
-    const { user } = req;
-    res.render('user/profile', user);
-  });
+  // app.get('/user/profile', isAuthentication, function (req, res) {
+  //   const { user } = req;
+  //   res.render('user/profile', user);
+  // });
 
   // Router index
-  app.get('/', function (req, res) {
-    res.render('home');
-  });
+  // app.get('/', function (req, res) {
+  //   res.render('home');
+  // });
 }
