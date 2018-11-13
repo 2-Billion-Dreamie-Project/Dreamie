@@ -1,0 +1,101 @@
+extends ../layouts/client/layout_client
+
+block title 
+  title Dreamie Gear - Cart
+
+block append style
+  link(rel='stylesheet', href='/assets/css/custom.min.css')
+
+block content
+  article
+    section.breadcrumb
+      .container
+        nav(aria-label='breadcrumb')
+          ol.breadcrumb
+            li.breadcrumb-item
+              a(href='/demo/home') Trang chủ
+            li.breadcrumb-item.active(aria-current='page') Danh sách yêu thích
+
+    section.wishlist-page
+      .container
+        .row
+          .col-lg-3.col-md-6.col-sm-6
+            .box-wishlist-page
+              img(src='/assets/img/product-1.png', alt='')
+              h5 Logitech G502 Proteus Spectrum
+              h4 699.000 đ
+              .box-wishlist-page-quantity.text-center
+                | Số lượng: 
+                a(href='#')
+                  i.fa.fa-minus(aria-hidden='true')
+                input(type='number', value='1')
+                a(href='#')
+                  i.fa.fa-plus(aria-hidden='true')
+                button(type='submit') thêm vào giỏ
+              .box-wishlist-page-btn
+                a(href='/demo/product_detail') Xem chi tiết sản phẩm
+                a.wishlist-remove(href='#') Xóa
+          .col-lg-3.col-md-6.col-sm-6
+            .box-wishlist-page
+              img(src='/assets/img/product-1.png', alt='')
+              h5 Logitech G502 Proteus Spectrum
+              h4 699.000 đ
+              .box-wishlist-page-quantity.text-center
+                | Số lượng: 
+                a(href='#')
+                  i.fa.fa-minus(aria-hidden='true')
+                input(type='number', value='1')
+                a(href='#')
+                  i.fa.fa-plus(aria-hidden='true')
+                button(type='submit') thêm vào giỏ
+              .box-wishlist-page-btn
+                a(href='/demo/product_detail') Xem chi tiết sản phẩm
+                a.wishlist-remove(href='#') Xóa
+          .col-lg-3.col-md-6.col-sm-6
+            .box-wishlist-page
+              img(src='/assets/img/product-1.png', alt='')
+              h5 Logitech G502 Proteus Spectrum
+              h4 699.000 đ
+              .box-wishlist-page-quantity.text-center
+                | Số lượng: 
+                a(href='#')
+                  i.fa.fa-minus(aria-hidden='true')
+                input(type='number', value='1')
+                a(href='#')
+                  i.fa.fa-plus(aria-hidden='true')
+                button(type='submit') thêm vào giỏ
+              .box-wishlist-page-btn
+                a(href='/demo/product_detail') Xem chi tiết sản phẩm
+                a.wishlist-remove(href='#') Xóa
+          .col-lg-3.col-md-6.col-sm-6
+            .box-wishlist-page
+              img(src='/assets/img/product-1.png', alt='')
+              h5 Logitech G502 Proteus Spectrum
+              h4 699.000 đ
+              .box-wishlist-page-quantity.text-center
+                | Số lượng: 
+                a(href='#')
+                  i.fa.fa-minus(aria-hidden='true')
+                input(type='number', value='1')
+                a(href='#')
+                  i.fa.fa-plus(aria-hidden='true')
+                button(type='submit') thêm vào giỏ
+              .box-wishlist-page-btn
+                a(href='/demo/product_detail') Xem chi tiết sản phẩm
+                a.wishlist-remove(href='#') Xóa
+        .row
+          .col-lg-8.col-md-9
+            .wishlist-btn.text-center.text-md-left
+              button
+                a
+                  i.fa.fa-refresh(aria-hidden='true')
+                  |                                     cập nhật danh sách yêu thích
+              button
+                a
+                  i.fa.fa-shoping-bag(aria-hidden='true')
+                  |                                     thêm tất cả vào giỏ
+          .col-lg-4.col-md-3.text-md-right.text-center
+            .wishlist-btn.back-index
+              a(href='/demo/product')
+                i.fa.fa-undo(aria-hidden='true')
+                |                                 tiếp tục mua sắm
