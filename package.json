@@ -39,6 +39,7 @@
     "build": "babel src -d dist",
     "doc": "jsdoc src -r -d docs",
     "start": "nodemon ./src/index.js --inspect --exec babel-node",
-    "serve": "node ./dist/index.js"
+    "serve": "node ./dist/index.js",
+    "modules": "yarn install && bower install"
   }
 }
