@@ -1,8 +1,9 @@
 import { User } from '../db';
 
 /**
- * @constructor
- * passportConfig
+ * @function passportConfig
+ * @description 
+ * Configuration middleware authentication passportJS
  * @param {object} passport - The passport of the middleware.
  * @param {object} LocalStrategy - The LocalStrategy of the passpor-local.
  */
