@@ -33,4 +33,8 @@ export default class AuthController {
     req.logout();
     res.redirect('/');
   }
+
+  test() {
+    return 'test';
+  }
 }
