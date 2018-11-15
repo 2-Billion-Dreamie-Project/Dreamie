@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt';
 import UserSchema from './UserSchema';
 import { BCRYPT_SALT } from '../global/common';
 
-mongoose.connect(process.env.DB_CONNECTIONSS || 'mongodb://localhost:27017/mongoose');
+mongoose.connect(process.env.DB_CONNECTIONSS || 'mongodb://localhost:27017/mongoose', { useNewUrlParser: true });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection error:'));
@@ -25,7 +25,7 @@ UserSchema.methods.generateHash = function(password) {
   return bcrypt.hashSync(password, BCRYPT_SALT);
 }
 
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema, { autoIndex: false });
 
 export {
   User
