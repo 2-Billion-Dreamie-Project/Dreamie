@@ -8,14 +8,14 @@ const UserSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    unique: true,
-    lowercase: true,
-    trim: true,
-    required: true
+    unique: true,  //duy nhất
+    lowercase: true, // viết thường
+    trim: true, // không có khoảng trắng
+    required: true, // bắt buộc
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
 }, {
     timestamps: true,

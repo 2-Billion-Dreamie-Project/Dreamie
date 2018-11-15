@@ -3,6 +3,7 @@ import autoIncrement from 'mongoose-auto-increment';
 import bcrypt from 'bcrypt';
 
 import UserSchema from './UserSchema';
+import DiscountSchema from './DiscountSchema';
 import { BCRYPT_SALT } from '../global/common';
 
 mongoose.connect(
@@ -22,7 +23,7 @@ db.once('open', function() {
 
 autoIncrement.initialize(db);
 
-UserSchema.plugin(autoIncrement.plugin, { model: 'Book', field: 'id', startAt: 1 });
+UserSchema.plugin(autoIncrement.plugin, { model: 'User', field: 'id', startAt: 1 });
 
 UserSchema.methods.comparePassword = function(password) {
   return bcrypt.compareSync(password, this.password);
@@ -32,10 +33,15 @@ UserSchema.methods.generateHash = function(password) {
   return bcrypt.hashSync(password, BCRYPT_SALT);
 }
 
+DiscountSchema.plugin(autoIncrement.plugin, { model: 'DiscountSchema', field: 'id', startAt: 1 });
+
 const User = mongoose.model('User', UserSchema);
+const Discount = mongoose.model('DiscountSchema', DiscountSchema);
+
 
 export {
-  User
+  User,
+  Discount
 }
 
 
