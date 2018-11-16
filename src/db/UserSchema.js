@@ -8,15 +8,24 @@ const UserSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    unique: true,
-    lowercase: true,
-    trim: true,
-    required: true
+    unique: true, 
+    lowercase: true, 
+    trim: true, 
+    required: true, 
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
+  avatar: {
+    type: String,
+  },
+  roleIds: {
+    type: 'ObjectId',
+    ref: 'Role',
+    required: true,
+    unique: true,
+  }
 }, {
     timestamps: true,
 });
