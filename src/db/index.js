@@ -15,7 +15,7 @@ import ProductSchema from './ProductSchema';
 import OrderSchema from './OrderSchema';
 
 import RoleSchema from './RoleSchema';
-import PermissionSchema from './Permission';
+import PermissionSchema from './PermissionSchema';
 
 import { BCRYPT_SALT } from '../global/common';
 
@@ -46,13 +46,13 @@ UserSchema.methods.generateHash = function(password) {
   return bcrypt.hashSync(password, BCRYPT_SALT);
 }
 
-DiscountSchema.plugin(autoIncrement.plugin, { model: 'DiscountSchema', field: 'id', startAt: 1 });
-SliderSchema.plugin(autoIncrement.plugin, { model: 'SliderSchema', field: 'id', startAt: 1 });
-PartnerSchema.plugin(autoIncrement.plugin, { model: 'PartnerSchema', field: 'id', startAt: 1 });
+DiscountSchema.plugin(autoIncrement.plugin, { model: 'Discount', field: 'id', startAt: 1 });
+SliderSchema.plugin(autoIncrement.plugin, { model: 'Slider', field: 'id', startAt: 1 });
+PartnerSchema.plugin(autoIncrement.plugin, { model: 'Partner', field: 'id', startAt: 1 });
 
-PostSchema.plugin(autoIncrement.plugin, { model: 'PostSchema', field: 'id', startAt: 1 });
-ImageSchema.plugin(autoIncrement.plugin, { model: 'ImageSchema', field: 'id', startAt: 1 });
-CategorySchema.plugin(autoIncrement.plugin, { model: 'CategorySchema', field: 'id', startAt: 1 });
+PostSchema.plugin(autoIncrement.plugin, { model: 'Post', field: 'id', startAt: 1 });
+ImageSchema.plugin(autoIncrement.plugin, { model: 'Image', field: 'id', startAt: 1 });
+CategorySchema.plugin(autoIncrement.plugin, { model: 'Category', field: 'id', startAt: 1 });
 
 CategorySchema.virtual('products', {
   ref: 'Product',
@@ -61,26 +61,26 @@ CategorySchema.virtual('products', {
   justOne: false,   
 });
 
-ProductSchema.plugin(autoIncrement.plugin, { model: 'ProductSchema', field: 'id', startAt: 1 });
-OrderSchema.plugin(autoIncrement.plugin, { model: 'OrderSchema', field: 'id', startAt: 1 });
-RoleSchema.plugin(autoIncrement.plugin, { model: 'RoleSchema', field: 'id', startAt: 1 });
+ProductSchema.plugin(autoIncrement.plugin, { model: 'Product', field: 'id', startAt: 1 });
+OrderSchema.plugin(autoIncrement.plugin, { model: 'Order', field: 'id', startAt: 1 });
+RoleSchema.plugin(autoIncrement.plugin, { model: 'Role', field: 'id', startAt: 1 });
 
-PermissionSchema.plugin(autoIncrement.plugin, { model: 'PermissionSchema', field: 'id', startAt: 1 });
+PermissionSchema.plugin(autoIncrement.plugin, { model: 'Permission', field: 'id', startAt: 1 });
 
 const User = mongoose.model('User', UserSchema);
-const Discount = mongoose.model('DiscountSchema', DiscountSchema);
-const Slider = mongoose.model('SliderSchema', SliderSchema);
+const Discount = mongoose.model('Discount', DiscountSchema);
+const Slider = mongoose.model('Slider', SliderSchema);
 
-const Partner = mongoose.model('PartnerSchema', PartnerSchema);
-const Post = mongoose.model('PostSchema', PostSchema);
-const Image = mongoose.model('ImageSchema', ImageSchema);
+const Partner = mongoose.model('Partner', PartnerSchema);
+const Post = mongoose.model('Post', PostSchema);
+const Image = mongoose.model('Image', ImageSchema);
 
-const Category = mongoose.model('CategorySchema', CategorySchema);
-const Product = mongoose.model('ProductSchema', ProductSchema);
-const Order = mongoose.model('OrderSchema', OrderSchema);
+const Category = mongoose.model('Category', CategorySchema);
+const Product = mongoose.model('Product', ProductSchema);
+const Order = mongoose.model('Order', OrderSchema);
 
-const Role = mongoose.model('RoleSchema', RoleSchema);
-const Permission = mongoose.model('PermissionSchema', PermissionSchema);
+const Role = mongoose.model('Role', RoleSchema);
+const Permission = mongoose.model('Permission', PermissionSchema);
 
 
 export {

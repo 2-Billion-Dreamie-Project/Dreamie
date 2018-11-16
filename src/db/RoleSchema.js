@@ -5,10 +5,11 @@ const RoleSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    permIds: {
-        type: [ID],
+    permIds: [{
+        type: 'ObjectId',
+        ref: 'Permission',
         required: true,
-    },
+    }],
     status: {
         type: Number,
         required: true,

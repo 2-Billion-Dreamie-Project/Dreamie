@@ -21,7 +21,8 @@ const UserSchema = new mongoose.Schema({
     type: String,
   },
   roleIds: {
-    type: ID,
+    type: 'ObjectId',
+    ref: 'Role',
     required: true,
     unique: true,
   }

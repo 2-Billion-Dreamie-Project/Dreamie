@@ -1,10 +1,11 @@
 import mongoose from 'mongoose';
 
 const SliderSchema = new mongoose.Schema({
-    images: {
-        type: [ID],
+    images: [{
+        type: 'ObjectId',
+        ref: 'Image',
         required: true,
-    },
+    }],
 }, {
     timestamps: true,
 });

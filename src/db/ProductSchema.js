@@ -19,10 +19,11 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    images: {
-        type: ID,
+    images: [{
+        type: 'ObjectId',
+        ref: 'Image',
         required: true,
-    },
+    }],
     detail: {
         type: String,
         required: true,
@@ -38,10 +39,11 @@ const ProductSchema = new mongoose.Schema({
         type: Boolean,
         unique: true,
     },
-    cateIds: {
-        type: [ID],
+    cateIds: [{
+        type: 'ObjectId',
+        ref: 'Category',
         required: true,
-    },
+    }],
     quantity: {
         type: Number,
     },

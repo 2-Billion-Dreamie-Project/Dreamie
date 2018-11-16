@@ -9,11 +9,12 @@ const PostSchema = new mongoose.Schema({
         type: String,
     },
     featImage: {
-        type: ID,
+        type: 'ObjectId',
+        ref: 'Image',
         required: true,
     },
     detail: {
-        type: ID,
+        type: String,
         required: true,
     }
 }, {

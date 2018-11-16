@@ -10,7 +10,7 @@ const CategorySchema = new mongoose.Schema({
         type: String,
     },
     parentId: {
-        type: ID,
+        type: 'ObjectId',
     },
     homeMode: {
         type: Boolean,
