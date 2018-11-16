@@ -1,7 +1,7 @@
 process.env.NODE_ENV = 'test';
 
-import AuthController from '../controllers/AuthController';
-import UserModel from '../models/UserModel';
+import AuthController from './';
+import UserModel from '../../models/UserModel';
 import chai from 'chai';
 
 import chaiHttp from 'chai-http';
