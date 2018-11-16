@@ -1,19 +1,23 @@
-process.env.NODE_ENV = 'test';
-
-import AuthController from './';
-import UserModel from '../../models/UserModel';
+// import app from '../../';
 import chai from 'chai';
-
 import chaiHttp from 'chai-http';
 
-const AuthCtlrIns = new AuthController(new UserModel);
+import AuthController from './';
+import { User } from '../../db';
+
+const AuthCtlrIns = new AuthController();
 
 const should = chai.should;
 const assert = chai.assert;
 chai.use(chaiHttp);
 
-describe('AuthController', function() {
-  it('register() should return test', function() {
-    assert.equal(AuthCtlrIns.test(), 'test');
+describe('User', async function() {
+  beforeEach(async function(done) {
+    await User.create({
+      userName: 'User test',
+      password: 'pass test',
+      email: 'email@email.com'
+    });
+    // done();
   });
 });

@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 import mongoose from 'mongoose';
 import autoIncrement from 'mongoose-auto-increment';
 import bcrypt from 'bcrypt';
@@ -5,9 +7,13 @@ import bcrypt from 'bcrypt';
 import UserSchema from './UserSchema';
 import { BCRYPT_SALT } from '../global/common';
 
-mongoose.connect(
-  process.env.DB_CONNECTIONSS || 'mongodb://localhost:27017/mongoose', 
-  { 
+let DB_CONNECTION = process.env.DB_CONNECTION || 'mongodb://localhost:27017/mongoose';
+
+if (process.env.NODE_ENV === 'test') {
+  DB_CONNECTION = process.env.DB_TEST || 'mongodb://localhost:27010/mongoose';
+}
+
+mongoose.connect(DB_CONNECTION, { 
     useNewUrlParser: true,
     autoIndex: false,
   }

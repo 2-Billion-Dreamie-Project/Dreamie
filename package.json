@@ -46,6 +46,6 @@
     "start": "nodemon ./src/index.js --inspect --exec babel-node",
     "serve": "node ./dist/index.js",
     "modules": "yarn install && bower install",
-    "test": "mocha --require @babel/register ./src/**/*.spec.js"
+    "test": "set NODE_ENV=test && mocha --require @babel/register ./src/**/*.spec.js"
   }
 }
