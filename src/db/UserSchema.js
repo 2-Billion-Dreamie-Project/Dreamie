@@ -8,15 +8,23 @@ const UserSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    unique: true,  //duy nhất
-    lowercase: true, // viết thường
-    trim: true, // không có khoảng trắng
-    required: true, // bắt buộc
+    unique: true, 
+    lowercase: true, 
+    trim: true, 
+    required: true, 
   },
   password: {
     type: String,
     required: true,
   },
+  avatar: {
+    type: String,
+  },
+  roleIds: {
+    type: ID,
+    required: true,
+    unique: true,
+  }
 }, {
     timestamps: true,
 });
