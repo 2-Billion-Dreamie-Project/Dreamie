@@ -13,4 +13,6 @@ AuthRouter.post('/register',validRegister, AuthCtlrIns.createUser);
 AuthRouter.get('/login',hasAuthentication, AuthCtlrIns.login);
 AuthRouter.get('/logout', AuthCtlrIns.logout);
 
+AuthRouter.get('/list-users', AuthCtlrIns.getUsers);
+
 export default AuthRouter;

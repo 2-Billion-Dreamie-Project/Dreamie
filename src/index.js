@@ -25,6 +25,14 @@ const port = process.env.PORT || 3000;
 const LocalStrategy = Strategy.Strategy;
 const MongoStore = connectMongo(session);
 
+let conn = process.env.DB_DEV || 'mongodb://localhost:27017/mongoose';
+
+if (process.env.NODE_ENV === 'test') {
+  conn = process.env.DB_TEST || 'mongodb://localhost:27017/mongoose';
+} else if (process.env.NODE_ENV === 'production') {
+
+}
+
 app.set('view engine', 'pug');
 app.set("views", path.join(__dirname, "./views"));
 app.set('x-powered-by', false);
@@ -53,7 +61,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { maxAge: 86400000 },
   store: new MongoStore({
-    url: process.env.DB_CONNECTION || 'mongodb://localhost:27017/mongoose',
+    url: conn,
   }),
 }));
 

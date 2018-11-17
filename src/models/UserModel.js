@@ -13,6 +13,7 @@ export default class UserModel {
   constructor() {
     this.userSchema = User;
     this.createUser = this.createUser.bind(this);
+    this.getUsers = this.getUsers.bind(this);
   }
 
   /**
@@ -41,6 +42,15 @@ export default class UserModel {
         return user;
       }
     } catch (err) {
+      console.log(err);
+      return false;
+    }
+  }
+
+  getUsers() {
+    try {
+      return this.userSchema.find({});
+    } catch(err) {
       console.log(err);
       return false;
     }

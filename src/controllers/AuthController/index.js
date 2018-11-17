@@ -10,9 +10,10 @@ import UserModel from '../../models/UserModel';
  */
 export default class AuthController {
   constructor() {
-    this.userModel = UserModel;
+    this.userModel = new UserModel;
     this.createUser = this.createUser.bind(this);
     this.register = this.register.bind(this);
+    this.getUsers = this.getUsers.bind(this);
   }
 
   /**
@@ -70,5 +71,10 @@ export default class AuthController {
   logout(req, res) {
     req.logout();
     res.redirect('/');
+  }
+
+  async getUsers(req, res) {
+    let listUsers = await this.userModel.getUsers();
+    res.status(200).json(listUsers);
   }
 }

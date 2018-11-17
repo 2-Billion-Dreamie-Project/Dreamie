@@ -21,13 +21,15 @@ import PermissionSchema from './PermissionSchema';
 
 import { BCRYPT_SALT } from '../global/common';
 
-let DB_CONNECTION = process.env.DB_CONNECTION || 'mongodb://localhost:27017/mongoose';
+let conn = process.env.DB_DEV || 'mongodb://localhost:27017/mongoose';
 
 if (process.env.NODE_ENV === 'test') {
-  DB_CONNECTION = process.env.DB_TEST || 'mongodb://localhost:27010/mongoose';
+  conn = process.env.DB_TEST || 'mongodb://localhost:27010/mongoose';
+} else if(process.env.NODE_ENV === 'production') {
+
 }
 
-mongoose.connect(DB_CONNECTION, { 
+mongoose.connect(conn, { 
     useNewUrlParser: true,
     autoIndex: false,
   }
