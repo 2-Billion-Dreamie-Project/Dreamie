@@ -27,6 +27,7 @@ const MongoStore = connectMongo(session);
 
 app.set('view engine', 'pug');
 app.set("views", path.join(__dirname, "./views"));
+app.set('x-powered-by', false);
 
 app.use('/bower_components', express.static(path.join(__dirname, '../bower_components')));
 app.use('/assets', express.static(path.join(__dirname, '/assets')));
