@@ -46,4 +46,8 @@ DemoRouter.get('/wishlist', function(req, res) {
   res.render('client/wishlist');
 });
 
+DemoRouter.get('/admin/dashboard', function(req, res) {
+  res.render('admin/dashboard');
+});
+
 export default DemoRouter;
