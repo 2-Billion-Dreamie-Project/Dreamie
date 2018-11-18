@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema({
     ref: 'Role',
     required: true,
     unique: true,
-  }
+  },
 }, {
     timestamps: true,
 });

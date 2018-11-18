@@ -11,8 +11,7 @@ export default function passportConfig(passport, LocalStrategy) {
   passport.use(new LocalStrategy({
       usernameField: 'email',
       passwordField: 'password'
-    }, 
-    function(email, password, done) {
+    }, function(email, password, done) {
       try {
         User.findOne({ email }, function (err, user) {
           if (err) { return done(err); }

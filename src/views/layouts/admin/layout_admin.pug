@@ -1,0 +1,461 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    title BoardsterUI Admin
+    link(rel='stylesheet', href='../../assets/vendors/iconfonts/mdi/font/css/materialdesignicons.min.css')
+    link(rel='stylesheet', href='../../assets/vendors/css/vendor.bundle.base.css')
+    link(rel='stylesheet', href='../../assets/vendors/css/vendor.bundle.addons.css')
+    link(rel='stylesheet', href='../../assets/css/vertical-layout-dark/style.css')
+    link(rel='shortcut icon', href='../../assets/img/favicon.png')
+  body
+    .container-scroller
+      nav.navbar.col-lg-12.col-12.p-0.fixed-top.d-flex.flex-row
+        .text-center.navbar-brand-wrapper.d-flex.align-items-center.justify-content-center
+          a.navbar-brand.brand-logo(href='../../index.html')
+            img(src='http://www.urbanui.com/boardsterui/template/images/logo-white.svg', alt='logo')
+          a.navbar-brand.brand-logo-mini(href='../../index.html')
+            img(src='http://www.urbanui.com/boardsterui/template/images/logo-mini.svg', alt='logo')
+        .navbar-menu-wrapper.d-flex.align-items-center.justify-content-end.justify-content-lg-start
+          button.navbar-toggler.navbar-toggler.align-self-center(type='button', data-toggle='minimize')
+            span.mdi.mdi-menu
+          ul.navbar-nav.mr-lg-2
+            li.nav-item.nav-search.d-none.d-lg-block
+              .input-group
+                .input-group-prepend
+                  span#search.input-group-text
+                    i.mdi.mdi-magnify
+                input.form-control(type='text', placeholder='search', aria-label='search', aria-describedby='search')
+          ul.navbar-nav.navbar-nav-right
+            li.nav-item.dropdown
+              a#notificationDropdown.nav-link.count-indicator.dropdown-toggle(href='#', data-toggle='dropdown')
+                i.mdi.mdi-bell-outline.mx-0
+                span.count
+              .dropdown-menu.dropdown-menu-right.navbar-dropdown.preview-list(aria-labelledby='notificationDropdown')
+                a.dropdown-item
+                  p.mb-0.font-weight-normal.float-left
+                    | You have 4 new notifications
+                  span.badge.badge-pill.badge-warning.float-right View all
+                .dropdown-divider
+                a.dropdown-item.preview-item
+                  .preview-thumbnail
+                    .preview-icon.bg-success
+                      i.mdi.mdi-information.mx-0
+                  .preview-item-content
+                    h6.preview-subject.font-weight-medium Application Error
+                    p.font-weight-light.small-text.mb-0
+                      | Just now
+                .dropdown-divider
+                a.dropdown-item.preview-item
+                  .preview-thumbnail
+                    .preview-icon.bg-warning
+                      i.mdi.mdi-settings.mx-0
+                  .preview-item-content
+                    h6.preview-subject.font-weight-medium Settings
+                    p.font-weight-light.small-text.mb-0
+                      | Private message
+                .dropdown-divider
+                a.dropdown-item.preview-item
+                  .preview-thumbnail
+                    .preview-icon.bg-info
+                      i.mdi.mdi-account-box.mx-0
+                  .preview-item-content
+                    h6.preview-subject.font-weight-medium New user registration
+                    p.font-weight-light.small-text.mb-0
+                      | 2 days ago
+            li.nav-item.nav-profile.dropdown
+              a#profileDropdown.nav-link.dropdown-toggle(href='#', data-toggle='dropdown')
+                img(src='../../assets/img/faces/face5.jpg', alt='profile')
+                span.nav-profile-name Evan Morales
+              .dropdown-menu.dropdown-menu-right.navbar-dropdown(aria-labelledby='profileDropdown')
+                a.dropdown-item
+                  i.mdi.mdi-settings.text-primary
+                  |                 Settings
+                .dropdown-divider
+                a.dropdown-item
+                  i.mdi.mdi-logout.text-primary
+                  |                 Logout
+            li.nav-item.nav-settings.d-none.d-lg-flex
+              a.nav-link(href='#')
+                i.mdi.mdi-dots-horizontal
+          button.navbar-toggler.navbar-toggler-right.d-lg-none.align-self-center(type='button', data-toggle='offcanvas')
+            span.mdi.mdi-menu
+      // partial
+      .container-fluid.page-body-wrapper
+        // partial:../../partials/_settings-panel.html
+        #right-sidebar.settings-panel
+          i.settings-close.mdi.mdi-close
+          ul#setting-panel.nav.nav-tabs(role='tablist')
+            li.nav-item
+              a#todo-tab.nav-link.active(data-toggle='tab', href='#todo-section', role='tab', aria-controls='todo-section', aria-expanded='true') TO DO LIST
+            li.nav-item
+              a#chats-tab.nav-link(data-toggle='tab', href='#chats-section', role='tab', aria-controls='chats-section') CHATS
+          #setting-content.tab-content
+            #todo-section.tab-pane.fade.show.active.scroll-wrapper(role='tabpanel', aria-labelledby='todo-section')
+              .add-items.d-flex.px-3.mb-0
+                form.form.w-100
+                  .form-group.d-flex
+                    input.form-control.todo-list-input(type='text', placeholder='Add To-do')
+                    button#add-task.add.btn.btn-primary.todo-list-add-btn(type='submit') Add
+              .list-wrapper.px-3
+                ul.d-flex.flex-column-reverse.todo-list
+                  li
+                    .form-check
+                      label.form-check-label
+                        input.checkbox(type='checkbox')
+                        |                       Team review meeting at 3.00 PM
+                    i.remove.mdi.mdi-close-circle-outline
+                  li
+                    .form-check
+                      label.form-check-label
+                        input.checkbox(type='checkbox')
+                        |                       Prepare for presentation
+                    i.remove.mdi.mdi-close-circle-outline
+                  li
+                    .form-check
+                      label.form-check-label
+                        input.checkbox(type='checkbox')
+                        |                       Resolve all the low priority tickets due today
+                    i.remove.mdi.mdi-close-circle-outline
+                  li.completed
+                    .form-check
+                      label.form-check-label
+                        input.checkbox(type='checkbox', checked='')
+                        |                       Schedule meeting for next week
+                    i.remove.mdi.mdi-close-circle-outline
+                  li.completed
+                    .form-check
+                      label.form-check-label
+                        input.checkbox(type='checkbox', checked='')
+                        |                       Project review
+                    i.remove.mdi.mdi-close-circle-outline
+              .events.py-4.border-bottom.px-3
+                .wrapper.d-flex.mb-2
+                  i.mdi.mdi-circle-outline.text-primary.mr-2
+                  span Feb 11 2018
+                p.mb-0.font-weight-thin.text-gray Creating component page
+                p.text-gray.mb-0 build a js based app
+              .events.pt-4.px-3
+                .wrapper.d-flex.mb-2
+                  i.mdi.mdi-circle-outline.text-primary.mr-2
+                  span Feb 7 2018
+                p.mb-0.font-weight-thin.text-gray Meeting with Alisa
+                p.text-gray.mb-0 Call Sarah Graves
+            #chats-section.tab-pane.fade(role='tabpanel', aria-labelledby='chats-section')
+              .d-flex.align-items-center.justify-content-between.border-bottom
+                p.settings-heading.border-top-0.mb-3.pl-3.pt-0.border-bottom-0.pb-0 Friends
+                small.settings-heading.border-top-0.mb-3.pt-0.border-bottom-0.pb-0.pr-3.font-weight-normal See All
+              ul.chat-list
+                li.list.active
+                  .profile
+                    img(src='../../assets/img/faces/face1.jpg', alt='image')
+                    span.online
+                  .info
+                    p Thomas Douglas
+                    p Available
+                  small.text-muted.my-auto 19 min
+                li.list
+                  .profile
+                    img(src='../../assets/img/faces/face2.jpg', alt='image')
+                    span.offline
+                  .info
+                    .wrapper.d-flex
+                      p Catherine
+                    p Away
+                  .badge.badge-success.badge-pill.my-auto.mx-2 4
+                  small.text-muted.my-auto 23 min
+                li.list
+                  .profile
+                    img(src='../../assets/img/faces/face3.jpg', alt='image')
+                    span.online
+                  .info
+                    p Daniel Russell
+                    p Available
+                  small.text-muted.my-auto 14 min
+                li.list
+                  .profile
+                    img(src='../../assets/img/faces/face4.jpg', alt='image')
+                    span.offline
+                  .info
+                    p James Richardson
+                    p Away
+                  small.text-muted.my-auto 2 min
+                li.list
+                  .profile
+                    img(src='../../assets/img/faces/face5.jpg', alt='image')
+                    span.online
+                  .info
+                    p Madeline Kennedy
+                    p Available
+                  small.text-muted.my-auto 5 min
+                li.list
+                  .profile
+                    img(src='../../assets/img/faces/face6.jpg', alt='image')
+                    span.online
+                  .info
+                    p Sarah Graves
+                    p Available
+                  small.text-muted.my-auto 47 min
+        nav#sidebar.sidebar.sidebar-offcanvas
+          ul.nav
+            li.nav-item
+              a.nav-link(href='../../index.html')
+                i.mdi.mdi-view-quilt.menu-icon
+                span.menu-title Dashboard
+            li.nav-item
+              a.nav-link(href='../widgets/widgets.html')
+                i.mdi.mdi-airplay.menu-icon
+                span.menu-title Widgets
+            li.nav-item
+              a.nav-link(data-toggle='collapse', href='#ui-basic', aria-expanded='false', aria-controls='ui-basic')
+                i.mdi.mdi-palette.menu-icon
+                span.menu-title UI Elements
+                i.menu-arrow
+              #ui-basic.collapse
+                ul.nav.flex-column.sub-menu
+                  li.nav-item
+                    a.nav-link(href='../ui-features/accordions.html') Accordions
+                  li.nav-item
+                    a.nav-link(href='../ui-features/buttons.html') Buttons
+                  li.nav-item
+                    a.nav-link(href='../ui-features/badges.html') Badges
+                  li.nav-item
+                    a.nav-link(href='../ui-features/breadcrumbs.html') Breadcrumbs
+                  li.nav-item
+                    a.nav-link(href='../ui-features/dropdowns.html') Dropdowns
+                  li.nav-item
+                    a.nav-link(href='../ui-features/modals.html') Modals
+                  li.nav-item
+                    a.nav-link(href='../ui-features/progress.html') Progress bar
+                  li.nav-item
+                    a.nav-link(href='../ui-features/pagination.html') Pagination
+                  li.nav-item
+                    a.nav-link(href='../ui-features/tabs.html') Tabs
+                  li.nav-item
+                    a.nav-link(href='../ui-features/typography.html') Typography
+                  li.nav-item
+                    a.nav-link(href='../ui-features/tooltips.html') Tooltips
+            li.nav-item
+              a.nav-link(data-toggle='collapse', href='#ui-advanced', aria-expanded='false', aria-controls='ui-advanced')
+                i.mdi.mdi-layers.menu-icon
+                span.menu-title Advanced UI
+                i.menu-arrow
+              #ui-advanced.collapse
+                ul.nav.flex-column.sub-menu
+                  li.nav-item
+                    a.nav-link(href='../ui-features/dragula.html') Dragula
+                  li.nav-item
+                    a.nav-link(href='../ui-features/clipboard.html') Clipboard
+                  li.nav-item
+                    a.nav-link(href='../ui-features/context-menu.html') Context menu
+                  li.nav-item
+                    a.nav-link(href='../ui-features/slider.html') Sliders
+                  li.nav-item
+                    a.nav-link(href='../ui-features/carousel.html') Carousel
+                  li.nav-item
+                    a.nav-link(href='../ui-features/colcade.html') Colcade
+                  li.nav-item
+                    a.nav-link(href='../ui-features/loaders.html') Loaders
+            li.nav-item
+              a.nav-link(data-toggle='collapse', href='#form-elements', aria-expanded='false', aria-controls='form-elements')
+                i.mdi.mdi-view-headline.menu-icon
+                span.menu-title Form elements
+                i.menu-arrow
+              #form-elements.collapse
+                ul.nav.flex-column.sub-menu
+                  li.nav-item
+                    a.nav-link(href='../forms/basic_elements.html') Basic Elements
+                  li.nav-item
+                    a.nav-link(href='../forms/advanced_elements.html') Advanced Elements
+                  li.nav-item
+                    a.nav-link(href='../forms/validation.html') Validation
+                  li.nav-item
+                    a.nav-link(href='../forms/wizard.html') Wizard
+            li.nav-item
+              a.nav-link(data-toggle='collapse', href='#editors', aria-expanded='false', aria-controls='editors')
+                i.mdi.mdi-pencil-box-outline.menu-icon
+                span.menu-title Editors
+                i.menu-arrow
+              #editors.collapse
+                ul.nav.flex-column.sub-menu
+                  li.nav-item
+                    a.nav-link(href='../forms/text_editor.html') Text editors
+                  li.nav-item
+                    a.nav-link(href='../forms/code_editor.html') Code editors
+            li.nav-item
+              a.nav-link(data-toggle='collapse', href='#charts', aria-expanded='false', aria-controls='charts')
+                i.mdi.mdi-chart-pie.menu-icon
+                span.menu-title Charts
+                i.menu-arrow
+              #charts.collapse
+                ul.nav.flex-column.sub-menu
+                  li.nav-item
+                    a.nav-link(href='../charts/chartjs.html') ChartJs
+                  li.nav-item
+                    a.nav-link(href='../charts/morris.html') Morris
+                  li.nav-item
+                    a.nav-link(href='../charts/flot-chart.html') Flot
+                  li.nav-item
+                    a.nav-link(href='../charts/google-charts.html') Google charts
+                  li.nav-item
+                    a.nav-link(href='../charts/sparkline.html') Sparkline js
+                  li.nav-item
+                    a.nav-link(href='../charts/c3.html') C3 charts
+                  li.nav-item
+                    a.nav-link(href='../charts/chartist.html') Chartists
+                  li.nav-item
+                    a.nav-link(href='../charts/justGage.html') JustGage
+            li.nav-item
+              a.nav-link(data-toggle='collapse', href='#tables', aria-expanded='false', aria-controls='tables')
+                i.mdi.mdi-grid-large.menu-icon
+                span.menu-title Tables
+                i.menu-arrow
+              #tables.collapse
+                ul.nav.flex-column.sub-menu
+                  li.nav-item
+                    a.nav-link(href='../tables/basic-table.html') Basic table
+                  li.nav-item
+                    a.nav-link(href='../tables/data-table.html') Data table
+                  li.nav-item
+                    a.nav-link(href='../tables/js-grid.html') Js-grid
+                  li.nav-item
+                    a.nav-link(href='../tables/sortable-table.html') Sortable table
+            li.nav-item
+              a.nav-link(href='../ui-features/popups.html')
+                i.mdi.mdi-comment-alert.menu-icon
+                span.menu-title Popups
+            li.nav-item
+              a.nav-link(href='../ui-features/notifications.html')
+                i.mdi.mdi-bell.menu-icon
+                span.menu-title Notifications
+            li.nav-item
+              a.nav-link(data-toggle='collapse', href='#icons', aria-expanded='false', aria-controls='icons')
+                i.mdi.mdi-emoticon.menu-icon
+                span.menu-title Icons
+                i.menu-arrow
+              #icons.collapse
+                ul.nav.flex-column.sub-menu
+                  li.nav-item
+                    a.nav-link(href='../icons/flag-icons.html') Flag icons
+                  li.nav-item
+                    a.nav-link(href='../icons/font-awesome.html') Font Awesome
+                  li.nav-item
+                    a.nav-link(href='../icons/simple-line-icon.html') Simple line icons
+                  li.nav-item
+                    a.nav-link(href='../icons/themify.html') Themify icons
+            li.nav-item
+              a.nav-link(data-toggle='collapse', href='#maps', aria-expanded='false', aria-controls='maps')
+                i.mdi.mdi-map.menu-icon
+                span.menu-title Maps
+                i.menu-arrow
+              #maps.collapse
+                ul.nav.flex-column.sub-menu
+                  li.nav-item
+                    a.nav-link(href='../maps/mapeal.html') Mapeal
+                  li.nav-item
+                    a.nav-link(href='../maps/vector-map.html') Vector Map
+                  li.nav-item
+                    a.nav-link(href='../maps/google-maps.html') Google Map
+            li.nav-item
+              a.nav-link(data-toggle='collapse', href='#auth', aria-expanded='false', aria-controls='auth')
+                i.mdi.mdi-account.menu-icon
+                span.menu-title User Pages
+                i.menu-arrow
+              #auth.collapse
+                ul.nav.flex-column.sub-menu
+                  li.nav-item
+                    a.nav-link(href='login.html')  Login 
+                  li.nav-item
+                    a.nav-link(href='login-2.html')  Login 2 
+                  li.nav-item
+                    a.nav-link(href='register.html')  Register 
+                  li.nav-item
+                    a.nav-link(href='register-2.html')  Register 2 
+                  li.nav-item
+                    a.nav-link(href='lock-screen.html')  Lockscreen 
+            li.nav-item
+              a.nav-link(data-toggle='collapse', href='#error', aria-expanded='false', aria-controls='error')
+                i.mdi.mdi-alert-circle.menu-icon
+                span.menu-title Error pages
+                i.menu-arrow
+              #error.collapse
+                ul.nav.flex-column.sub-menu
+                  li.nav-item
+                    a.nav-link(href='error-404.html')  404 
+                  li.nav-item
+                    a.nav-link(href='error-500.html')  500 
+            li.nav-item
+              a.nav-link(data-toggle='collapse', href='#general-pages', aria-expanded='false', aria-controls='general-pages')
+                i.mdi.mdi-file.menu-icon
+                span.menu-title General Pages
+                i.menu-arrow
+              #general-pages.collapse
+                ul.nav.flex-column.sub-menu
+                  li.nav-item
+                    a.nav-link(href='blank-page.html')  Blank Page 
+                  li.nav-item
+                    a.nav-link(href='profile.html')  Profile 
+                  li.nav-item
+                    a.nav-link(href='faq.html')  FAQ 
+                  li.nav-item
+                    a.nav-link(href='faq-2.html')  FAQ 2 
+                  li.nav-item
+                    a.nav-link(href='news-grid.html')  News grid 
+                  li.nav-item
+                    a.nav-link(href='timeline.html')  Timeline 
+                  li.nav-item
+                    a.nav-link(href='search-results.html')  Search Results 
+                  li.nav-item
+                    a.nav-link(href='portfolio.html')  Portfolio 
+            li.nav-item
+              a.nav-link(data-toggle='collapse', href='#e-commerce', aria-expanded='false', aria-controls='e-commerce')
+                i.mdi.mdi-basket.menu-icon
+                span.menu-title E-commerce
+                i.menu-arrow
+              #e-commerce.collapse
+                ul.nav.flex-column.sub-menu
+                  li.nav-item
+                    a.nav-link(href='invoice.html')  Invoice 
+                  li.nav-item
+                    a.nav-link(href='pricing-table.html')  Pricing Table 
+                  li.nav-item
+                    a.nav-link(href='orders.html')  Orders 
+            li.nav-item
+              a.nav-link(href='../apps/email.html')
+                i.mdi.mdi-email.menu-icon
+                span.menu-title E-mail
+            li.nav-item
+              a.nav-link(href='../apps/calendar.html')
+                i.mdi.mdi-calendar-range.menu-icon
+                span.menu-title Calendar
+            li.nav-item
+              a.nav-link(href='../apps/todo.html')
+                i.mdi.mdi-playlist-check.menu-icon
+                span.menu-title Todo List
+            li.nav-item
+              a.nav-link(href='../apps/gallery.html')
+                i.mdi.mdi-image.menu-icon
+                span.menu-title Gallery
+            li.nav-item
+              a.nav-link(href='../documentation/documentation.html')
+                i.mdi.mdi-file-document-box-outline.menu-icon
+                span.menu-title Documentation
+        .main-panel
+          .content-wrapper
+          footer.footer
+            .d-sm-flex.justify-content-center.justify-content-sm-between
+              span.text-muted.text-center.text-sm-left.d-block.d-sm-inline-block
+                | Copyright © 2018 
+                a(href='https://www.urbanui.com/', target='_blank') Urbanui
+                | . All rights reserved.
+              span.float-none.float-sm-right.d-block.mt-1.mt-sm-0.text-center
+                | Hand-crafted & made with 
+                i.mdi.mdi-heart.text-danger
+    script(src='../../assets/vendors/js/vendor.bundle.base.js')
+    script(src='../../assets/vendors/js/vendor.bundle.addons.js')
+    script(src='../../assets/js/off-canvas.js')
+    script(src='../../assets/js/hoverable-collapse.js')
+    script(src='../../assets/js/template.js')
+    script(src='../../assets/js/settings.js')
+    script(src='../../assets/js/todolist.js')
