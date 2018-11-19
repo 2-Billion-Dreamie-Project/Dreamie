@@ -78,6 +78,8 @@ app.use(function(err, req, res, next) {
   if (err && process.env.NODE_ENV === 'production') {
     res.status(500).send('Error');
   }
+  
+  next(err);
 });
 
 // error handler 404

@@ -1,0 +1,19 @@
+$main-color: #e6b31e;
+
+.admin-partner {
+  .form-control {
+    background: #252525!important;
+  }
+  button {
+    margin-right: 10px!important;
+    border: 2px solid $main-color;
+    background: $main-color;
+    color: black!important;
+
+    &:hover {
+      background: none;
+      border: 2px solid $main-color;
+      color: $main-color!important;
+    }
+  }
+}

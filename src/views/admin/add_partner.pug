@@ -4,7 +4,18 @@ block title
   title Thêm Đối tác
 
 block append style
-  link(rel='stylesheet', href='/assets/css/custom.min.css')
+  link(rel='stylesheet', href='/assets/css/partner_admin.min.css')
 
 block content
-  h1 Hello Thêm
+  .admin-partner
+    form(action='/admin/partner/save-partner', method='POST')
+      input(type="hidden" name="_csrf" value=csrfToken)
+      .form-group
+        label(for='name-partner') Tên đối tác
+        input#name-partner.form-control(name='name', type='text', placeholder='Nhập tên đối tác')
+      .form-group
+        label(for='image-partner') Hình ảnh đối tác
+        input#image-partner.form-control(name='image', type='text')
+      button.btn.btn-primary(type='submit') Lưu
+      a.btn.btn-light(href="/admin/partner/list-partner") Trở lại
+

@@ -4,11 +4,14 @@ const PartnerSchema = new mongoose.Schema({
     name: {
         type: String,
     },
-    image: [{
-        type: 'ObjectId',
-        ref: 'Image',
-        required: true,
-    }],
+    image: {
+      type: String,
+    },
+    // image: [{
+    //     type: 'ObjectId',
+    //     ref: 'Image',
+    //     required: true,
+    // }],
 }, {
     timestamps: true,
 });

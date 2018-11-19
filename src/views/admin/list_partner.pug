@@ -7,4 +7,24 @@ block append style
   link(rel='stylesheet', href='/assets/css/custom.min.css')
 
 block content
-  h1 Hello danh sách
+  table.table.table-dark.table-bordered
+    thead
+      tr
+        th(scope='col') #
+        th(scope='col') Tên đối tác
+        th(scope='col') Ảnh đối tác
+        th(scope='col') Ngày tạo
+        th(scope='col') Ngày sửa
+        th(scope='col') Hành động
+    tbody
+      tr
+        th(scope='row') 1
+        td Mark
+        td Otto
+        td @mdo
+        td Mark
+        td
+          button.btn.btn-light Xem
+          button.btn.btn-danger Xóa
+
+

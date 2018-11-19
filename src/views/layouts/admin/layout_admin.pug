@@ -8,14 +8,14 @@ html(lang='en')
       link(rel='stylesheet', href='../../assets/vendors/iconfonts/mdi/font/css/materialdesignicons.min.css')
       link(rel='stylesheet', href='../../assets/vendors/css/vendor.bundle.base.css')
       link(rel='stylesheet', href='../../assets/vendors/css/vendor.bundle.addons.css')
-      link(rel='stylesheet', href='../../assets/css/vertical-layout-dark/style.css')
+      link(rel='stylesheet', href='../../assets/css/vertical-layout-dark/style-admin.min.css')
   body
     .container-scroller
       nav.navbar.col-lg-12.col-12.p-0.fixed-top.d-flex.flex-row
         .text-center.navbar-brand-wrapper.d-flex.align-items-center.justify-content-center
-          a.navbar-brand.brand-logo(href='/demo/admin/dashboard')
+          a.navbar-brand.brand-logo(href='/admin/dashboard')
             img(src='../../assets/img/logo-admin.png', alt='logo')
-          a.navbar-brand.brand-logo-mini(href='../../index.html')
+          a.navbar-brand.brand-logo-mini(href='/admin/dashboard')
             img(src='../../assets/img/logo-admin-mini.png', alt='logo')
         .navbar-menu-wrapper.d-flex.align-items-center.justify-content-end.justify-content-lg-start
           button.navbar-toggler.navbar-toggler.align-self-center(type='button', data-toggle='minimize')
@@ -51,15 +51,15 @@ html(lang='en')
                 span.menu-title Bảng điều khiển
             li.nav-item
               a.nav-link(data-toggle='collapse', href='#ui-basic', aria-expanded='false', aria-controls='ui-basic')
-                i.mdi.mdi-palette.menu-icon
+                i.mdi.mdi-reproduction.menu-icon
                 span.menu-title Đối tác
                 i.menu-arrow
               #ui-basic.collapse
                 ul.nav.flex-column.sub-menu
                   li.nav-item
-                    a.nav-link(href='/demo/admin/add_partner') Thêm đối tác
+                    a.nav-link(href='/admin/partner/custom-partner') Thêm đối tác
                   li.nav-item
-                    a.nav-link(href='/demo/admin/list_partner') Danh sách đối tác
+                    a.nav-link(href='/admin/partner/list-partner') Danh sách đối tác
 
         .main-panel
           .content-wrapper
@@ -75,8 +75,8 @@ html(lang='en')
                 i.mdi.mdi-heart.text-danger
     script(src='../../assets/vendors/js/vendor.bundle.base.js')
     script(src='../../assets/vendors/js/vendor.bundle.addons.js')
-    script(src='../../assets/js/off-canvas.js')
-    script(src='../../assets/js/hoverable-collapse.js')
-    script(src='../../assets/js/template.js')
-    script(src='../../assets/js/settings.js')
-    script(src='../../assets/js/todolist.js')
+    script(src='../../assets/js/default/off-canvas.js')
+    script(src='../../assets/js/default/hoverable-collapse.js')
+    script(src='../../assets/js/default/template.js')
+    //- script(src='../../assets/js/default/settings.js')
+    //- script(src='../../assets/js/default/todolist.js')
