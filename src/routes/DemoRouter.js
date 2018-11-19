@@ -50,4 +50,12 @@ DemoRouter.get('/admin/dashboard', function(req, res) {
   res.render('admin/dashboard');
 });
 
+DemoRouter.get('/admin/add_partner', function(req, res) {
+  res.render('admin/add_partner');
+});
+
+DemoRouter.get('/admin/list_partner', function(req, res) {
+  res.render('admin/list_partner');
+});
+
 export default DemoRouter;
