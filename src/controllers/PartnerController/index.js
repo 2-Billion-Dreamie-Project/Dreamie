@@ -1,3 +1,5 @@
+import PartnerModel from '../../models/PartnerModel';
+
 /**
  * @class PartnerController
  * @author Kemmie
@@ -9,7 +11,8 @@
 
 export default class PartnerController {
   constructor() {
-    
+    this.PartnerModel = new PartnerModel;
+    this.savePartner = this.savePartner.bind(this);
   }
 
   /**
@@ -35,7 +38,12 @@ export default class PartnerController {
    * If error show message error 
    */
   savePartner(req, res) {
-    console.log(req.body);
+    // Đoạn này tương đương: 
+    // name = req.body.name
+    // image = req.body.image
+    
+    const { name, image } = req.body;
+    this.PartnerModel.savePartner(name, image);
   }
   
 }

@@ -4,16 +4,26 @@ $main-color: #e6b31e;
   .form-control {
     background: #252525!important;
   }
-  button {
-    margin-right: 10px!important;
-    border: 2px solid $main-color;
-    background: $main-color;
-    color: black!important;
+}
+.navbar-nav-right {
+  .nav-view-page a {
+    color: #8c909a!important;
 
     &:hover {
-      background: none;
-      border: 2px solid $main-color;
       color: $main-color!important;
+      text-decoration: none;
     }
+  }
+}
+
+.table-dark {
+  background: #252525;
+
+  th, td, thead th {
+    border-color: #32383e!important;
+  }
+
+  thead {
+    background: black;
   }
 }

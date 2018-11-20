@@ -4,27 +4,28 @@ block title
   title Danh sách Đối tác
 
 block append style
-  link(rel='stylesheet', href='/assets/css/custom.min.css')
+  link(rel='stylesheet', href='/assets/css/partner_admin.min.css')
 
 block content
-  table.table.table-dark.table-bordered
-    thead
-      tr
-        th(scope='col') #
-        th(scope='col') Tên đối tác
-        th(scope='col') Ảnh đối tác
-        th(scope='col') Ngày tạo
-        th(scope='col') Ngày sửa
-        th(scope='col') Hành động
-    tbody
-      tr
-        th(scope='row') 1
-        td Mark
-        td Otto
-        td @mdo
-        td Mark
-        td
-          button.btn.btn-light Xem
-          button.btn.btn-danger Xóa
+  .table-responsive
+    table.table.table-dark.table-bordered
+      thead
+        tr
+          th(scope='col') STT
+          th(scope='col') Tên đối tác
+          th(scope='col') Ảnh đối tác
+          th(scope='col') Ngày tạo
+          th(scope='col') Ngày sửa
+          th(scope='col') Hành động
+      tbody
+        tr
+          th(scope='row') 1
+          td Mark
+          td Otto
+          td @mdo
+          td Mark
+          td
+            button.btn.btn-info.mr-2 Xem
+            button.btn.btn-danger Xóa
 
 

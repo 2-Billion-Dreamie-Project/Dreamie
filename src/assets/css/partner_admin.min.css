@@ -1,2 +1,23 @@
-.admin-partner .form-control{background:#252525 !important}.admin-partner button{margin-right:10px !important;border:2px solid #e6b31e;background:#e6b31e;color:#000 !important}.admin-partner button:hover{background:none;border:2px solid #e6b31e;color:#e6b31e !important}
+.admin-partner .form-control {
+  background: #252525 !important;
+}
+
+.navbar-nav-right .nav-view-page a {
+  color: #8c909a !important;
+}
+.navbar-nav-right .nav-view-page a:hover {
+  color: #e6b31e !important;
+  text-decoration: none;
+}
+
+.table-dark {
+  background: #252525;
+}
+.table-dark th, .table-dark td, .table-dark thead th {
+  border-color: #32383e !important;
+}
+.table-dark thead {
+  background: black;
+}
+
 /*# sourceMappingURL=partner_admin.min.css.map */
