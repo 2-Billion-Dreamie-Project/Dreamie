@@ -10,12 +10,23 @@ block content
   .admin-partner
     form(action='/admin/partner/save-partner', method='POST')
       input(type="hidden" name="_csrf" value=csrfToken)
+      if partner && partner._id !== 'undefined'
+        input(type="hidden" name="_id" value=partner._id)
       .form-group
         label(for='name-partner') Tên đối tác
-        input#name-partner.form-control(name='name', type='text', placeholder='Nhập tên đối tác')
+        input#name-partner.form-control(
+          name='name', 
+          type='text', 
+          placeholder='Nhập tên đối tác',
+          value=partner && partner.name ? partner.name : ''
+        )
       .form-group
         label(for='image-partner') Hình ảnh đối tác
-        input#image-partner.form-control(name='image', type='text')
+        input#image-partner.form-control(
+          name='image', 
+          type='text',
+          value=partner && partner.image ? partner.image : ''
+        )
       button.btn.btn-success.mr-2(type='submit') Lưu
       a.btn.btn-light(href="/admin/partner/list-partner") Trở lại
 

@@ -47,16 +47,23 @@ export default class UserModel {
       }
     } catch(err) {
       console.log(err);
-      return false;
+      return undefined;
     }
   }
 
   getUsers() {
     try {
-      return this.userSchema.find({});
+      return(
+        this.userSchema
+          .find({})
+          .catch(function() {
+            console.log(err);
+            return undefined;
+          })
+      );
     } catch(err) {
       console.log(err);
-      return false;
+      return undefined;
     }
   }
 }

@@ -12,6 +12,7 @@ import PartnerModel from '../../models/PartnerModel';
 export default class PartnerController {
   constructor() {
     this.PartnerModel = new PartnerModel;
+    this.formPartner = this.formPartner.bind(this);
     this.savePartner = this.savePartner.bind(this);
   }
 
@@ -22,9 +23,22 @@ export default class PartnerController {
    * @requires {@link https://github.com/expressjs/csurf|csrfToken}
    * @todo Render view create partner
    */
-  formPartner(req, res) {
+  async formPartner(req, res) {
+    let partner = {};
+    let _id = typeof req.params._id !== 'undefined' ? req.params._id : '';
+
+    if (_id !== '') {
+      partner = await this.PartnerModel.getOnePartner(_id);
+    }
+  
+    if (!partner) {
+      res.redirect('/');
+    }
+
     res.render('admin/add_partner', {
       csrfToken: req.csrfToken(),
+      _id,
+      partner
     });
     
   }
@@ -41,12 +55,11 @@ export default class PartnerController {
     // Đoạn này tương đương: 
     // name = req.body.name
     // image = req.body.image
-    
     const { name, image } = req.body;
     
-    let partner = this.PartnerModel.savePartner(name, image);
+    this.PartnerModel.savePartner(name, image);
 
-    res.redirect('/')
+    // res.redirect('/')
   }
 
   getPartners() {

@@ -13,6 +13,8 @@ export default class PartnerModel {
   constructor() {
     // Gán thuộc tính this.partnerSchema = Partner(db)
     this.partnerSchema = Partner;
+    this.savePartner = this.savePartner.bind(this);
+    this.getOnePartner = this.getOnePartner.bind(this);
   }
 
   savePartner(
@@ -36,6 +38,25 @@ export default class PartnerModel {
     } catch(err) {
       console.log(err);
       return false;
+    }
+  }
+
+  getOnePartner(_id = '') {
+    try {
+      if (_id !== '') {
+        return(
+          this.partnerSchema.findById(_id)
+            .catch(function(err) {
+              console.log(err);
+              return undefined
+            })
+        );
+      }
+
+      return false;
+    } catch (error) {
+      console.log(error);
+      return undefined;
     }
   }
 }

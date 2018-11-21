@@ -8,8 +8,7 @@ PartnerRouter.get('/list-partner', function(req, res) {
   res.render('admin/list_partner');
 });
 
-PartnerRouter.get('/custom-partner', PartnerCtlrIns.viewCreatePartner);
+PartnerRouter.get('/custom-partner/:_id?', PartnerCtlrIns.formPartner);
 PartnerRouter.post('/save-partner', PartnerCtlrIns.savePartner);
-PartnerRouter.get('/save-partner/:_id', PartnerCtlrIns.formPartner);
 
 export default PartnerRouter;
