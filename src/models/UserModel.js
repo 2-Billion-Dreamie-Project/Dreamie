@@ -30,18 +30,22 @@ export default class UserModel {
   ) {
     let user;
     try {
-      if (userName && email && password) {
+      if (
+        userName !== ''
+        && email !== ''
+        && password !== ''
+        ) {
         user = new this.userSchema({ userName, email, password });
         user.password = user.generateHash(user.password);
 
         user.save(function (err, user) {
-          if (err) return console.error(err);
+          if (err) return console.log(err);
           return user;
         });
 
         return user;
       }
-    } catch (err) {
+    } catch(err) {
       console.log(err);
       return false;
     }

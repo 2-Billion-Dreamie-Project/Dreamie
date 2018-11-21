@@ -19,6 +19,23 @@ export default class PartnerModel {
     name = '', // Đoạn này nghĩa là nếu không có param name hoặc image
     image = '', // thì name hoặc image mặc định là ''
   ) {
-    console.log({ name, image }) // tương đương console.log({ name: name, image: image })
+    let partner;
+
+    try {
+      if (name !== '' && image !== '') {
+        // { name, image } tương đương  { name: name, image: image }
+        partner = new this.partnerSchema({ name, image });
+
+        partner.save(function (err, partner) {
+          if (err) return console.log(err);
+          return partner;
+        });
+
+        return partner;
+      }
+    } catch(err) {
+      console.log(err);
+      return false;
+    }
   }
 }

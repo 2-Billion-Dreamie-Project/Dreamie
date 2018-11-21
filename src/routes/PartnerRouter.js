@@ -10,5 +10,6 @@ PartnerRouter.get('/list-partner', function(req, res) {
 
 PartnerRouter.get('/custom-partner', PartnerCtlrIns.viewCreatePartner);
 PartnerRouter.post('/save-partner', PartnerCtlrIns.savePartner);
+PartnerRouter.get('/save-partner/:_id', PartnerCtlrIns.formPartner);
 
 export default PartnerRouter;

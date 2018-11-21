@@ -22,7 +22,7 @@ export default class PartnerController {
    * @requires {@link https://github.com/expressjs/csurf|csrfToken}
    * @todo Render view create partner
    */
-  viewCreatePartner(req, res) {
+  formPartner(req, res) {
     res.render('admin/add_partner', {
       csrfToken: req.csrfToken(),
     });
@@ -43,7 +43,18 @@ export default class PartnerController {
     // image = req.body.image
     
     const { name, image } = req.body;
-    this.PartnerModel.savePartner(name, image);
+    
+    let partner = this.PartnerModel.savePartner(name, image);
+
+    res.redirect('/')
   }
-  
+
+  getPartners() {
+    try {
+      return this.partnerSchema.find({});
+    } catch(err) {
+      console.log(err);
+      return false;
+    }
+  }
 }
