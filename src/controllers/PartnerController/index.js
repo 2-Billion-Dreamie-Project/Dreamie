@@ -1,4 +1,5 @@
 import PartnerModel from '../../models/PartnerModel';
+import { Partner } from '../../db';
 
 /**
  * @class PartnerController
@@ -11,6 +12,7 @@ import PartnerModel from '../../models/PartnerModel';
 
 export default class PartnerController {
   constructor() {
+    this.partnerSchema = Partner;
     this.PartnerModel = new PartnerModel;
     this.formPartner = this.formPartner.bind(this);
     this.savePartner = this.savePartner.bind(this);
@@ -55,16 +57,29 @@ export default class PartnerController {
     // Đoạn này tương đương: 
     // name = req.body.name
     // image = req.body.image
-    const { name, image } = req.body;
+    const {_id, name, image } = req.body;
+    let partner = {};
     
-    this.PartnerModel.savePartner(name, image);
+    // this.PartnerModel.savePartner(_id, name, image);
+    if (_id && _id !== '') {
+      partner = this.PartnerModel.savePartner(name, image);
+    } else {
+      partner = this.PartnerModel.savePartner(name, image);
 
-    // res.redirect('/')
+    }
+
+    console.log(partner)
+
+    res.redirect('/admin/partner/custom-partner/' + partner._id);
   }
 
-  getPartners() {
+  getPartners(req, res) {
     try {
-      return this.partnerSchema.find({});
+      return Partner.find().then(function(partners) {
+        res.render('admin/list_partner', {
+          partners: partners
+        });
+      });
     } catch(err) {
       console.log(err);
       return false;

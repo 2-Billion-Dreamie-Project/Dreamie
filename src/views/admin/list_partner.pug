@@ -18,14 +18,15 @@ block content
           th(scope='col') Ngày sửa
           th(scope='col') Hành động
       tbody
-        tr
-          th(scope='row') 1
-          td Mark
-          td Otto
-          td @mdo
-          td Mark
-          td
-            button.btn.btn-info.mr-2 Xem
-            button.btn.btn-danger Xóa
+        each partner in partners
+          tr
+            th(scope='row')=partner.id
+            td=partner.name
+            td=partner.image
+            td @mdo
+            td Mark
+            td
+              a.btn.btn-info.mr-2(href="/admin/partner/custom-partner/" + partner._id) Xem
+              a.btn.btn-danger Xóa
 
 

@@ -4,9 +4,7 @@ import PartnerController from '../controllers/PartnerController';
 const PartnerRouter = express.Router();
 const PartnerCtlrIns = new PartnerController();
 
-PartnerRouter.get('/list-partner', function(req, res) {
-  res.render('admin/list_partner');
-});
+PartnerRouter.get('/list-partner', PartnerCtlrIns.getPartners);
 
 PartnerRouter.get('/custom-partner/:_id?', PartnerCtlrIns.formPartner);
 PartnerRouter.post('/save-partner', PartnerCtlrIns.savePartner);
