@@ -62,15 +62,16 @@ export default class PartnerController {
     
     // this.PartnerModel.savePartner(_id, name, image);
     if (_id && _id !== '') {
-      partner = this.PartnerModel.savePartner(name, image);
+      partner = this.PartnerModel.updatePartner(name, image);
+      return Partner.findOneAndUpdate(_id, {$set:{ name, image }}, {new: true}, (err, partner) => {
+        res.redirect('/admin/partner/list-partner/');
+      });
     } else {
       partner = this.PartnerModel.savePartner(name, image);
-
+      res.redirect('/admin/partner/custom-partner/' + partner._id);
     }
 
-    console.log(partner)
-
-    res.redirect('/admin/partner/custom-partner/' + partner._id);
+    
   }
 
   getPartners(req, res) {
@@ -79,6 +80,19 @@ export default class PartnerController {
         res.render('admin/list_partner', {
           partners: partners
         });
+      });
+    } catch(err) {
+      console.log(err);
+      return false;
+    }
+  }
+
+  deletePartners(req, res) {
+    const _id = req.body._id;
+
+    try {
+      return Partner.findOneAndRemove(_id, function(partners) {
+        res.redirect('/admin/partner/list-partner');
       });
     } catch(err) {
       console.log(err);

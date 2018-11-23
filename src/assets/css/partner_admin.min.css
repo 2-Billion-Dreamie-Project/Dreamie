@@ -20,4 +20,10 @@
   background: black;
 }
 
+.jsgrid .jsgrid-table td img, .table td img {
+  height: 40px;
+  width: auto;
+  border-radius: 0;
+}
+
 /*# sourceMappingURL=partner_admin.min.css.map */

@@ -7,8 +7,9 @@ block append style
   link(rel='stylesheet', href='/assets/css/partner_admin.min.css')
 
 block content
+  a.btn.btn-success.mb-3(href="/admin/partner/custom-partner/") Thêm mới
   .table-responsive
-    table.table.table-dark.table-bordered
+    table.table.table-dark.table-bordered.table-hover
       thead
         tr
           th(scope='col') STT
@@ -23,10 +24,11 @@ block content
             th(scope='row')=partner.id
             td=partner.name
             td=partner.image
+              //- img(src=partner.image)
             td @mdo
             td Mark
             td
               a.btn.btn-info.mr-2(href="/admin/partner/custom-partner/" + partner._id) Xem
-              a.btn.btn-danger Xóa
+              a.btn.btn-danger(href="/admin/partner/delete/" + partner._id) Xóa
 
 

@@ -15,6 +15,7 @@ export default class PartnerModel {
     this.partnerSchema = Partner;
     this.savePartner = this.savePartner.bind(this);
     this.getOnePartner = this.getOnePartner.bind(this);
+    this.updatePartner = this.updatePartner.bind(this);
   }
 
   savePartner(
@@ -34,7 +35,32 @@ export default class PartnerModel {
         });
 
         return partner;
-      }
+      } 
+    } catch(err) {
+      console.log(err);
+      return false;
+    }
+  }
+
+  updatePartner(
+    _id = '',
+    name = '',
+    image = '',
+  ) {
+    let partnerUpdate;
+
+    try {
+      if (_id && _id !== '') {
+        
+        partnerUpdate = this.partnerSchema({ name, image });
+
+        partnerUpdate.updateOne(function (err, partnerUpdate) {
+          if (err) return console.log(err);
+          return partnerUpdate;
+        });
+
+        return partnerUpdate;
+      } 
     } catch(err) {
       console.log(err);
       return false;

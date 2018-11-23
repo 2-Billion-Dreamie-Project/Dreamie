@@ -8,5 +8,6 @@ PartnerRouter.get('/list-partner', PartnerCtlrIns.getPartners);
 
 PartnerRouter.get('/custom-partner/:_id?', PartnerCtlrIns.formPartner);
 PartnerRouter.post('/save-partner', PartnerCtlrIns.savePartner);
+PartnerRouter.get('/delete/:id', PartnerCtlrIns.deletePartners);
 
 export default PartnerRouter;
