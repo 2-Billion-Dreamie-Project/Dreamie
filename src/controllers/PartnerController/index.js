@@ -53,7 +53,8 @@ export default class PartnerController {
    * @description 
    * If error show message error 
    */
-  savePartner(req, res) {
+  async savePartner(req, res) {
+    debugger;
     // Đoạn này tương đương: 
     // name = req.body.name
     // image = req.body.image
@@ -62,13 +63,13 @@ export default class PartnerController {
     
     // this.PartnerModel.savePartner(_id, name, image);
     if (_id && _id !== '') {
-      partner = this.PartnerModel.updatePartner(name, image);
-      return Partner.findOneAndUpdate(_id, {$set:{ name, image }}, {new: true}, (err, partner) => {
-        res.redirect('/admin/partner/list-partner/');
-      });
+      partner = await this.PartnerModel.updatePartner(_id, name, image);
+      res.redirect('/admin/partner/list-partner');
+      return;
     } else {
-      partner = this.PartnerModel.savePartner(name, image);
+      partner = await this.PartnerModel.savePartner(name, image);
       res.redirect('/admin/partner/custom-partner/' + partner._id);
+      return;
     }
 
     

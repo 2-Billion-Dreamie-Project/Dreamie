@@ -46,21 +46,18 @@ export default class PartnerModel {
     _id = '',
     name = '',
     image = '',
-  ) {
-    let partnerUpdate;
-
+  ) {    
     try {
       if (_id && _id !== '') {
-        
-        partnerUpdate = this.partnerSchema({ name, image });
-
-        partnerUpdate.updateOne(function (err, partnerUpdate) {
-          if (err) return console.log(err);
-          return partnerUpdate;
-        });
-
-        return partnerUpdate;
-      } 
+        return(
+          this.partnerSchema
+            .findOneAndUpdate(_id, {$set:{ name, image }}, {new: true})
+            .catch(function(err) {
+              console.log(err);
+              return undefined
+            })
+        );
+      }
     } catch(err) {
       console.log(err);
       return false;
