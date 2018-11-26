@@ -16,6 +16,8 @@ export default class PartnerModel {
     this.savePartner = this.savePartner.bind(this);
     this.getOnePartner = this.getOnePartner.bind(this);
     this.updatePartner = this.updatePartner.bind(this);
+    this.deletePartner = this.deletePartner.bind(this);
+    this.getPartners = this.getPartners.bind(this);
   }
 
   savePartner(
@@ -51,7 +53,7 @@ export default class PartnerModel {
       if (_id && _id !== '') {
         return(
           this.partnerSchema
-            .findOneAndUpdate(_id, {$set:{ name, image }}, {new: true})
+            .updateOne({_id}, {$set:{ name, image }}, {new: true})
             .catch(function(err) {
               console.log(err);
               return undefined
@@ -82,4 +84,39 @@ export default class PartnerModel {
       return undefined;
     }
   }
+
+  deletePartner(_id = '') {
+    try {
+      if (_id !== '') {
+        return(
+          this.partnerSchema.findOneAndRemove({ _id })
+            .catch(function(err) {
+              console.log(err);
+              return undefined
+            })
+        );
+      }
+
+      return false;
+    } catch (error) {
+      console.log(error);
+      return undefined;
+    }
+  }
+
+  getPartners() {
+    try {
+      return(
+        this.partnerSchema.find({})
+        .catch(function(err) {
+          console.log(err);
+          return undefined
+        })
+      );
+    } catch (error) {
+      console.log(error);
+      return undefined;
+    }
+  }
+
 }

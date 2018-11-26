@@ -16,6 +16,8 @@ export default class PartnerController {
     this.PartnerModel = new PartnerModel;
     this.formPartner = this.formPartner.bind(this);
     this.savePartner = this.savePartner.bind(this);
+    this.deletePartner = this.deletePartner.bind(this);
+    this.getPartners = this.getPartners.bind(this);
   }
 
   /**
@@ -54,7 +56,6 @@ export default class PartnerController {
    * If error show message error 
    */
   async savePartner(req, res) {
-    debugger;
     // Đoạn này tương đương: 
     // name = req.body.name
     // image = req.body.image
@@ -75,29 +76,21 @@ export default class PartnerController {
     
   }
 
-  getPartners(req, res) {
-    try {
-      return Partner.find().then(function(partners) {
-        res.render('admin/list_partner', {
-          partners: partners
-        });
-      });
-    } catch(err) {
-      console.log(err);
-      return false;
-    }
+  async getPartners(req, res) {
+    let partners = await this.PartnerModel.getPartners();
+    
+    res.render('admin/list_partner', {
+      csrfToken: req.csrfToken(),
+      partners
+    });
   }
 
-  deletePartners(req, res) {
-    const _id = req.body._id;
-
-    try {
-      return Partner.findOneAndRemove(_id, function(partners) {
-        res.redirect('/admin/partner/list-partner');
-      });
-    } catch(err) {
-      console.log(err);
-      return false;
+  deletePartner(req, res) {
+    let _id = typeof req.params._id !== 'undefined' ? req.params._id : '';
+    
+    if (_id && _id !== '') {
+      this.PartnerModel.deletePartner({_id: req.params._id});
     }
+    res.redirect('/admin/partner/list-partner');
   }
 }

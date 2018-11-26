@@ -5,8 +5,11 @@ block title
 
 block append style
   link(rel='stylesheet', href='/assets/css/partner_admin.min.css')
+  script(src='/bower_components/moment/min/moment.min.js')
+  
 
 block content
+
   a.btn.btn-success.mb-3(href="/admin/partner/custom-partner/") Thêm mới
   .table-responsive
     table.table.table-dark.table-bordered.table-hover
@@ -23,10 +26,11 @@ block content
           tr
             th(scope='row')=partner.id
             td=partner.name
-            td=partner.image
-              //- img(src=partner.image)
-            td @mdo
-            td Mark
+            td
+              a(title='Phóng to hình', rel='gallery', href=partner.image, data-fancybox='', data-caption=partner.name)
+                img(src=partner.image)
+            td=partner.createdAt
+            td=partner.updatedAt
             td
               a.btn.btn-info.mr-2(href="/admin/partner/custom-partner/" + partner._id) Xem
               a.btn.btn-danger(href="/admin/partner/delete/" + partner._id) Xóa
