@@ -44,7 +44,6 @@ export default class PartnerController {
       _id,
       partner
     });
-    
   }
 
   /**
@@ -56,13 +55,9 @@ export default class PartnerController {
    * If error show message error 
    */
   async savePartner(req, res) {
-    // Đoạn này tương đương: 
-    // name = req.body.name
-    // image = req.body.image
     const {_id, name, image } = req.body;
     let partner = {};
     
-    // this.PartnerModel.savePartner(_id, name, image);
     if (_id && _id !== '') {
       partner = await this.PartnerModel.updatePartner(_id, name, image);
       res.redirect('/admin/partner/list-partner');
@@ -71,11 +66,16 @@ export default class PartnerController {
       partner = await this.PartnerModel.savePartner(name, image);
       res.redirect('/admin/partner/custom-partner/' + partner._id);
       return;
-    }
-
-    
+    }    
   }
 
+  /**
+   * @memberof PartnerController#
+   * @argument req This is the first paramter to get request
+   * @argument res  This is the second parameter to get response
+   * @requires {@link https://github.com/expressjs/csurf|csrfToken}
+   * @todo Render view get partners
+   */
   async getPartners(req, res) {
     let partners = await this.PartnerModel.getPartners();
     
@@ -84,6 +84,14 @@ export default class PartnerController {
       partners
     });
   }
+
+  /**
+   * @memberof PartnerController#
+   * @argument req This is the first paramter to get request
+   * @argument res  This is the second parameter to get response
+   * @requires {@link https://github.com/expressjs/csurf|csrfToken}
+   * @todo Render view delete partner
+   */
 
   deletePartner(req, res) {
     let _id = typeof req.params._id !== 'undefined' ? req.params._id : '';

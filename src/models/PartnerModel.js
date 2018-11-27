@@ -1,7 +1,7 @@
 import { Partner } from '../db';
 
 /**
- * @class UserModel
+ * @class PartnerModel
  * @author Kemmie
  * @version 1.0
  * @since 20/11/2018
@@ -20,6 +20,12 @@ export default class PartnerModel {
     this.getPartners = this.getPartners.bind(this);
   }
 
+   /**
+   * @memberof PartnerModel#
+   * @param {String} name - this param is required
+   * @param {String} image - this param is required
+   * @returns {Object} Return partner is object type
+   */
   savePartner(
     name = '', // Đoạn này nghĩa là nếu không có param name hoặc image
     image = '', // thì name hoặc image mặc định là ''
@@ -44,6 +50,13 @@ export default class PartnerModel {
     }
   }
 
+    /**
+   * @memberof PartnerModel#
+   * @param {ID} _id - this param is required
+   * @param {String} name - this param is required
+   * @param {String} image - this param is required
+   * @returns {Object} Return partner is object type
+   */
   updatePartner(
     _id = '',
     name = '',
@@ -66,6 +79,11 @@ export default class PartnerModel {
     }
   }
 
+  /**
+   * @memberof PartnerModel#
+   * @param {ID} _id - this param is required
+   * @returns {Object} Return partner is object type
+  */
   getOnePartner(_id = '') {
     try {
       if (_id !== '') {
@@ -84,26 +102,11 @@ export default class PartnerModel {
       return undefined;
     }
   }
-
-  deletePartner(_id = '') {
-    try {
-      if (_id !== '') {
-        return(
-          this.partnerSchema.findOneAndRemove({ _id })
-            .catch(function(err) {
-              console.log(err);
-              return undefined
-            })
-        );
-      }
-
-      return false;
-    } catch (error) {
-      console.log(error);
-      return undefined;
-    }
-  }
-
+  
+  /**
+   * @memberof PartnerModel#
+   * @returns {Array} Return partners is an array type
+  */
   getPartners() {
     try {
       return(
@@ -118,5 +121,28 @@ export default class PartnerModel {
       return undefined;
     }
   }
+  
+  /**
+   * @memberof PartnerModel#
+   * @param {ID} _id - this param is required
+   * @todo - Redirect to list-partner
+  */
+ deletePartner(_id = '') {
+  try {
+    if (_id !== '') {
+      return(
+        this.partnerSchema.findOneAndRemove({ _id })
+          .catch(function(err) {
+            console.log(err);
+            return undefined
+          })
+      );
+    }
 
+    return false;
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+}
 }

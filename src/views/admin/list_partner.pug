@@ -22,17 +22,20 @@ block content
           th(scope='col') Ngày sửa
           th(scope='col') Hành động
       tbody
-        each partner in partners
-          tr
-            th(scope='row')=partner.id
-            td=partner.name
-            td
-              a(title='Phóng to hình', rel='gallery', href=partner.image, data-fancybox='', data-caption=partner.name)
-                img(src=partner.image)
-            td=partner.createdAt
-            td=partner.updatedAt
-            td
-              a.btn.btn-info.mr-2(href="/admin/partner/custom-partner/" + partner._id) Xem
-              a.btn.btn-danger(href="/admin/partner/delete/" + partner._id) Xóa
+        if partners && partners.length
+          each partner in partners
+            tr
+              th(scope='row')=partner.id ? partner.id : ''
+              td=partner.name ? partner.name : ''
+              td
+                if partner.image && partner.image !== ''
+                  a(title='Phóng to hình', rel='gallery', href=partner.image, data-fancybox='', data-caption=partner.name)
+                    img(src=partner.image)
+              td=partner.createdAt ? moment(partner.createdAt).format('DD/MM/YYYY HH:mm') : ''
+              td=partner.updatedAt ? moment(partner.updatedAt).format('DD/MM/YYYY HH:mm') : ''
+              td
+                if partner._id
+                  a.btn.btn-info.mr-2(href="/admin/partner/custom-partner/" + partner._id) Xem
+                  a.btn.btn-danger(href="/admin/partner/delete/" + partner._id) Xóa
 
 
