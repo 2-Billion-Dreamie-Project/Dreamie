@@ -1,8 +1,8 @@
 import express from 'express';
-import AuthController from '../controllers/AuthController';
+import AuthController from '../../controllers/AuthController';
 
-import hasAuthentication from '../middlewares/hasAuthentication';
-import validRegister from '../middlewares/validRegister';
+import hasAuthentication from '../../middlewares/hasAuthentication';
+import validRegister from '../../middlewares/validRegister';
 
 const AuthRouter   = express.Router();
 const AuthCtlrIns  = new AuthController();

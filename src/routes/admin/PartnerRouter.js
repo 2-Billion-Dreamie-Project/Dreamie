@@ -1,5 +1,5 @@
 import express from 'express';
-import PartnerController from '../controllers/PartnerController';
+import PartnerController from '../../controllers/PartnerController';
 
 const PartnerRouter = express.Router();
 const PartnerCtlrIns = new PartnerController();

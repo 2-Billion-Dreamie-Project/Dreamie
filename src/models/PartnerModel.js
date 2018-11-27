@@ -34,7 +34,6 @@ export default class PartnerModel {
 
     try {
       if (name !== '' && image !== '') {
-        // { name, image } tương đương  { name: name, image: image }
         partner = new this.partnerSchema({ name, image });
 
         partner.save(function (err, partner) {
