@@ -4,7 +4,38 @@ block title
   title Danh sách Đối tác
 
 block append style
-  link(rel='stylesheet', href='/assets/css/custom.min.css')
+  link(rel='stylesheet', href='/assets/css/partner_admin.min.css')
+  script(src='/bower_components/moment/min/moment.min.js')
+  
 
 block content
-  h1 Hello danh sách
+
+  a.btn.btn-success.mb-3(href="/admin/partner/custom-partner/") Thêm mới
+  .table-responsive
+    table.table.table-dark.table-bordered.table-hover
+      thead
+        tr
+          th(scope='col') STT
+          th(scope='col') Tên đối tác
+          th(scope='col') Ảnh đối tác
+          th(scope='col') Ngày tạo
+          th(scope='col') Ngày sửa
+          th(scope='col') Hành động
+      tbody
+        if partners && partners.length
+          each partner in partners
+            tr
+              th(scope='row')=partner.id ? partner.id : ''
+              td=partner.name ? partner.name : ''
+              td
+                if partner.image && partner.image !== ''
+                  a(title='Phóng to hình', rel='gallery', href=partner.image, data-fancybox='', data-caption=partner.name)
+                    img(src=partner.image)
+              td=partner.createdAt ? moment(partner.createdAt).format('DD/MM/YYYY HH:mm') : ''
+              td=partner.updatedAt ? moment(partner.updatedAt).format('DD/MM/YYYY HH:mm') : ''
+              td
+                if partner._id
+                  a.btn.btn-info.mr-2(href="/admin/partner/custom-partner/" + partner._id) Xem
+                  a.btn.btn-danger(href="/admin/partner/delete/" + partner._id) Xóa
+
+

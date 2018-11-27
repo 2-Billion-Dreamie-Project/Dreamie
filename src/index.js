@@ -39,6 +39,7 @@ app.set('x-powered-by', false);
 
 app.use('/bower_components', express.static(path.join(__dirname, '../bower_components')));
 app.use('/assets', express.static(path.join(__dirname, '/assets')));
+app.locals.moment = require('moment');
 
 // Configuration passport
 passportConfig(passport, LocalStrategy);
@@ -78,6 +79,8 @@ app.use(function(err, req, res, next) {
   if (err && process.env.NODE_ENV === 'production') {
     res.status(500).send('Error');
   }
+  
+  next(err);
 });
 
 // error handler 404
