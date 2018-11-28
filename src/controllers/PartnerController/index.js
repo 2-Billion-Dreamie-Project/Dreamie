@@ -37,7 +37,7 @@ export default class PartnerController {
       res.redirect('/');
     }
 
-    res.render('admin/add_partner', {
+    res.render('admin/partner/form_partner', {
       csrfToken: req.csrfToken(),
       _id,
       partner
@@ -93,7 +93,7 @@ export default class PartnerController {
   async getPartners(req, res) {
     let partners = await this.PartnerModel.getPartners();
     
-    res.render('admin/list_partner', {
+    res.render('admin/partner/list_partner', {
       csrfToken: req.csrfToken(),
       partners
     });
