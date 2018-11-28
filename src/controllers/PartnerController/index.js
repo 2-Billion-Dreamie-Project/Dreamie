@@ -1,5 +1,4 @@
 import PartnerModel from '../../models/PartnerModel';
-import { Partner } from '../../db';
 
 /**
  * @class PartnerController
@@ -12,7 +11,6 @@ import { Partner } from '../../db';
 
 export default class PartnerController {
   constructor() {
-    this.partnerSchema = Partner;
     this.PartnerModel = new PartnerModel;
     this.formPartner = this.formPartner.bind(this);
     this.savePartner = this.savePartner.bind(this);
@@ -59,13 +57,29 @@ export default class PartnerController {
     let partner = {};
     
     if (_id && _id !== '') {
-      partner = await this.PartnerModel.updatePartner(_id, name, image);
+      if (
+        (name && name !== '')
+        && (image && image !== '')
+      ) {
+        partner = await this.PartnerModel.updatePartner(_id, name, image);
+      } 
+
       res.redirect('/admin/partner/list-partner');
-      return;
     } else {
-      partner = await this.PartnerModel.savePartner(name, image);
-      res.redirect('/admin/partner/custom-partner/' + partner._id);
-      return;
+      if (
+        (name && name !== '')
+        && (image && image !== '')
+      ) {
+        partner = await this.PartnerModel.savePartner(name, image);
+
+        if (partner) {
+          res.redirect('/admin/partner/custom-partner/' + partner._id);
+        } else {
+          res.redirect('/admin/partner/list-partner/');  
+        }
+      } else {
+        res.redirect('/admin/partner/list-partner/');
+      }
     }    
   }
 
