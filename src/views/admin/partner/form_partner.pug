@@ -7,6 +7,10 @@ block append style
   link(rel='stylesheet', href='/assets/css/partner_admin.min.css')
 
 block content
+  if messPartner && messPartner !== ''
+    div.mb-4.mess-create
+      h5=messPartner
+
   .admin-partner
     form(action='/admin/partner/save-partner', method='POST' id="form-partner" novalidate)
       input(type="hidden" name="_csrf" value=csrfToken)

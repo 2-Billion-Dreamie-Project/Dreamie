@@ -27,7 +27,7 @@
 }
 
 .table-dark th, .table-dark td, .table-dark thead th {
-  border-color: #333333;
+  border-color: #333333 !important;
 }
 
 .dataTables_wrapper .dataTables_length .form-control {
@@ -37,6 +37,9 @@
 .dataTables_filter input.form-control {
   background: #252525;
   border: 1px solid #333333;
+}
+.dataTables_filter input.form-control:focus {
+  border-color: #e6b31e !important;
 }
 
 .jsgrid .jsgrid-pager .active.jsgrid-pager-nav-button .page-link, .jsgrid .jsgrid-pager .active.jsgrid-pager-nav-button a, .jsgrid .jsgrid-pager .active.jsgrid-pager-page .page-link, .jsgrid .jsgrid-pager .active.jsgrid-pager-page a, .jsgrid .jsgrid-pager .jsgrid-pager-nav-button .page-item.active a, .jsgrid .jsgrid-pager .jsgrid-pager-nav-button .page-item:active a, .jsgrid .jsgrid-pager .jsgrid-pager-nav-button .page-item:focus a, .jsgrid .jsgrid-pager .jsgrid-pager-nav-button .page-item:hover a, .jsgrid .jsgrid-pager .jsgrid-pager-nav-button:active .page-link, .jsgrid .jsgrid-pager .jsgrid-pager-nav-button:active a, .jsgrid .jsgrid-pager .jsgrid-pager-nav-button:focus .page-link, .jsgrid .jsgrid-pager .jsgrid-pager-nav-button:focus a, .jsgrid .jsgrid-pager .jsgrid-pager-nav-button:hover .page-link, .jsgrid .jsgrid-pager .jsgrid-pager-nav-button:hover a, .jsgrid .jsgrid-pager .jsgrid-pager-page .page-item.active a, .jsgrid .jsgrid-pager .jsgrid-pager-page .page-item:active a, .jsgrid .jsgrid-pager .jsgrid-pager-page .page-item:focus a, .jsgrid .jsgrid-pager .jsgrid-pager-page .page-item:hover a, .jsgrid .jsgrid-pager .jsgrid-pager-page:active .page-link, .jsgrid .jsgrid-pager .jsgrid-pager-page:active a, .jsgrid .jsgrid-pager .jsgrid-pager-page:focus .page-link, .jsgrid .jsgrid-pager .jsgrid-pager-page:focus a, .jsgrid .jsgrid-pager .jsgrid-pager-page:hover .page-link, .jsgrid .jsgrid-pager .jsgrid-pager-page:hover a, .jsgrid .jsgrid-pager .page-item.active .jsgrid-pager-nav-button a, .jsgrid .jsgrid-pager .page-item.active .jsgrid-pager-page a, .jsgrid .jsgrid-pager .page-item.active .page-link, .jsgrid .jsgrid-pager .page-item:active .jsgrid-pager-nav-button a, .jsgrid .jsgrid-pager .page-item:active .jsgrid-pager-page a, .jsgrid .jsgrid-pager .page-item:active .page-link, .jsgrid .jsgrid-pager .page-item:focus .jsgrid-pager-nav-button a, .jsgrid .jsgrid-pager .page-item:focus .jsgrid-pager-page a, .jsgrid .jsgrid-pager .page-item:focus .page-link, .jsgrid .jsgrid-pager .page-item:hover .jsgrid-pager-nav-button a, .jsgrid .jsgrid-pager .page-item:hover .jsgrid-pager-page a, .jsgrid .jsgrid-pager .page-item:hover .page-link, .pagination .page-item.active .jsgrid .jsgrid-pager .jsgrid-pager-nav-button a, .pagination .page-item.active .jsgrid .jsgrid-pager .jsgrid-pager-page a, .pagination .page-item.active .page-link, .pagination .page-item:active .jsgrid .jsgrid-pager .jsgrid-pager-nav-button a, .pagination .page-item:active .jsgrid .jsgrid-pager .jsgrid-pager-page a, .pagination .page-item:active .page-link, .pagination .page-item:focus .jsgrid .jsgrid-pager .jsgrid-pager-nav-button a, .pagination .page-item:focus .jsgrid .jsgrid-pager .jsgrid-pager-page a, .pagination .page-item:focus .page-link, .pagination .page-item:hover .jsgrid .jsgrid-pager .jsgrid-pager-nav-button a, .pagination .page-item:hover .jsgrid .jsgrid-pager .jsgrid-pager-page a, .pagination .page-item:hover .page-link {
@@ -68,6 +71,33 @@ table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTa
 
 table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td {
   font-size: 13px;
+}
+
+.form-control-danger {
+  border-color: #e6b31e;
+}
+
+.asColorPicker-input:focus, .dataTables_wrapper select:focus, .form-control:focus, .jsgrid .jsgrid-table .jsgrid-filter-row input[type=number]:focus, .jsgrid .jsgrid-table .jsgrid-filter-row input[type=text]:focus, .jsgrid .jsgrid-table .jsgrid-filter-row select:focus, .select2-container--default .select2-selection--single .select2-search__field:focus, .select2-container--default .select2-selection--single:focus, .tt-hint:focus, .tt-query:focus, .typeahead:focus {
+  border-color: #e6b31e;
+}
+
+.form-control {
+  border-color: #333333;
+}
+
+.table-dark.table-hover tbody tr:hover {
+  background: #131212;
+}
+
+.mess-create, .mess-del {
+  color: #e6b31e;
+  font-weight: bold;
+  background: black;
+  padding-top: 18px;
+  padding-bottom: 10px;
+}
+.mess-create h5, .mess-del h5 {
+  text-align: center;
 }
 
 /*# sourceMappingURL=partner_admin.min.css.map */

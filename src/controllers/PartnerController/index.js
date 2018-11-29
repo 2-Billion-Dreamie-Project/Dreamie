@@ -1,5 +1,5 @@
 import PartnerModel from '../../models/PartnerModel';
-
+import moment from 'moment';
 /**
  * @class PartnerController
  * @author Kemmie
@@ -28,6 +28,8 @@ export default class PartnerController {
   async formPartner(req, res) {
     let partner = {};
     let _id = typeof req.params._id !== 'undefined' ? req.params._id : '';
+    let { messPartner } = req.flash();
+    messPartner = messPartner ? messPartner[0]: '';
 
     if (_id !== '') {
       partner = await this.PartnerModel.getOnePartner(_id);
@@ -40,7 +42,8 @@ export default class PartnerController {
     res.render('admin/partner/form_partner', {
       csrfToken: req.csrfToken(),
       _id,
-      partner
+      partner,
+      messPartner
     });
   }
 
@@ -73,6 +76,7 @@ export default class PartnerController {
         partner = await this.PartnerModel.savePartner(name, image);
 
         if (partner) {
+          req.flash('messPartner', 'Bạn đã khởi tạo thành công, mời kiểm tra lại và lưu !');
           res.redirect('/admin/partner/custom-partner/' + partner._id);
         } else {
           res.redirect('/admin/partner/list-partner/');  
@@ -92,11 +96,15 @@ export default class PartnerController {
    */
   async getPartners(req, res) {
     let partners = await this.PartnerModel.getPartners();
-    
+    let { messDelPartner } = req.flash();
+
     res.render('admin/partner/list_partner', {
       csrfToken: req.csrfToken(),
-      partners
+      partners,
+      moment,
+      messDelPartner
     });
+    
   }
 
   /**
@@ -107,12 +115,17 @@ export default class PartnerController {
    * @todo Render view delete partner
    */
 
-  deletePartner(req, res) {
+  async deletePartner(req, res) {
     let _id = typeof req.params._id !== 'undefined' ? req.params._id : '';
+    let partner = {}
     
     if (_id && _id !== '') {
-      this.PartnerModel.deletePartner({_id: req.params._id});
+      partner = await this.PartnerModel.deletePartner({_id: req.params._id});
+      if (partner) {
+        req.flash('messDelPartner', `Bạn vừa xóa đối tác có số ID ${partner.id} thành công`);
+      }
     }
+    
     res.redirect('/admin/partner/list-partner');
   }
 }

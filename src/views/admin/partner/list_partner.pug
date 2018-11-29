@@ -9,6 +9,10 @@ block append style
   
 
 block content
+  if messDelPartner && messDelPartner !== ''
+    div.mb-4.mess-del
+      h5=messDelPartner
+
 
   a.btn.btn-success.mb-3(href="/admin/partner/custom-partner/") Thêm mới
   .table-responsive
@@ -61,7 +65,8 @@ block content
               "previous":   "Trước"
           },
         },
-        "order": [[ 0, "desc" ]]
+        "order": [[ 0, "desc" ]],
+        "pagingType": "full_numbers"
       });
       
     });
