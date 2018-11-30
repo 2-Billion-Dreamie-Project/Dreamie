@@ -16,16 +16,17 @@ html(lang='en')
       link(rel='stylesheet', href='/bower_components/animate.css/animate.min.css')
       link(rel='stylesheet', href='/bower_components/xzoom/src/xzoom.css')
       link(rel='stylesheet', href='/bower_components/xzoom/example/magnific-popup/css/magnific-popup.css')
+      link(rel='stylesheet', href='/bower_components/mdi/css/materialdesignicons.min.css')
       link(rel='stylesheet', href='/assets/css/layout.min.css')
+      link(rel="shortcut icon", href="/assets/img/favicon.ico")
   body
-    .loader
     
     block menu
       section.menu
         .container
           .row
             .col-xl-6.order-xl-4.col-lg-4.col-md-3.col-sm-3.col-6
-              .main-menu.text-center
+              .main-menu
                 a.toggleMenu(href='#')
                   i.fa.fa-bars(aria-hidden='true')
                 a.menu-close(href='#')
@@ -38,19 +39,103 @@ html(lang='en')
                   li.nav-item
                     a(href='/demo/product') Sản phẩm
                     i.fa.fa-caret-down(aria-hidden='true')
-                    ul
-                      li
-                        a(href='/demo/product') Chuột máy tính
-                      li
-                        a(href='/demo/product') Bàn phím
-                      li
-                        a(href='/demo/product') Tai nghe
-                      li
-                        a(href='/demo/product') Bàn di chuột
-                      li
-                        a(href='/demo/product') Ghế gaming
-                      li
-                        a(href='/demo/product') Tay cầm
+                    .menu-bottom
+                      img(src='/assets/img/bg-menu.png')
+                      .row
+                        .col-xl-2.text-left
+                          h4
+                            a(href='/demo/product') Chuột máy tính
+                          ul
+                            li
+                              a(href='/demo/product') Razer
+                            li
+                              a(href='/demo/product') Steelseries
+                            li
+                              a(href='/demo/product') Logitech
+                            li
+                              a(href='/demo/product') Zowie
+                            li
+                              a(href='/demo/product') Microsoft
+                            li
+                              a(href='/demo/product') Alienware
+                        .col-xl-2.text-left
+                          h4
+                            a(href='/demo/product') Bàn phím
+                          ul
+                            li
+                              a(href='/demo/product') Razer
+                            li
+                              a(href='/demo/product') Steelseries
+                            li
+                              a(href='/demo/product') Logitech
+                            li
+                              a(href='/demo/product') GSkill
+                            li
+                              a(href='/demo/product') Cooler Master
+                            li
+                              a(href='/demo/product') Alienware
+                        .col-xl-2.text-left
+                          h4
+                            a(href='/demo/product') Tai nghe
+                          ul
+                            li
+                              a(href='/demo/product') Razer
+                            li
+                              a(href='/demo/product') Steelseries
+                            li
+                              a(href='/demo/product') Logitech
+                            li
+                              a(href='/demo/product') Corsar
+                            li
+                              a(href='/demo/product') Ozone
+                            li
+                              a(href='/demo/product') TT Sport
+                        .col-xl-2.text-left
+                          h4
+                            a(href='/demo/product') Bàn di chuột
+                          ul
+                            li
+                              a(href='/demo/product') Razer
+                            li
+                              a(href='/demo/product') Steelseries
+                            li
+                              a(href='/demo/product') Logitech
+                            li
+                              a(href='/demo/product') Corsair
+                            li
+                              a(href='/demo/product') Zowie
+                            li
+                              a(href='/demo/product') Gamdias
+                        .col-xl-2.text-left
+                          h4
+                            a(href='/demo/product') Ghế gaming
+                          ul
+                            li
+                              a(href='/demo/product') Cross Fire
+                            li
+                              a(href='/demo/product') WCG
+                            li
+                              a(href='/demo/product') AutoFull
+                            li
+                              a(href='/demo/product') DXRacer
+                            li
+                              a(href='/demo/product') Extreme
+                        .col-xl-2.text-left
+                          h4
+                            a(href='/demo/product') Tay cầm
+                          ul
+                            li
+                              a(href='/demo/product') Xbox
+                            li
+                              a(href='/demo/product') Xbox One
+                            li
+                              a(href='/demo/product') PS3
+                            li
+                              a(href='/demo/product') PS4
+                            li
+                              a(href='/demo/product') New Game N1 Pro
+                            li
+                              a(href='/demo/product') New Game Q1
                   li.nav-item
                     a(href='/demo/news') Tin tức
                   li.nav-item
@@ -63,12 +148,12 @@ html(lang='en')
               .custom-header.text-right
                 #accordionExample.accordion
                   a(title='Tìm kiếm', data-toggle='collapse', href='#search', role='button', aria-expanded='true', aria-controls='search')
-                    i.fa.fa-search(aria-hidden='true')
+                    i.mdi.mdi-search-web
                   a(title='Danh sách yêu thích', href='/demo/wishlist', role='button', aria-expanded='true', aria-controls='wishlist')
-                    i.fa.fa-heart(aria-hidden='true')
+                    i.mdi.mdi-heart-multiple
                     span.badge.badge-light 0
                   a(title='Giỏ hàng', data-toggle='collapse', href='#cart', role='button', aria-expanded='false', aria-controls='cart')
-                    i.fa.fa-shopping-bag(aria-hidden='true')
+                    i.mdi.mdi-shopify
                     span.badge.badge-light 2
                   #search.collapse(data-parent='#accordionExample')
                     .card.card-body.search-form
@@ -240,8 +325,8 @@ html(lang='en')
             .col-lg-8
               .copyright.text-lg-left.text-center
                 h5 Copyright @ 2018 DREAMIE GEAR. All Reserved. Designed by Kemmie and Chumie
-      a#goTop.wow.zoomInRight(href='#', data-wow-duration='2s')
-        i.fa.fa-gamepad(aria-hidden='true')
+      a#goTop.wow.zoomInRight(href='#',title='Lên đầu trang', data-wow-duration='2s')
+        i.mdi.mdi-xbox-controller
 
     block script
       script(src='/bower_components/jquery/dist/jquery.min.js')
