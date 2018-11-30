@@ -27,6 +27,8 @@
     "fancybox": "^3.5.2",
     "wow": "wowjs#^1.1.2",
     "animate.css": "^3.7.0",
-    "xzoom": "^1.0.14"
+    "xzoom": "^1.0.14",
+    "datatables.net-bs4": "^3.2.2",
+    "jquery-validation": "^1.18.0"
   }
 }

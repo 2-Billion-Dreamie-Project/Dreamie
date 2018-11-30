@@ -288,14 +288,11 @@ block content
     section.partner
       .container
         .owl-carousel.partner-carousel.owl-theme
-          .item
-            img(src='/assets/img/partner-1.png', alt='')
-          .item
-            img(src='/assets/img/partner-1.png', alt='')
-          .item
-            img(src='/assets/img/partner-1.png', alt='')
-          .item
-            img(src='/assets/img/partner-1.png', alt='')
+          if partners && partners.length
+            each partner in partners
+              .item
+                if partner.image && partner.image !== ''
+                  img(src=partner.image)
 
     section.product-home
       .container

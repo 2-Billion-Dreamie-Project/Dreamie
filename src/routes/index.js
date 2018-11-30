@@ -1,5 +1,8 @@
-import AuthRouter from './AuthRouter';
+import AuthRouter from './admin/AuthRouter';
 import DemoRouter from './DemoRouter';
+import PartnerRouter from './admin/PartnerRouter';
+
+import HomeRouter from './client/HomeRouter';
 
 import isAuthentication from '../middlewares/isAuthentication';
 import validLogin from '../middlewares/validLogin';
@@ -24,6 +27,16 @@ export default function routes(app, passport) {
 
   // Router Demo
   app.use('/demo', DemoRouter);
+
+  /***** ROUTER CLIENT *****/
+
+  // Router Home
+  app.use('/', HomeRouter);
+
+  /***** ROUTER ADMIN *****/
+
+  // Router Partner
+  app.use('/admin/partner', PartnerRouter);
 
   // Router profile
   // app.get('/user/profile', isAuthentication, function (req, res) {

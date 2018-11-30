@@ -45,7 +45,6 @@ export default class AuthController {
    * @memberof AuthController#
    * @argument req This is the first paramter to get request
    * @argument res  This is the second parameter to get response
-   * @requires {@link https://github.com/expressjs/csurf|csrfToken}
    * @todo Render view login
    * @description 
    * If error show message error 
