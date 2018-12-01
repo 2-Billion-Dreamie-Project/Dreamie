@@ -299,6 +299,10 @@ article {
   transition: 500ms;
   font-size: 18px;
   padding: 2px 5px;
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  line-height: 25px;
 }
 .menu .custom-header a i:hover {
   background: #e6b31e;
@@ -538,6 +542,7 @@ article {
   background-image: url("../../assets/img/bg-service.png");
   padding: 50px 0;
   margin-bottom: 50px;
+  background-attachment: fixed;
 }
 .service .box-service i {
   width: 100px;
@@ -931,10 +936,10 @@ article {
   text-transform: uppercase;
   font-weight: bold;
   margin-right: 20px;
-  font-size: 20px;
 }
 .product-hot-detail .product-hot-btn a:nth-child(1) i {
   margin-right: 10px;
+  font-size: 20px;
 }
 .product-hot-detail .product-hot-btn a:nth-child(1):hover {
   background: none;

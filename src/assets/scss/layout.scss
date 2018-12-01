@@ -335,6 +335,10 @@ article {
       transition: 500ms;
       font-size: 18px;
       padding: 2px 5px;
+      width: 28px;
+      height: 28px;
+      text-align: center;
+      line-height: 25px;
 
       &:hover {
         background: $main-color;
@@ -632,6 +636,7 @@ article {
   background-image: url('../../assets/img/bg-service.png');
   padding: 50px 0;
   margin-bottom: 50px;
+  background-attachment: fixed;
 
   .box-service {
     i {
@@ -1114,10 +1119,10 @@ article {
           text-transform: uppercase;
           font-weight: bold;
           margin-right: 20px;
-          font-size: 20px;
 
           i {
             margin-right: 10px;
+            font-size: 20px;
           }
 
           &:hover {

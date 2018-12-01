@@ -97,6 +97,7 @@ export default class PartnerController {
   async getPartners(req, res) {
     let partners = await this.PartnerModel.getPartners();
     let { messDelPartner } = req.flash();
+    messDelPartner = messDelPartner ? messDelPartner[0]: '';
 
     res.render('admin/partner/list_partner', {
       csrfToken: req.csrfToken(),
