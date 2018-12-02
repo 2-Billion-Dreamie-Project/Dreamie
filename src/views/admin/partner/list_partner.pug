@@ -1,4 +1,4 @@
-extends ../layouts/admin/layout_admin
+extends ../../layouts/admin/layout_admin
 
 block title 
   title Danh sách Đối tác
@@ -9,13 +9,17 @@ block append style
   
 
 block content
+  if messDelPartner && messDelPartner !== ''
+    div.mb-4.mess-del
+      h5=messDelPartner
 
-  a.btn.btn-success.mb-3(href="/admin/partner/custom-partner/") Thêm mới
+
+  a.btn.btn-success.mb-3(href="/admin/partner/custom-partner") Thêm mới
   .table-responsive
-    table.table.table-dark.table-bordered.table-hover#datatables
+    table.table.table-dark.table-bordered.table-hover#partner-table
       thead
         tr
-          th(scope='col') STT
+          th(scope='col') ID
           th(scope='col') Tên đối tác
           th(scope='col') Ảnh đối tác
           th(scope='col') Ngày tạo
@@ -40,12 +44,11 @@ block content
 
 
   script(src='/bower_components/jquery/dist/jquery.min.js')
-  script(src='/bower_components/moment/min/moment.min.js')
   script(src='/bower_components/datatables.net/js/jquery.dataTables.min.js')
   script(src='/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js')
   script.
     $(document).ready( function () {
-      $('#datatables').DataTable({
+      $('#partner-table').DataTable({
         "language": {
           "lengthMenu": "Hiển thị _MENU_ mục",
           "emptyTable":     "Không có dữ liệu nào trong bảng",
@@ -62,7 +65,8 @@ block content
               "previous":   "Trước"
           },
         },
-        "order": [[ 0, "desc" ]]
+        "order": [[ 0, "desc" ]],
+        "pagingType": "full_numbers"
       });
       
     });

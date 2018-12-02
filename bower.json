@@ -29,6 +29,7 @@
     "animate.css": "^3.7.0",
     "xzoom": "^1.0.14",
     "datatables.net-bs4": "^3.2.2",
-    "jquery-validation": "^1.18.0"
+    "jquery-validation": "^1.18.0",
+    "mdi": "^3.0.39"
   }
 }

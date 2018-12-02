@@ -21,8 +21,8 @@ $('.slider-carousel').owlCarousel({
 });
 
 $('.seller-carousel').owlCarousel({
-    loop:true,
-    autoplay: true,
+    loop:false,
+    autoplay: false,
     autoplayTimeout: 3000,
     autoplayHoverPause: true,
     dots: true,
@@ -116,16 +116,15 @@ $('document').ready(function() {
         $(this).css('display','none');
         $('.toggleMenu').css('display','block');
         $('.menu .nav').css('transform','translateX(-150%)');
+        $('.menu .nav li .menu-bottom').css('position','absolute').css('visibility','hidden').css('opacity','0')
     });
 
-    $('.menu .nav li i').click(function() {
-        $('.menu .nav li ul').css('position','relative').css('display','block')
-    });
+    
     var ww = document.body.clientWidth;
 
     if (ww < 1200) {
-        $('.menu .nav').mouseleave(function(){
-            $('.menu .nav li ul').css('position','absolute').css('display','none')
+        $('.menu .nav li i').click(function() {
+          $('.menu .nav li .menu-bottom').css('position','relative').css('visibility','initial').css('opacity','1')
         });
     }
 

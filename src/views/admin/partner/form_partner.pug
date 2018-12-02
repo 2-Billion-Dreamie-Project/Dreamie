@@ -1,4 +1,4 @@
-extends ../layouts/admin/layout_admin
+extends ../../layouts/admin/layout_admin
 
 block title 
   title Thêm Đối tác
@@ -7,8 +7,12 @@ block append style
   link(rel='stylesheet', href='/assets/css/partner_admin.min.css')
 
 block content
+  if messPartner && messPartner !== ''
+    div.mb-4.mess-create
+      h5=messPartner
+
   .admin-partner
-    form(action='/admin/partner/save-partner', method='POST' id="form-validate" )
+    form(action='/admin/partner/save-partner', method='POST' id="form-partner" novalidate)
       input(type="hidden" name="_csrf" value=csrfToken)
       if partner && partner._id !== 'undefined'
         input(type="hidden" name="_id" value=partner._id)
@@ -19,8 +23,6 @@ block content
           type='text', 
           placeholder='Nhập tên đối tác',
           value=partner && partner.name ? partner.name : '',
-          required='',
-          minlength='5'
         )
       .form-group
         label(for='image-partner') Hình ảnh đối tác
@@ -28,7 +30,6 @@ block content
           name='image', 
           type='text',
           value=partner && partner.image ? partner.image : '',
-          required='',
         )
       .form-check.form-check-flat.form-check-primary.mb-3
         label.form-check-label
@@ -37,11 +38,36 @@ block content
       button.btn.btn-success.mr-2(type='submit') Lưu
       a.btn.btn-light(href="/admin/partner/list-partner") Trở lại
 
-
+  script(src='/bower_components/jquery/dist/jquery.min.js')
   script(src='/bower_components/jquery-validation/dist/jquery.validate.min.js')
-  script(src='https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js')
+  script(src='/bower_components/jquery-validation/dist/additional-methods.min.js')
   script.
-    $( "#form-validate" ).validate({
-      
+    $("#form-partner").validate({
+      rules: {
+        name: {
+          required: true,
+          minlength: 5,
+        },
+        image:{
+          required: true,
+          url: true,
+        },
+      },
+      messages: {
+        name: {
+          required: "Vui lòng điền tên tên đối tác",
+          minlength: "Tên đối tác ít nhất có 5 ký tự"
+        },
+        image:{
+          required: "Vui lòng điền ảnh đối tác",
+          url: "Vui lòng điền đúng định dạng url"
+        },
+      },
+      errorPlacement: function(error, element) {
+        $(error).addClass('text-danger mt-2');
+        $(element).addClass('form-control-danger');
+
+        error.insertAfter(element);
+      }
     });
 
