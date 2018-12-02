@@ -13,7 +13,7 @@ import cookieParser from 'cookie-parser';
 import passport from 'passport';
 import Strategy from 'passport-local';
 
-import flash from 'connect-flash';
+import flash from 'connect-flash'; // fla
 import connectMongo from 'connect-mongo';
 import routes from './routes';
 
@@ -39,7 +39,6 @@ app.set('x-powered-by', false);
 
 app.use('/bower_components', express.static(path.join(__dirname, '../bower_components')));
 app.use('/assets', express.static(path.join(__dirname, '/assets')));
-app.locals.moment = require('moment');
 
 // Configuration passport
 passportConfig(passport, LocalStrategy);
