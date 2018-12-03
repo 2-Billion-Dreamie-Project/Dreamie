@@ -22,10 +22,12 @@ export default class AuthController {
    * @argument res  This is the second parameter to get response
    * @todo Create user success and redidirect to page login
    */
-  createUser(req, res) {
+  async createUser(req, res) {
+    // console.log(req.body);
     const { userName, email, password } = req.body;
-    this.userModel.createUser(userName, email, password);
-    res.redirect('/auth/login')
+    const user = await this.userModel.createUser(userName, email, password);
+    res.json(user);
+    // res.redirect('/auth/login')
   }
 
   /**

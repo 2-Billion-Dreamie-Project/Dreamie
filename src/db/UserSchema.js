@@ -17,15 +17,15 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  avatar: {
-    type: String,
-  },
-  roleIds: {
-    type: 'ObjectId',
-    ref: 'Role',
-    required: true,
-    unique: true,
-  },
+  // avatar: {
+  //   type: String,
+  // },
+  // roleIds: {
+  //   type: 'ObjectId',
+  //   ref: 'Role',
+  //   required: true,
+  //   unique: true,
+  // },
 }, {
     timestamps: true,
 });
