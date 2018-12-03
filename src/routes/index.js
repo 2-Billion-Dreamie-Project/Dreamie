@@ -1,6 +1,7 @@
 import AuthRouter from './admin/AuthRouter';
 import DemoRouter from './DemoRouter';
 import PartnerRouter from './admin/PartnerRouter';
+import SliderRouter from './admin/SliderRouter';
 
 import HomeRouter from './client/HomeRouter';
 
@@ -37,6 +38,9 @@ export default function routes(app, passport) {
 
   // Router Partner
   app.use('/admin/partner', PartnerRouter);
+
+  // Router Slider
+  app.use('/admin/slider', SliderRouter);
 
   // Router profile
   // app.get('/user/profile', isAuthentication, function (req, res) {

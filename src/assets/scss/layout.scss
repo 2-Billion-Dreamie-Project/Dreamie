@@ -933,6 +933,11 @@ article {
   background: #383838;
   padding: 30px 0;
   margin-bottom: 50px;
+
+  .owl-carousel .owl-item img {
+    width: auto;
+    max-height: 100px;
+  }
 }
 
 .product-home {

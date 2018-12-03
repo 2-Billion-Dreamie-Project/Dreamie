@@ -48,20 +48,31 @@ html(lang='en')
         nav#sidebar.sidebar.sidebar-offcanvas
           ul.nav
             li.nav-item
-              a.nav-link(href='/demo/admin/dashboard')
+              a.nav-link(href='/admin/dashboard')
                 i.mdi.mdi-view-quilt.menu-icon
                 span.menu-title Bảng điều khiển
             li.nav-item
-              a.nav-link(data-toggle='collapse', href='#ui-basic', aria-expanded='false', aria-controls='ui-basic')
+              a.nav-link(data-toggle='collapse', href='#ui-partner', aria-expanded='false', aria-controls='ui-basic')
                 i.mdi.mdi-account-switch.menu-icon(aria-hidden='true')
                 span.menu-title Đối tác
                 i.menu-arrow
-              #ui-basic.collapse
+              #ui-partner.collapse
                 ul.nav.flex-column.sub-menu
                   li.nav-item
                     a.nav-link(href='/admin/partner/custom-partner') Thêm đối tác
                   li.nav-item
                     a.nav-link(href='/admin/partner/list-partner') Danh sách đối tác
+            li.nav-item
+              a.nav-link(data-toggle='collapse', href='#ui-slider', aria-expanded='false', aria-controls='ui-basic')
+                i.mdi.mdi-palette-advanced.menu-icon(aria-hidden='true')
+                span.menu-title Slider
+                i.menu-arrow
+              #ui-slider.collapse
+                ul.nav.flex-column.sub-menu
+                  li.nav-item
+                    a.nav-link(href='/admin/slider/custom-slider') Thêm Slider
+                  li.nav-item
+                    a.nav-link(href='/admin/slider/list-slider') Danh sách Slider
 
         .main-panel
           .content-wrapper

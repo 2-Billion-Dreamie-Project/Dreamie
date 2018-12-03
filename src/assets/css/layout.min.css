@@ -782,6 +782,10 @@ article {
   padding: 30px 0;
   margin-bottom: 50px;
 }
+.partner .owl-carousel .owl-item img {
+  width: auto;
+  max-height: 100px;
+}
 
 .product-home {
   margin-bottom: 60px;

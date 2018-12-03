@@ -54,7 +54,7 @@ app.use(bodyParser.json());
 app.use(compression()); 
 
 app.use(cookieParser());
-// app.use(csurf({ cookie: true }));
+app.use(csurf({ cookie: true }));
 app.use(session({
   secret: process.env.SESSION_SECRET_KEY,
   resave: false,

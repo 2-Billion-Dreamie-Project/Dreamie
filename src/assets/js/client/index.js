@@ -50,7 +50,8 @@ $('.partner-carousel').owlCarousel({
     autoplayHoverPause: true,
     dots: false,
     nav: false,
-    margin: 50,
+    margin: 30,
+    autoWidth: true,
     autoplaySpeed: 1000,
     responsive: {
         0: {
