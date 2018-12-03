@@ -33,6 +33,7 @@ export default class PartnerController {
 
     if (_id !== '') {
       partner = await this.PartnerModel.getOnePartner(_id);
+      req.flash('messUpdatePartner', `Bạn vừa cập nhật đối tác có số ID ${partner.id} thành công !`);
     }
   
     if (!partner) {
@@ -96,16 +97,17 @@ export default class PartnerController {
    */
   async getPartners(req, res) {
     let partners = await this.PartnerModel.getPartners();
-    let { messDelPartner } = req.flash();
+    let { messDelPartner , messUpdatePartner} = req.flash();
     messDelPartner = messDelPartner ? messDelPartner[0]: '';
+    messUpdatePartner = messUpdatePartner ? messUpdatePartner[0]: '';
 
     res.render('admin/partner/list_partner', {
       csrfToken: req.csrfToken(),
       partners,
       moment,
-      messDelPartner
+      messDelPartner,
+      messUpdatePartner
     });
-    
   }
 
   /**
