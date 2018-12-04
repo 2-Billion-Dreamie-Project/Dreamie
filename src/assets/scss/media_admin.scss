@@ -1,0 +1,24 @@
+$imageWidth: 83px;
+$imageHeight: 80px;
+
+table {
+  th {
+    &:first-child {
+      width: $imageWidth;
+    }
+
+    &:last-child {
+      width: 20px;
+    }
+  }
+
+  td {
+    &:first-child {
+      img {
+        width: $imageWidth;
+        height: $imageHeight;
+        border-radius: 0;
+      }
+    }
+  }
+}
