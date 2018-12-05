@@ -5,7 +5,7 @@ $('.slider-carousel').owlCarousel({
   autoplayHoverPause: true,
   dots: true,
   nav: true,
-  navText: ["<i class='mdi mdi-page-layout-sidebar-left'></i>", "<i class='mdi mdi-transfer'></i>"],
+  navText: ["<i class='mdi mdi-transfer'></i>", "<i class='mdi mdi-transfer'></i>"],
   autoplaySpeed: 1000,
   animateOut: 'fadeOutRight',
   animateIn: 'bounceInRight',

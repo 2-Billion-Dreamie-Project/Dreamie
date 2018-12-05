@@ -33,7 +33,9 @@ export default class SliderController {
 
     if (_id !== '') {
       slider = await this.SliderModel.getOneSlider(_id);
-      req.flash('messUpdateSlider', `Bạn vừa cập nhật slider có số ID ${slider.id} thành công !`);
+      if (slider && slider.id) {
+        req.flash('messUpdateSlider', `Bạn vừa cập nhật slider có số ID ${slider.id} thành công !`);
+      }
     }
   
     if (!slider) {

@@ -567,7 +567,8 @@ article {
     }
 
     button.owl-prev {
-      left: 3%
+      left: 3%;
+      transform: rotateY(180deg);
     }
 
     button.owl-next {

@@ -490,6 +490,7 @@ article {
 }
 .slider .owl-theme .owl-nav button.owl-prev {
   left: 3%;
+  transform: rotateY(180deg);
 }
 .slider .owl-theme .owl-nav button.owl-next {
   right: 3%;
