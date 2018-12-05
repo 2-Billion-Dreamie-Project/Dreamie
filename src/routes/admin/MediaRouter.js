@@ -1,11 +1,10 @@
 import express from 'express';
-// import AuthController from '../../controllers/AuthController';
+import MediaController from '../../controllers/MediaController';
 
-const AuthRouter   = express.Router();
-// const AuthCtlrIns  = new AuthController();
+const MediaRouter   = express.Router();
+const MediaCtlrIns  = new MediaController();
 
-AuthRouter.get('/list-media', function(req, res) {
-  res.render('admin/media/list-media');
-});
+MediaRouter.get('/list-media', MediaCtlrIns.listMedias);
+MediaRouter.get('/add-media', MediaCtlrIns.addMedia);
 
-export default AuthRouter;
+export default MediaRouter;

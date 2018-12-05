@@ -1,0 +1,25 @@
+extends ../../layouts/admin/layout_admin
+
+block title 
+  title Thêm thư viện
+
+block append style
+  link(rel='stylesheet', href='/assets/css/media_admin.min.css')
+
+
+block content
+  .card
+    .card-body
+      h4.card-title Jquery file upload
+      div.media-upload-body.d-flex.flex-column.justify-content-center.align-items-center
+        h4.align-middle Thả tập tin vào đây
+        p hoặc
+        button.btn.btn-sm.btn-primary Chọn tập tin
+
+      div.media-upload-content.mb-2.mt-2
+        div.media-upload-item.mb-2.w-100.d-flex.align-items-center
+          img(src="https://image.prntscr.com/image/dthp5lP6Qiu3On3a09ktRw.jpg")
+          span con cho
+          a.ml-auto(href="#") Sửa
+
+  

@@ -1,10 +1,12 @@
-$imageWidth: 83px;
-$imageHeight: 80px;
+$imageListWidth: 83px;
+$imageListHeight: 80px;
 
+
+/** TABLE LIST MEDIA  **/ 
 table {
   th {
     &:first-child {
-      width: $imageWidth;
+      width: $imageListWidth;
     }
 
     &:last-child {
@@ -15,10 +17,41 @@ table {
   td {
     &:first-child {
       img {
-        width: $imageWidth;
-        height: $imageHeight;
+        width: $imageListWidth;
+        height: $imageListHeight;
         border-radius: 0;
       }
     }
   }
 }
+
+/** FIELD UPLOAD MEDIA  **/ 
+
+.media-upload-body {
+  height: 16rem;
+  width: 100%;
+  border: 2px dotted #8110a5;
+}
+
+.media-upload-content {
+  background: #2b2e4c;
+  height: auto;
+  // overflow: hidden;
+  
+
+  img {
+    height: 2.5rem;
+    margin-bottom: 0;
+    margin: 0.3rem;
+  }
+
+  a {
+    color: #e6b31e;
+    margin-right: 1rem;
+  }
+
+  span {
+    margin-left: 2rem;
+  }
+}
+

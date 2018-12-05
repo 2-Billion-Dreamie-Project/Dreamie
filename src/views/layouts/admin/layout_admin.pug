@@ -11,6 +11,9 @@ html(lang='en')
       link(rel='stylesheet', href='/assets/css/vertical-layout-dark/style-admin.min.css')
       link(rel='stylesheet', href='/bower_components/fancybox/dist/jquery.fancybox.min.css')
       link(rel="shortcut icon", href="/assets/img/favicon.ico")
+
+      //- Common Script
+      script(src='/bower_components/jquery/dist/jquery.min.js')
   body
     .container-scroller
       nav.navbar.col-lg-12.col-12.p-0.fixed-top.d-flex.flex-row
@@ -52,22 +55,22 @@ html(lang='en')
                 i.mdi.mdi-view-quilt.menu-icon
                 span.menu-title Bảng điều khiển
             li.nav-item
-              a.nav-link(data-toggle='collapse', href='#ui-basic', aria-expanded='false', aria-controls='ui-basic')
+              a.nav-link(data-toggle='collapse', href='#partner', aria-expanded='false', aria-controls='partner')
                 i.mdi.mdi-account-switch.menu-icon(aria-hidden='true')
                 span.menu-title Đối tác
                 i.menu-arrow
-              #ui-basic.collapse
+              #partner.collapse
                 ul.nav.flex-column.sub-menu
                   li.nav-item
                     a.nav-link(href='/admin/partner/custom-partner') Thêm đối tác
                   li.nav-item
                     a.nav-link(href='/admin/partner/list-partner') Danh sách đối tác
             li.nav-item
-              a.nav-link(data-toggle='collapse', href='#ui-basic', aria-expanded='false', aria-controls='ui-basics')
+              a.nav-link(data-toggle='collapse', href='#media', aria-expanded='false', aria-controls='media')
                 i.mdi.mdi-image-multiple.menu-icon(aria-hidden='true')
                 span.menu-title Thư viện
                 i.menu-arrow
-              #ui-basic.collapse
+              #media.collapse
                 ul.nav.flex-column.sub-menu
                   li.nav-item
                     a.nav-link(href='/admin/media/list-media') Danh sách

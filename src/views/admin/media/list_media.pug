@@ -1,0 +1,59 @@
+extends ../../layouts/admin/layout_admin
+
+block title 
+  title Thư viện
+
+block append style
+  link(rel='stylesheet', href='/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css')
+  link(rel='stylesheet', href='/assets/css/media_admin.min.css')
+
+
+block content
+  .table-responsive
+    table.table.table-dark.table-bordered.table-hover#media-table
+      thead
+        tr
+          th(scope='col') 
+          th(scope='col') Tên tập tin
+          th(scope='col') Ngày tạo
+          th(scope='col') 
+      tbody
+        tr
+          td 
+            img(src="http://img.k13cdn.net/f/2015/05/mot-ngay-cua-d-soda-an-bun-cha-chup-ao-dai-toi-quay-tren-bar-15.jpg")
+          td
+            | DJ Soda
+          td 
+            | 04/12/2018
+          td 
+            button.btn.btn-sm.btn-primary
+              | Xem
+
+  script(src='/bower_components/datatables.net/js/jquery.dataTables.min.js')
+  script(src='/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js')
+  script.
+    $(document).ready( function () {
+      $('#media-table').DataTable({
+        "language": {
+          "lengthMenu": "Hiển thị _MENU_ mục",
+          "emptyTable":     "Không có dữ liệu nào trong bảng",
+          "loadingRecords": "Đang tải...",
+          "zeroRecords": "Không có mục nào được tìm thấy",
+          "info": "Hiển thị _START_ đến _END_ trong _TOTAL_ mục",
+          "infoEmpty": "Không có mục nào có sẵn",
+          "infoFiltered": "(Lọc từ _MAX_ mục)",
+          "search": "Tìm kiếm:",
+          "paginate": {
+              "first":      "Đầu",
+              "last":       "Cuối",
+              "next":       "Sau",
+              "previous":   "Trước"
+          },
+        },
+        "order": [[ 0, "desc" ]],
+        "pagingType": "full_numbers"
+      });
+      
+    });
+
+  
