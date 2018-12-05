@@ -11,22 +11,19 @@ block content
     
     section.slider.d-none.d-sm-block
       .owl-carousel.slider-carousel.owl-theme
-        .item
-          .slider-text
-            .container
-              h1.wow.flipInX(data-wow-delay='1s')
-                a dreamie gear
-              p.wow.bounceInRight(data-wow-delay='1.5s') CHUYÊN CUNG CẤP PHỤ KIỆN ĐIỆN TỬ
-              a.wow.jackInTheBox(data-wow-delay='2.5s', href='/demo/product') mua sắm ngay
-          img(src='/assets/img/slider-1.png', alt='')
-        .item
-          .slider-text
-            .container
-              h1.wow.flipInX(data-wow-delay='1s')
-                a dreamie gear
-              p.wow.bounceInRight(data-wow-delay='1.5s') CHUYÊN CUNG CẤP PHỤ KIỆN ĐIỆN TỬ
-              a.wow.rotateInUpLeft(data-wow-delay='2.5s', href='/demo/product') mua sắm ngay
-          img(src='/assets/img/slider-2.png', alt='')
+        if sliders && sliders.length
+          each slider in sliders
+            .item
+              if slider.image && slider.image !== ''
+                .slider-text
+                  .container
+                    h1.wow(data-wow-delay='.5s')
+                      a=slider.name
+                    p.wow(data-wow-delay='1s')=slider.content
+                    a.wow(data-wow-delay='1.8s', href='/demo/product') mua sắm ngay
+                img(src=slider.image)
+          
+        
 
     section.category
       .container

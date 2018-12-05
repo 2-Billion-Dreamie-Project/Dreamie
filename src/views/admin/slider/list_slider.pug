@@ -1,0 +1,78 @@
+extends ../../layouts/admin/layout_admin
+
+block title 
+  title Danh sách Slider
+
+block append style
+  link(rel='stylesheet', href='/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css')
+  link(rel='stylesheet', href='/assets/css/slider_admin.min.css')
+  
+
+block content
+  if messDelSlider && messDelSlider !== ''
+    div.mb-4.mess-del
+      h5=messDelSlider
+
+  if messUpdateSlider && messUpdateSlider !== ''
+    div.mb-4.mess-del
+      h5=messUpdateSlider
+      
+  a.btn.btn-success.mb-3(href="/admin/slider/custom-slider") Thêm mới
+  .table-responsive
+    table.table.table-dark.table-bordered.table-hover#slider-table
+      thead
+        tr
+          th(scope='col') ID
+          th(scope='col') Tên Slider
+          th(scope='col') Nội dung Slider
+          th(scope='col') Ảnh Slider
+          th(scope='col') Ngày tạo
+          th(scope='col') Ngày sửa
+          th(scope='col') Hành động
+      tbody
+        if sliders && sliders.length
+          each slider in sliders
+            tr
+              th(scope='row')=slider.id ? slider.id : ''
+              td=slider.name ? slider.name : ''
+              td=slider.content ? slider.content : ''
+              td
+                if slider.image && slider.image !== ''
+                  a(title='Phóng to hình', rel='gallery', href=slider.image, data-fancybox='', data-caption=slider.name)
+                    img(src=slider.image)
+              td=slider.createdAt ? moment(slider.createdAt).format('DD/MM/YYYY HH:mm') : ''
+              td=slider.updatedAt ? moment(slider.updatedAt).format('DD/MM/YYYY HH:mm') : ''
+              td
+                if slider._id
+                  a.btn.btn-info.mr-2.mb-xl-0.mb-2(href="/admin/slider/custom-slider/" + slider._id) Xem
+                  a.btn.btn-danger(href="/admin/slider/delete/" + slider._id) Xóa
+
+
+  script(src='/bower_components/jquery/dist/jquery.min.js')
+  script(src='/bower_components/datatables.net/js/jquery.dataTables.min.js')
+  script(src='/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js')
+  script.
+    $(document).ready( function () {
+      $('#slider-table').DataTable({
+        "language": {
+          "lengthMenu": "Hiển thị _MENU_ mục",
+          "emptyTable":     "Không có dữ liệu nào trong bảng",
+          "loadingRecords": "Đang tải...",
+          "zeroRecords": "Không có mục nào được tìm thấy",
+          "info": "Hiển thị _START_ đến _END_ trong _TOTAL_ mục",
+          "infoEmpty": "Không có mục nào có sẵn",
+          "infoFiltered": "(Lọc từ _MAX_ mục)",
+          "search": "Tìm kiếm:",
+          "paginate": {
+              "first":      "Đầu",
+              "last":       "Cuối",
+              "next":       "Sau",
+              "previous":   "Trước"
+          },
+        },
+        "order": [[ 0, "desc" ]],
+        "pagingType": "full_numbers"
+      });
+      
+    });
+
