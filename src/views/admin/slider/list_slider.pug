@@ -9,6 +9,14 @@ block append style
   
 
 block content
+  if messDelSlider && messDelSlider !== ''
+    div.mb-4.mess-del
+      h5=messDelSlider
+
+  if messUpdateSlider && messUpdateSlider !== ''
+    div.mb-4.mess-del
+      h5=messUpdateSlider
+      
   a.btn.btn-success.mb-3(href="/admin/slider/custom-slider") Thêm mới
   .table-responsive
     table.table.table-dark.table-bordered.table-hover#slider-table
@@ -16,6 +24,7 @@ block content
         tr
           th(scope='col') ID
           th(scope='col') Tên Slider
+          th(scope='col') Nội dung Slider
           th(scope='col') Ảnh Slider
           th(scope='col') Ngày tạo
           th(scope='col') Ngày sửa
@@ -26,6 +35,7 @@ block content
             tr
               th(scope='row')=slider.id ? slider.id : ''
               td=slider.name ? slider.name : ''
+              td=slider.content ? slider.content : ''
               td
                 if slider.image && slider.image !== ''
                   a(title='Phóng to hình', rel='gallery', href=slider.image, data-fancybox='', data-caption=slider.name)

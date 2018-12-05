@@ -417,9 +417,10 @@ article {
 }
 .slider-text {
   position: absolute;
-  left: 0;
+  left: 20%;
   top: 50%;
-  transform: translate(50%, -50%);
+  transform: translate(0, -50%);
+  z-index: 10;
 }
 .slider-text h1 {
   margin-bottom: 20px;
@@ -439,6 +440,7 @@ article {
   font-size: 40px;
   font-weight: bold;
   margin-bottom: 20px;
+  text-transform: uppercase;
 }
 .slider-text a {
   color: black;
@@ -491,6 +493,9 @@ article {
 }
 .slider .owl-theme .owl-nav button.owl-next {
   right: 3%;
+}
+.slider .owl-carousel .owl-item img {
+  filter: brightness(70%);
 }
 
 .category {

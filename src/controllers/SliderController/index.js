@@ -1,4 +1,5 @@
 import SliderModel from '../../models/SliderModel';
+import moment from 'moment';
 /**
  * @class SliderController
  * @author Kemmie
@@ -13,6 +14,8 @@ export default class SliderController {
     this.SliderModel = new SliderModel;
     this.formSlider = this.formSlider.bind(this);
     this.saveSlider = this.saveSlider.bind(this);
+    this.getSliders = this.getSliders.bind(this);
+    this.deleteSlider = this.deleteSlider.bind(this);
   }
 
   /**
@@ -25,9 +28,12 @@ export default class SliderController {
   async formSlider(req, res) {
     let slider = {};
     let _id = typeof req.params._id !== 'undefined' ? req.params._id : '';
+    let { messSlider } = req.flash();
+    messSlider = messSlider ? messSlider[0]: '';
 
     if (_id !== '') {
       slider = await this.SliderModel.getOneSlider(_id);
+      req.flash('messUpdateSlider', `Bạn vừa cập nhật slider có số ID ${slider.id} thành công !`);
     }
   
     if (!slider) {
@@ -38,6 +44,7 @@ export default class SliderController {
       csrfToken: req.csrfToken(),
       _id,
       slider,
+      messSlider
     });
   }
 
@@ -50,15 +57,16 @@ export default class SliderController {
    * If error show message error 
    */
   async saveSlider(req, res) {
-    const {_id, name, image } = req.body;
+    const {_id, name, image, content } = req.body;
     let slider = {};
     
     if (_id && _id !== '') {
       if (
         (name && name !== '')
         && (image && image !== '')
+        && (content && content !== '')
       ) {
-        slider = await this.SliderModel.updateSlider(_id, name, image);
+        slider = await this.SliderModel.updateSlider(_id, name, image, content);
       } 
 
       res.redirect('/admin/slider/list-slider');
@@ -66,10 +74,12 @@ export default class SliderController {
       if (
         (name && name !== '')
         && (image && image !== '')
+        && (content && content !== '')
       ) {
-        slider = await this.SliderModel.saveSlider(name, image);
+        slider = await this.SliderModel.saveSlider(name, image, content);
 
         if (slider) {
+          req.flash('messSlider', 'Bạn đã khởi tạo thành công, mời kiểm tra lại và lưu !');
           res.redirect('/admin/slider/custom-slider/' + slider._id);
         } else {
           res.redirect('/admin/slider/list-slider/');  
@@ -80,4 +90,47 @@ export default class SliderController {
     }    
   }
 
+  /**
+   * @memberof SliderController#
+   * @argument req This is the first paramter to get request
+   * @argument res  This is the second parameter to get response
+   * @requires {@link https://github.com/expressjs/csurf|csrfToken}
+   * @todo Render view get sliders
+   */
+  async getSliders(req, res) {
+    let sliders = await this.SliderModel.getSliders();
+    let { messDelSlider , messUpdateSlider} = req.flash();
+    messDelSlider = messDelSlider ? messDelSlider[0]: '';
+    messUpdateSlider = messUpdateSlider ? messUpdateSlider[0]: '';
+
+    res.render('admin/slider/list_slider', {
+      csrfToken: req.csrfToken(),
+      sliders,
+      moment,
+      messDelSlider,
+      messUpdateSlider
+    });
+  }
+
+  /**
+   * @memberof SliderController#
+   * @argument req This is the first paramter to get request
+   * @argument res  This is the second parameter to get response
+   * @requires {@link https://github.com/expressjs/csurf|csrfToken}
+   * @todo Render view delete slider
+   */
+
+  async deleteSlider(req, res) {
+    let _id = typeof req.params._id !== 'undefined' ? req.params._id : '';
+    let slider = {}
+    
+    if (_id && _id !== '') {
+      slider = await this.SliderModel.deleteSlider({_id: req.params._id});
+      if (slider) {
+        req.flash('messDelSlider', `Bạn vừa xóa slider có số ID ${slider.id} thành công`);
+      }
+    }
+    
+    res.redirect('/admin/slider/list-slider');
+  }
 }

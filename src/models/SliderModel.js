@@ -1,4 +1,6 @@
-import { Slider } from '../db';
+import {
+  Slider
+} from '../db';
 
 /**
  * @class SliderModel
@@ -11,26 +13,28 @@ import { Slider } from '../db';
  */
 export default class SliderModel {
   constructor() {
-    this.SliderSchema = Slider;
+    this.sliderSchema = Slider;
     this.getOneSlider = this.getOneSlider.bind(this);
     this.saveSlider = this.saveSlider.bind(this);
     this.updateSlider = this.updateSlider.bind(this);
+    this.deleteSlider = this.deleteSlider.bind(this);
+    this.getSliders = this.getSliders.bind(this);
   }
 
   /**
    * @memberof SliderModel#
    * @param {ID} _id - this param is required
    * @returns {Object} Return slider is object type
-  */
+   */
   getOneSlider(_id = '') {
     try {
       if (_id !== '') {
-        return(
+        return (
           this.sliderSchema.findById(_id)
-            .catch(function(err) {
-              console.log(err);
-              return undefined
-            })
+          .catch(function (err) {
+            console.log(err);
+            return undefined
+          })
         );
       }
 
@@ -42,14 +46,19 @@ export default class SliderModel {
   }
 
   saveSlider(
-    name = '', 
+    name = '',
     image = '',
+    content = '',
   ) {
     let slider;
 
     try {
-      if (name !== '' && image !== '') {
-        slider = new this.SliderSchema({ name, image });
+      if (name !== '' && image !== '' && content !== '') {
+        slider = new this.sliderSchema({
+          name,
+          image,
+          content
+        });
 
         slider.save(function (err, slider) {
           if (err) return console.log(err);
@@ -57,39 +66,89 @@ export default class SliderModel {
         });
 
         return slider;
-      } 
-    } catch(err) {
+      }
+    } catch (err) {
       console.log(err);
       return false;
     }
   }
 
-    /**
+  /**
    * @memberof SliderModel#
    * @param {ID} _id - this param is required
    * @param {String} name - this param is required
    * @param {String} image - this param is required
+   * @param {String} content - this param is required
    * @returns {Object} Return slider is object type
    */
   updateSlider(
     _id = '',
     name = '',
     image = '',
-  ) {    
+    content = '',
+  ) {
     try {
       if (_id && _id !== '') {
-        return(
+        return (
           this.sliderSchema
-            .updateOne({_id}, {$set:{ name, image }}, {new: true})
+          .updateOne({
+            _id
+          }, {
+            $set: {
+              name,
+              image,
+              content
+            }
+          }, {
+            new: true
+          })
+          .catch(function (err) {
+            console.log(err);
+            return undefined
+          })
+        );
+      }
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  }
+
+  /**
+   * @memberof SliderModel#
+   * @returns {Array} Return sliders is an array type
+   */
+  getSliders() {
+    try {
+      return (
+        this.sliderSchema.find({})
+        .catch(function (err) {
+          console.log(err);
+          return undefined
+        })
+      );
+    } catch (error) {
+      console.log(error);
+      return undefined;
+    }
+  }
+
+  deleteSlider(_id = '') {
+    try {
+      if (_id !== '') {
+        return(
+          this.sliderSchema.findOneAndRemove({ _id })
             .catch(function(err) {
               console.log(err);
               return undefined
             })
         );
       }
-    } catch(err) {
-      console.log(err);
+  
       return false;
+    } catch (error) {
+      console.log(error);
+      return undefined;
     }
   }
 }
