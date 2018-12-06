@@ -5,7 +5,7 @@ $('.slider-carousel').owlCarousel({
   autoplayHoverPause: true,
   dots: true,
   nav: true,
-  navText: ["<i class='mdi mdi-page-layout-sidebar-left'></i>", "<i class='mdi mdi-transfer'></i>"],
+  navText: ["<i class='mdi mdi-transfer'></i>", "<i class='mdi mdi-transfer'></i>"],
   autoplaySpeed: 1000,
   animateOut: 'fadeOutRight',
   animateIn: 'bounceInRight',
@@ -153,7 +153,7 @@ $('document').ready(function () {
       $('.menu').css('border-bottom', '1px solid #383838');
       $('.menu').css('right', '15px');
     } else {
-      $('.menu').css('background', 'none');
+      $('.menu').css('background', 'rgba(0, 0, 0, 0.8)');
       $('.menu').css('border-bottom', '0');
     }
   });

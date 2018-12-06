@@ -215,6 +215,7 @@ article {
   width: 100%;
   color: white;
   height: 100px;
+  background: rgba(0, 0, 0, 0.8);
 
   .logo {
     margin: 20px 0;
@@ -567,7 +568,8 @@ article {
     }
 
     button.owl-prev {
-      left: 3%
+      left: 3%;
+      transform: rotateY(180deg);
     }
 
     button.owl-next {
