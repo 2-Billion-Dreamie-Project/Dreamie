@@ -153,7 +153,7 @@ $('document').ready(function () {
       $('.menu').css('border-bottom', '1px solid #383838');
       $('.menu').css('right', '15px');
     } else {
-      $('.menu').css('background', 'none');
+      $('.menu').css('background', 'rgba(0, 0, 0, 0.8)');
       $('.menu').css('border-bottom', '0');
     }
   });
