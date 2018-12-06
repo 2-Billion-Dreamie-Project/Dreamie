@@ -202,6 +202,7 @@ article {
   width: 100%;
   color: white;
   height: 100px;
+  background: rgba(0, 0, 0, 0.8);
 }
 .menu .logo {
   margin: 20px 0;
@@ -490,6 +491,7 @@ article {
 }
 .slider .owl-theme .owl-nav button.owl-prev {
   left: 3%;
+  transform: rotateY(180deg);
 }
 .slider .owl-theme .owl-nav button.owl-next {
   right: 3%;
