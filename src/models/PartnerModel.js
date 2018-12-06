@@ -1,4 +1,6 @@
-import { Partner } from '../db';
+import {
+  Partner
+} from '../db';
 
 /**
  * @class PartnerModel
@@ -20,7 +22,7 @@ export default class PartnerModel {
     this.getPartners = this.getPartners.bind(this);
   }
 
-   /**
+  /**
    * @memberof PartnerModel#
    * @param {String} name - this param is required
    * @param {String} image - this param is required
@@ -34,7 +36,10 @@ export default class PartnerModel {
 
     try {
       if (name !== '' && image !== '') {
-        partner = new this.partnerSchema({ name, image });
+        partner = new this.partnerSchema({
+          name,
+          image
+        });
 
         partner.save(function (err, partner) {
           if (err) return console.log(err);
@@ -42,14 +47,14 @@ export default class PartnerModel {
         });
 
         return partner;
-      } 
-    } catch(err) {
+      }
+    } catch (err) {
       console.log(err);
       return false;
     }
   }
 
-    /**
+  /**
    * @memberof PartnerModel#
    * @param {ID} _id - this param is required
    * @param {String} name - this param is required
@@ -60,19 +65,28 @@ export default class PartnerModel {
     _id = '',
     name = '',
     image = '',
-  ) {    
+  ) {
     try {
       if (_id && _id !== '') {
-        return(
+        return (
           this.partnerSchema
-            .updateOne({_id}, {$set:{ name, image }}, {new: true})
-            .catch(function(err) {
-              console.log(err);
-              return undefined
-            })
+          .updateOne({
+            _id
+          }, {
+            $set: {
+              name,
+              image
+            }
+          }, {
+            new: true
+          })
+          .catch(function (err) {
+            console.log(err);
+            return undefined
+          })
         );
       }
-    } catch(err) {
+    } catch (err) {
       console.log(err);
       return false;
     }
@@ -82,16 +96,16 @@ export default class PartnerModel {
    * @memberof PartnerModel#
    * @param {ID} _id - this param is required
    * @returns {Object} Return partner is object type
-  */
+   */
   getOnePartner(_id = '') {
     try {
       if (_id !== '') {
-        return(
+        return (
           this.partnerSchema.findById(_id)
-            .catch(function(err) {
-              console.log(err);
-              return undefined
-            })
+          .catch(function (err) {
+            console.log(err);
+            return undefined
+          })
         );
       }
 
@@ -101,16 +115,16 @@ export default class PartnerModel {
       return undefined;
     }
   }
-  
+
   /**
    * @memberof PartnerModel#
    * @returns {Array} Return partners is an array type
-  */
+   */
   getPartners() {
     try {
-      return(
+      return (
         this.partnerSchema.find({})
-        .catch(function(err) {
+        .catch(function (err) {
           console.log(err);
           return undefined
         })
@@ -120,28 +134,30 @@ export default class PartnerModel {
       return undefined;
     }
   }
-  
+
   /**
    * @memberof PartnerModel#
    * @param {ID} _id - this param is required
    * @todo - Redirect to list-partner
-  */
- deletePartner(_id = '') {
-  try {
-    if (_id !== '') {
-      return(
-        this.partnerSchema.findOneAndRemove({ _id })
-          .catch(function(err) {
+   */
+  deletePartner(_id = '') {
+    try {
+      if (_id !== '') {
+        return (
+          this.partnerSchema.findOneAndRemove({
+            _id
+          })
+          .catch(function (err) {
             console.log(err);
             return undefined
           })
-      );
-    }
+        );
+      }
 
-    return false;
-  } catch (error) {
-    console.log(error);
-    return undefined;
+      return false;
+    } catch (error) {
+      console.log(error);
+      return undefined;
+    }
   }
-}
 }

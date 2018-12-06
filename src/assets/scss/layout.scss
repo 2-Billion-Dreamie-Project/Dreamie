@@ -476,9 +476,10 @@ article {
 
   &-text {
     position: absolute;
-    left: 0;
+    left: 20%;
     top: 50%;
-    transform: translate(50%, -50%);
+    transform: translate(0, -50%);
+    z-index: 10;
 
     h1 {
       margin-bottom: 20px;
@@ -504,6 +505,7 @@ article {
       }
 
       margin-bottom: 20px;
+      text-transform: uppercase;
     }
 
     a {
@@ -571,6 +573,10 @@ article {
     button.owl-next {
       right: 3%
     }
+  }
+
+  .owl-carousel .owl-item img {
+    filter: brightness(70%);
   }
 }
 
@@ -933,6 +939,11 @@ article {
   background: #383838;
   padding: 30px 0;
   margin-bottom: 50px;
+
+  .owl-carousel .owl-item img {
+    width: auto;
+    max-height: 100px;
+  }
 }
 
 .product-home {
