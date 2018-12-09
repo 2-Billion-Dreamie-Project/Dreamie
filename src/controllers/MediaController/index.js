@@ -1,5 +1,6 @@
 // import PartnerModel from '../../models/PartnerModel';
 import moment from 'moment';
+
 /**
  * @class MediaController
  * @author ChungNQ
@@ -40,7 +41,7 @@ export default class MediaController {
    * @memberof MediaController#
    * @argument req This is the first paramter to get request
    * @argument res  This is the second parameter to get response
-   * @todo Render view add medias
+
    */
   addMedia(req, res) { 
     console.log(req);

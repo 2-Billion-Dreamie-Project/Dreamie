@@ -9,3 +9,6 @@
 
 # Ignore bower_components
 /bower_components
+
+# Ignore storages 
+/src/storages

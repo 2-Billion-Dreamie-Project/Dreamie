@@ -24,9 +24,8 @@ block content
         h4.align-middle Thả tập tin vào đây
         p hoặc
 
-        input(type="file", name="media[]", multiple)
-
-        //- button.btn.btn-sm.btn-primary Chọn tập tin
+        label.btn.btn-sm.btn-primary Chọn tập tin
+          input(type="file", multiple, hidden)
       //- END UPLOAD ZONE
 
       //- UPLOAD CONTENT
@@ -71,6 +70,7 @@ block content
       headers: {
         'X-CSRF-Token': $('meta[name=_csrf]').attr('content')
       },
+      paramName: 'media',
       done: function (e, data) {
         $.each(data.result.files, function (index, file) {
             $('<p/>').text(file.name).appendTo(document.body);
