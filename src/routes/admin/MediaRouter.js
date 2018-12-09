@@ -5,6 +5,7 @@ const MediaRouter   = express.Router();
 const MediaCtlrIns  = new MediaController();
 
 MediaRouter.get('/list-media', MediaCtlrIns.listMedias);
-MediaRouter.get('/add-media', MediaCtlrIns.addMedia);
+MediaRouter.get('/add-media', MediaCtlrIns.viewAddMedia);
+MediaRouter.post('/add-media', MediaCtlrIns.addMedia);
 
 export default MediaRouter;

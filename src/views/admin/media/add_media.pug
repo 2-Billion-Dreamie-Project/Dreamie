@@ -4,22 +4,79 @@ block title
   title Thêm thư viện
 
 block append style
+  meta(name="_csrf", content=csrfToken)
+
   link(rel='stylesheet', href='/assets/css/media_admin.min.css')
+  
+  script(src="/bower_components/jquery-file-upload/js/vendor/jquery.ui.widget.js")
+  script(src="/bower_components/jquery-file-upload/js/jquery.iframe-transport.js")
+  script(src="/bower_components/jquery-file-upload/js/jquery.fileupload.js")
 
 
 block content
   .card
     .card-body
       h4.card-title Tải media
+
+      //- UPLOAD ZONE
+      
       div.media-upload-body.d-flex.flex-column.justify-content-center.align-items-center
         h4.align-middle Thả tập tin vào đây
         p hoặc
-        button.btn.btn-sm.btn-primary Chọn tập tin
 
+        input(type="file", name="media[]", multiple)
+
+        //- button.btn.btn-sm.btn-primary Chọn tập tin
+      //- END UPLOAD ZONE
+
+      //- UPLOAD CONTENT
       div.media-upload-content.mb-2.mt-2
-        div.media-upload-item.mb-2.w-100.d-flex.align-items-center
-          img(src="https://image.prntscr.com/image/dthp5lP6Qiu3On3a09ktRw.jpg")
-          span con cho
-          a.ml-auto(href="#") Sửa
+        //- UPLOAD ITEMS
+        div.mb-2
+          div.media-upload-item.w-100.d-flex.align-items-center
+            img(src="https://image.prntscr.com/image/dthp5lP6Qiu3On3a09ktRw.jpg")
+            span con cho
+            a.ml-auto(href="#") Sửa
+          .progress.progress-sm
+            .progress-bar.bg-success.progress-bar-striped.progress-bar-animated(
+              role='progressbar', 
+              style='width: 80%', 
+              aria-valuenow='80', 
+              aria-valuemin='0', 
+              aria-valuemax='100'
+            )
+
+        div.mb-2
+          div.media-upload-item.w-100.d-flex.align-items-center
+            img(src="https://image.prntscr.com/image/dthp5lP6Qiu3On3a09ktRw.jpg")
+            span con cho
+            a.ml-auto(href="#") Sửa
+          .progress.progress-sm
+            .progress-bar.bg-success.progress-bar-striped.progress-bar-animated(
+              role='progressbar', 
+              style='width: 80%', 
+              aria-valuenow='80', 
+              aria-valuemin='0', 
+              aria-valuemax='100'
+            )
+        //- END UPLOAD ITEMS
+
+      //- END UPLOAD CONTENT
+
+  script.
+    $('.media-upload-body').fileupload({
+      dataType: 'json',
+      url: '/admin/media/add-media',
+      type: 'post',
+      headers: {
+        'X-CSRF-Token': $('meta[name=_csrf]').attr('content')
+      },
+      done: function (e, data) {
+        $.each(data.result.files, function (index, file) {
+            $('<p/>').text(file.name).appendTo(document.body);
+        });
+      },
+
+    });
 
   

@@ -24,13 +24,25 @@ export default class MediaController {
     res.render('admin/media/list_media');;
   }
 
-    /**
+  /**
    * @memberof MediaController#
    * @argument req This is the first paramter to get request
    * @argument res  This is the second parameter to get response
    * @todo Render view add medias
    */
-  async addMedia(req, res) {
-    res.render('admin/media/add_media');;
+  viewAddMedia(req, res) {
+    res.render('admin/media/add_media', {
+      csrfToken: req.csrfToken(),
+    });
+  }
+
+  /**
+   * @memberof MediaController#
+   * @argument req This is the first paramter to get request
+   * @argument res  This is the second parameter to get response
+   * @todo Render view add medias
+   */
+  addMedia(req, res) { 
+    console.log(req);
   }
 }
