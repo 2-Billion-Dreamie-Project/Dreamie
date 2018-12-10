@@ -12,6 +12,9 @@ block append style
   script(src="/bower_components/jquery-file-upload/js/jquery.iframe-transport.js")
   script(src="/bower_components/jquery-file-upload/js/jquery.fileupload.js")
 
+  script(src="/bower_components/jquery-file-upload/js/jquery.fileupload-process.js")
+  script(src="/bower_components/jquery-file-upload/js/jquery.fileupload-image.js")
+
 
 block content
   .card
@@ -30,37 +33,10 @@ block content
 
       //- UPLOAD CONTENT
       div.media-upload-content.mb-2.mt-2
-        //- UPLOAD ITEMS
-        div.mb-2
-          div.media-upload-item.w-100.d-flex.align-items-center
-            img(src="https://image.prntscr.com/image/dthp5lP6Qiu3On3a09ktRw.jpg")
-            span con cho
-            a.ml-auto(href="#") Sửa
-          .progress.progress-sm
-            .progress-bar.bg-success.progress-bar-striped.progress-bar-animated(
-              role='progressbar', 
-              style='width: 80%', 
-              aria-valuenow='80', 
-              aria-valuemin='0', 
-              aria-valuemax='100'
-            )
-
-        div.mb-2
-          div.media-upload-item.w-100.d-flex.align-items-center
-            img(src="https://image.prntscr.com/image/dthp5lP6Qiu3On3a09ktRw.jpg")
-            span con cho
-            a.ml-auto(href="#") Sửa
-          .progress.progress-sm
-            .progress-bar.bg-success.progress-bar-striped.progress-bar-animated(
-              role='progressbar', 
-              style='width: 80%', 
-              aria-valuenow='80', 
-              aria-valuemin='0', 
-              aria-valuemax='100'
-            )
-        //- END UPLOAD ITEMS
-
       //- END UPLOAD CONTENT
+
+      include ../../layouts/admin/file_item_media.pug
+      
 
   script.
     $('.media-upload-body').fileupload({
@@ -71,10 +47,32 @@ block content
         'X-CSRF-Token': $('meta[name=_csrf]').attr('content')
       },
       paramName: 'media',
+      add: function (e, data) {
+
+        let tempMediaItem = $('#file-item-media').html();
+        let files = data.files[0];
+
+        tempMediaItem = $(tempMediaItem);
+        tempMediaItem.find('span').text(files.name);
+
+        data.fieldUpload = tempMediaItem;
+        $('.media-upload-content').append(tempMediaItem);
+        
+        data.submit();
+      },
+      progress: function (e, data) {
+        let progress = parseInt(data.loaded / data.total * 100, 10);
+        console.log({data, progress});
+        data.fieldUpload.find('.progress-bar').css(
+          'width', 
+          progress + '%'
+        );
+      },
       done: function (e, data) {
-        $.each(data.result.files, function (index, file) {
-            $('<p/>').text(file.name).appendTo(document.body);
-        });
+        data
+        .fieldUpload
+          .find('a')
+          .prop('hidden', false);
       },
 
     });

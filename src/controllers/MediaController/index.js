@@ -43,7 +43,7 @@ export default class MediaController {
    * @argument res  This is the second parameter to get response
 
    */
-  addMedia(req, res) { 
-    console.log(req);
+  addMedia(req, res) {
+    res.json(req.file);
   }
 }
