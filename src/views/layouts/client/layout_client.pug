@@ -17,6 +17,7 @@ html(lang='en')
       link(rel='stylesheet', href='/bower_components/xzoom/src/xzoom.css')
       link(rel='stylesheet', href='/bower_components/xzoom/example/magnific-popup/css/magnific-popup.css')
       link(rel='stylesheet', href='/bower_components/mdi/css/materialdesignicons.min.css')
+      link(rel="stylesheet", href="/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css")
       link(rel='stylesheet', href='/assets/css/layout.min.css')
       link(rel="shortcut icon", href="/assets/img/favicon.ico")
   body
@@ -147,7 +148,7 @@ html(lang='en')
             .col-xl-2.order-xl-4.col-lg-3.col-md-4.col-sm-4.col-6
               .custom-header.text-right
                 #accordionExample.accordion
-                  a(title='Tìm kiếm', data-toggle='collapse', href='#search', role='button', aria-expanded='true', aria-controls='search')
+                  a(class='search-btn', title='Tìm kiếm', data-toggle='collapse', href='#search', role='button', aria-expanded='true', aria-controls='search')
                     i.fa.fa-search
                   a(title='Danh sách yêu thích', href='/demo/wishlist', role='button', aria-expanded='true', aria-controls='wishlist')
                     i.mdi.mdi-heart-multiple
@@ -155,11 +156,6 @@ html(lang='en')
                   a(title='Giỏ hàng', data-toggle='collapse', href='#cart', role='button', aria-expanded='false', aria-controls='cart')
                     i.mdi.mdi-shopify
                     span.badge.badge-light 2
-                  #search.collapse(data-parent='#accordionExample')
-                    .card.card-body.search-form
-                      input#search-form(type='text', name='search', placeholder='Nhập từ khóa')
-                      button
-                        i.fa.fa-search(aria-hidden='true')
                   #cart.collapse(data-parent='#accordionExample')
                     .card.card-body.cart-form
                       .cart-form-box-product
@@ -192,6 +188,14 @@ html(lang='en')
                       .cart-form-btn.text-center
                         a(href='/demo/cart') Vào giỏ hàng
                         a(href='/demo/pay') Thanh toán
+
+      .overlay
+      #search.collapse(data-parent='#accordionExample')
+        .card.card-body.search-form
+          h3 Tìm kiếm
+          input#search-form(type='text', name='search', placeholder='Nhập từ khóa')
+          button
+            i.fa.fa-search(aria-hidden='true')
 
     block content
 
@@ -336,6 +340,7 @@ html(lang='en')
       script(src='/bower_components/wow/dist/wow.min.js')
       script(src='/bower_components/xzoom/dist/xzoom.min.js')
       script(src='/bower_components/xzoom/example/magnific-popup/js/magnific-popup.js')
+      script(src='/bower_components/jquery-toast-plugin/dist/jquery.toast.min.js')
       script(src='/assets/js/client/index.js')
 
 

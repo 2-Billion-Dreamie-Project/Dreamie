@@ -4,11 +4,70 @@ block title
   title Dreamie Gear
 
 block append style
+  link(rel='stylesheet', href='/assets/css/product.min.css')
 
 block content
   article
     //- .loader
     
+    .modal.quickview.fade.product-modal-1.show(tabindex='-1', role='dialog', aria-labelledby='exampleModalCenterTitle')
+      .modal-dialog.modal-lg.modal-dialog-centered(role='document')
+        .modal-content.product-page
+          .modal-header
+            h5#exampleModalCenterTitle.modal-title Xem nhanh sản phẩm
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
+            .row
+              .col-lg-6
+                .product-detail-1-img
+                  img.xzoom(src='/assets/img/product-1.png', xoriginal='/assets/img/product-1.png')
+                  .xzoom-thumbs
+                    .owl-carousel.modal-carousel.owl-theme
+                      .item
+                        a(href='/assets/img/product-1.png')
+                          img.xzoom-gallery(src='/assets/img/product-1.png', xpreview='/assets/img/product-1.png')
+                      .item
+                        a(href='/assets/img/product-2.png')
+                          img.xzoom-gallery(src='/assets/img/product-2.png', xpreview='/assets/img/product-2.png')
+                      .item
+                        a(href='/assets/img/product-1.png')
+                          img.xzoom-gallery(src='/assets/img/product-1.png', xpreview='/assets/img/product-1.png')
+                      .item
+                        a(href='/assets/img/product-2.png')
+                          img.xzoom-gallery(src='/assets/img/product-2.png', xpreview='/assets/img/product-2.png')
+                      .item
+                        a(href='/assets/img/product-1.png')
+                          img.xzoom-gallery(src='/assets/img/product-1.png', xpreview='/assets/img/product-1.png')
+                      .item
+                        a(href='/assets/img/product-2.png')
+                          img.xzoom-gallery(src='/assets/img/product-2.png', xpreview='/assets/img/product-2.png')
+              .col-lg-6
+                .product-detail-1-detail
+                  h2 Logitech G502 Proteus Spectrum
+                  p
+                    i.fa.fa-star(aria-hidden='true')
+                    i.fa.fa-star(aria-hidden='true')
+                    i.fa.fa-star(aria-hidden='true')
+                    i.fa.fa-star(aria-hidden='true')
+                    i.fa.fa-star(aria-hidden='true')
+                  h4.price-product
+                    | 699.000 đ 
+                    span.price-default 700.000 đ
+                  h5
+                    | This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit.
+                  .quantity
+                    | Số lượng: 
+                    a(href='#')
+                      i.fa.fa-minus(aria-hidden='true')
+                    input(type='text', value='1')
+                    a(href='#')
+                      i.fa.fa-plus(aria-hidden='true')
+                    button.custom-cart thêm vào giỏ
+                    button.quantity-wishlist.custom-wishlist
+                      i.mdi.mdi-heart-multiple
+          .modal-footer
+            button.btn.btn-secondary(type='button', data-dismiss='modal') Đóng
     section.slider.d-none.d-sm-block
       .owl-carousel.slider-carousel.owl-theme
         if sliders && sliders.length
@@ -167,11 +226,11 @@ block content
             .box-product
               .box-product-img
                 .custom-product
-                  a.custom-quickview(href='#')
+                  a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                     i.mdi.mdi-eye-plus
-                  a.custom-wishlist(href='#')
+                  a.custom-wishlist
                     i.mdi.mdi-heart-multiple
-                  a.custom-cart(href='#')
+                  a.custom-cart
                     i.mdi.mdi-shopify
                 a(href='/demo/product_detail')
                   img(src='/assets/img/product-1.png', alt='')
@@ -191,11 +250,11 @@ block content
             .box-product
               .box-product-img
                 .custom-product
-                  a.custom-quickview(href='#')
+                  a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                     i.mdi.mdi-eye-plus
-                  a.custom-wishlist(href='#')
+                  a.custom-wishlist
                     i.mdi.mdi-heart-multiple
-                  a.custom-cart(href='#')
+                  a.custom-cart
                     i.mdi.mdi-shopify
                 a(href='/demo/product_detail')
                   img(src='/assets/img/product-1.png', alt='')
@@ -215,11 +274,11 @@ block content
             .box-product
               .box-product-img
                 .custom-product
-                  a.custom-quickview(href='#')
+                  a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                     i.mdi.mdi-eye-plus
-                  a.custom-wishlist(href='#')
+                  a.custom-wishlist
                     i.mdi.mdi-heart-multiple
-                  a.custom-cart(href='#')
+                  a.custom-cart
                     i.mdi.mdi-shopify
                 a(href='/demo/product_detail')
                   img(src='/assets/img/product-1.png', alt='')
@@ -239,11 +298,11 @@ block content
             .box-product
               .box-product-img
                 .custom-product
-                  a.custom-quickview(href='#')
+                  a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                     i.mdi.mdi-eye-plus
-                  a.custom-wishlist(href='#')
+                  a.custom-wishlist
                     i.mdi.mdi-heart-multiple
-                  a.custom-cart(href='#')
+                  a.custom-cart
                     i.mdi.mdi-shopify
                 a(href='/demo/product_detail')
                   img(src='/assets/img/product-1.png', alt='')
@@ -263,11 +322,11 @@ block content
             .box-product
               .box-product-img
                 .custom-product
-                  a.custom-quickview(href='#')
+                  a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                     i.mdi.mdi-eye-plus
-                  a.custom-wishlist(href='#')
+                  a.custom-wishlist
                     i.mdi.mdi-heart-multiple
-                  a.custom-cart(href='#')
+                  a.custom-cart
                     i.mdi.mdi-shopify
                 a(href='/demo/product_detail')
                   img(src='/assets/img/product-1.png', alt='')
@@ -333,11 +392,11 @@ block content
                     .box-product
                       .box-product-img
                         .custom-product
-                          a.custom-quickview(href='#')
+                          a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
-                          a.custom-wishlist(href='#')
+                          a.custom-wishlist
                             i.mdi.mdi-heart-multiple
-                          a.custom-cart(href='#')
+                          a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
                           img(src='/assets/img/product-1.png', alt='')
@@ -357,11 +416,11 @@ block content
                     .box-product
                       .box-product-img
                         .custom-product
-                          a.custom-quickview(href='#')
+                          a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
-                          a.custom-wishlist(href='#')
+                          a.custom-wishlist
                             i.mdi.mdi-heart-multiple
-                          a.custom-cart(href='#')
+                          a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
                           img(src='/assets/img/product-1.png', alt='')
@@ -381,11 +440,11 @@ block content
                     .box-product
                       .box-product-img
                         .custom-product
-                          a.custom-quickview(href='#')
+                          a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
-                          a.custom-wishlist(href='#')
+                          a.custom-wishlist
                             i.mdi.mdi-heart-multiple
-                          a.custom-cart(href='#')
+                          a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
                           img(src='/assets/img/product-1.png', alt='')
@@ -405,11 +464,11 @@ block content
                     .box-product
                       .box-product-img
                         .custom-product
-                          a.custom-quickview(href='#')
+                          a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
-                          a.custom-wishlist(href='#')
+                          a.custom-wishlist
                             i.mdi.mdi-heart-multiple
-                          a.custom-cart(href='#')
+                          a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
                           img(src='/assets/img/product-1.png', alt='')
@@ -429,11 +488,11 @@ block content
                     .box-product
                       .box-product-img
                         .custom-product
-                          a.custom-quickview(href='#')
+                          a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
-                          a.custom-wishlist(href='#')
+                          a.custom-wishlist
                             i.mdi.mdi-heart-multiple
-                          a.custom-cart(href='#')
+                          a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
                           img(src='/assets/img/product-1.png', alt='')
@@ -453,11 +512,11 @@ block content
                     .box-product
                       .box-product-img
                         .custom-product
-                          a.custom-quickview(href='#')
+                          a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
-                          a.custom-wishlist(href='#')
+                          a.custom-wishlist
                             i.mdi.mdi-heart-multiple
-                          a.custom-cart(href='#')
+                          a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
                           img(src='/assets/img/product-1.png', alt='')
@@ -479,11 +538,11 @@ block content
                     .box-product
                       .box-product-img
                         .custom-product
-                          a.custom-quickview(href='#')
+                          a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
-                          a.custom-wishlist(href='#')
+                          a.custom-wishlist
                             i.mdi.mdi-heart-multiple
-                          a.custom-cart(href='#')
+                          a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
                           img(src='/assets/img/product-1.png', alt='')
@@ -503,11 +562,11 @@ block content
                     .box-product
                       .box-product-img
                         .custom-product
-                          a.custom-quickview(href='#')
+                          a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
-                          a.custom-wishlist(href='#')
+                          a.custom-wishlist
                             i.mdi.mdi-heart-multiple
-                          a.custom-cart(href='#')
+                          a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
                           img(src='/assets/img/product-1.png', alt='')
@@ -640,4 +699,6 @@ block content
               .box-news-home-btn
                 a(href='/demo/news_detail') xem thêm
                 a Xem nhanh
+
+
 
