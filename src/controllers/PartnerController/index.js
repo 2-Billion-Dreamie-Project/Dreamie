@@ -74,8 +74,7 @@ export default class PartnerController {
         (name && name !== '')
         && (image && image !== '')
       ) {
-        partner = await this.PartnerModel.savePartner(name, image);
-
+        partner = this.PartnerModel.savePartner(name, image);
         if (partner) {
           req.flash('messPartner', 'Bạn đã khởi tạo thành công, mời kiểm tra lại và lưu !');
           res.redirect('/admin/partner/custom-partner/' + partner._id);
