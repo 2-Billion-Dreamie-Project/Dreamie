@@ -1,138 +1,146 @@
-import SliderModel from '../../models/SliderModel';
+import CategoryModel from '../../models/CategoryModel';
 import moment from 'moment';
 /**
- * @class SliderController
+ * @class CategoryController
  * @author Kemmie
  * @version 1.0
  * @since 03/12/2018
  * @description 
- * The SliderController show slider to the client
+ * The CategoryController show category to the client
  */
 
-export default class SliderController {
+export default class CategoryController {
   constructor() {
-    this.SliderModel = new SliderModel;
-    this.formSlider = this.formSlider.bind(this);
-    this.saveSlider = this.saveSlider.bind(this);
-    this.getSliders = this.getSliders.bind(this);
-    this.deleteSlider = this.deleteSlider.bind(this);
+    this.CategoryModel = new CategoryModel;
+    this.formCategory = this.formCategory.bind(this);
+    this.saveCategory = this.saveCategory.bind(this);
+    this.getCategories = this.getCategories.bind(this);
+    this.deleteCategory = this.deleteCategory.bind(this);
   }
 
   /**
-   * @memberof SliderController#
+   * @memberof CategoryController#
    * @argument req This is the first paramter to get request
    * @argument res  This is the second parameter to get response
    * @requires {@link https://github.com/expressjs/csurf|csrfToken}
-   * @todo Render view create slider
+   * @todo Render view create category
    */
-  async formSlider(req, res) {
-    let slider = {};
+  async formCategory(req, res) {
+    let category = {};
     let _id = typeof req.params._id !== 'undefined' ? req.params._id : '';
-    let { messSlider } = req.flash();
-    messSlider = messSlider ? messSlider[0]: '';
+    let { messCategory } = req.flash();
+
+    let getListCategoryParent = await this.CategoryModel.getListCategoryParent();
+
+    messCategory = messCategory ? messCategory[0]: '';
 
     if (_id !== '') {
-      slider = await this.SliderModel.getOneSlider(_id);
-      if (slider && slider.id) {
-        req.flash('messUpdateSlider', `Bạn vừa cập nhật slider có số ID ${slider.id} thành công !`);
+      category = await this.CategoryModel.getOneCategory(_id);
+      if (category && category.id) {
+        req.flash('messUpdateCategory', `Bạn vừa cập nhật danh mục có số ID ${category.id} thành công !`);
       }
     }
   
-    if (!slider) {
+    if (!category) {
       res.redirect('/');
     }
 
-    res.render('admin/slider/form_slider', {
+    res.render('admin/category/form_category', {
       csrfToken: req.csrfToken(),
       _id,
-      slider,
-      messSlider
+      category,
+      getListCategoryParent,
+      messCategory
     });
   }
 
   /**
-   * @memberof SliderController#
+   * @memberof CategoryController#
    * @argument req This is the first paramter to get request
    * @argument res  This is the second parameter to get response
-   * @todo Save and Render Slider
+   * @todo Save and Render Category
    * @description 
    * If error show message error 
    */
-  async saveSlider(req, res) {
-    const {_id, name, image, content } = req.body;
-    let slider = {};
+  async saveCategory(req, res) {
+    const {_id, name, image, categoryParentId } = req.body;
+    let category = {};
+    let isParent = categoryParentId !== '' ? false : true;
+    console.log(isParent, categoryParentId);
     
     if (_id && _id !== '') {
       if (
         (name && name !== '')
         && (image && image !== '')
-        && (content && content !== '')
       ) {
-        slider = await this.SliderModel.updateSlider(_id, name, image, content);
+        category = await this.CategoryModel.updateCategory(_id, name, image);
       } 
 
-      res.redirect('/admin/slider/list-slider');
+      res.redirect('/admin/category/list-category');
     } else {
       if (
         (name && name !== '')
         && (image && image !== '')
-        && (content && content !== '')
       ) {
-        slider = await this.SliderModel.saveSlider(name, image, content);
+        category = await this.CategoryModel.saveCategory(name, image, isParent);
 
-        if (slider) {
-          req.flash('messSlider', 'Bạn đã khởi tạo thành công, mời kiểm tra lại và lưu !');
-          res.redirect('/admin/slider/custom-slider/' + slider._id);
+        if (category) {
+          if (category.isParent === false && categoryParentId !== '') {
+            this.CategoryModel.UpdateChildParentCategory(categoryParentId, category._id);
+          }
+
+          req.flash('messCategory', 'Bạn đã khởi tạo thành công, mời kiểm tra lại và lưu !');
+          res.redirect('/admin/category/custom-category/' + category._id);
         } else {
-          res.redirect('/admin/slider/list-slider/');  
+          res.redirect('/admin/category/list-category/');  
         }
       } else {
-        res.redirect('/admin/slider/list-slider/');
+        res.redirect('/admin/category/list-category/');
       }
     }    
   }
 
   /**
-   * @memberof SliderController#
+   * @memberof CategoryController#
    * @argument req This is the first paramter to get request
    * @argument res  This is the second parameter to get response
    * @requires {@link https://github.com/expressjs/csurf|csrfToken}
-   * @todo Render view get sliders
+   * @todo Render view get categories
    */
-  async getSliders(req, res) {
-    let sliders = await this.SliderModel.getSliders();
-    let { messDelSlider , messUpdateSlider} = req.flash();
-    messDelSlider = messDelSlider ? messDelSlider[0]: '';
-    messUpdateSlider = messUpdateSlider ? messUpdateSlider[0]: '';
+  async getCategories(req, res) {
+    let categories = await this.CategoryModel.getCategories();
+    let { messDelCategory , messUpdateCategory} = req.flash();
+    messDelCategory = messDelCategory ? messDelCategory[0]: '';
+    messUpdateCategory = messUpdateCategory ? messUpdateCategory[0]: '';
 
-    res.render('admin/slider/list_slider', {
+    res.render('admin/category/list_category', {
       csrfToken: req.csrfToken(),
-      sliders,
+      categories,
       moment,
-      messDelSlider,
-      messUpdateSlider
+      messDelCategory,
+      messUpdateCategory
     });
   }
 
   /**
-   * @memberof SliderController#
+   * @memberof CategoryController#
    * @argument req This is the first paramter to get request
    * @argument res  This is the second parameter to get response
    * @requires {@link https://github.com/expressjs/csurf|csrfToken}
-   * @todo Render view delete slider
+   * @todo Render view delete category
    */
 
-  async deleteSlider(req, res) {
+  async deleteCategory(req, res) {
     let _id = typeof req.params._id !== 'undefined' ? req.params._id : '';
-    let slider = {}
+    let category = {}
     
     if (_id && _id !== '') {
-      slider = await this.SliderModel.deleteSlider({_id: req.params._id});
-      if (slider) {
-        req.flash('messDelSlider', `Bạn vừa xóa slider có số ID ${slider.id} thành công`);
+      category = await this.CategoryModel.deleteCategory({_id: req.params._id});
+      if (category) {
+        req.flash('messDelCategory', `Bạn vừa xóa danh mục có số ID ${category.id} thành công`);
       }
     }
     
-    res.redirect('/admin/slider/list-slider');
+    res.redirect('/admin/category/list-category');
   }
 }

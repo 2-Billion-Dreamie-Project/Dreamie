@@ -1,36 +1,34 @@
-import {
-  Slider
-} from '../db';
+import { Category } from '../db';
 
 /**
- * @class SliderModel
+ * @class CategoryModel
  * @author Kemmie
  * @version 1.0
  * @since 20/11/2018
- * @requires Slider
+ * @requires Category
  * @description 
- * The SliderModel handle data by slider
+ * The CategoryModel handle data by category
  */
-export default class SliderModel {
+export default class CategoryModel {
   constructor() {
-    this.sliderSchema = Slider;
-    this.getOneSlider = this.getOneSlider.bind(this);
-    this.saveSlider = this.saveSlider.bind(this);
-    this.updateSlider = this.updateSlider.bind(this);
-    this.deleteSlider = this.deleteSlider.bind(this);
-    this.getSliders = this.getSliders.bind(this);
+    this.categorySchema = Category;
+    this.getOneCategory = this.getOneCategory.bind(this);
+    this.saveCategory = this.saveCategory.bind(this);
+    this.updateCategory = this.updateCategory.bind(this);
+    this.deleteCategory = this.deleteCategory.bind(this);
+    this.getCategories = this.getCategories.bind(this);
   }
 
   /**
-   * @memberof SliderModel#
+   * @memberof CategoryModel#
    * @param {ID} _id - this param is required
-   * @returns {Object} Return slider is object type
+   * @returns {Object} Return category is object type
    */
-  getOneSlider(_id = '') {
+  getOneCategory(_id = '') {
     try {
       if (_id !== '') {
         return (
-          this.sliderSchema.findById(_id)
+          this.categorySchema.findById(_id)
           .catch(function (err) {
             console.log(err);
             return undefined
@@ -45,27 +43,27 @@ export default class SliderModel {
     }
   }
 
-  saveSlider(
+  saveCategory(
     name = '',
     image = '',
-    content = '',
+    isParent = true,
   ) {
-    let slider;
+    let category;
 
     try {
-      if (name !== '' && image !== '' && content !== '') {
-        slider = new this.sliderSchema({
+      if (name !== '' && image !== '') {
+        category = new this.categorySchema({
           name,
           image,
-          content
+          isParent
         });
 
-        slider.save(function (err, slider) {
+        category.save(function (err, category) {
           if (err) return console.log(err);
-          return slider;
+          return category;
         });
 
-        return slider;
+        return category;
       }
     } catch (err) {
       console.log(err);
@@ -74,38 +72,37 @@ export default class SliderModel {
   }
 
   /**
-   * @memberof SliderModel#
+   * @memberof CategoryModel#
    * @param {ID} _id - this param is required
    * @param {String} name - this param is required
    * @param {String} image - this param is required
-   * @param {String} content - this param is required
-   * @returns {Object} Return slider is object type
+   * @returns {Object} Return category is object type
    */
-  updateSlider(
+  updateCategory(
     _id = '',
     name = '',
     image = '',
-    content = '',
+    isParent = true,
   ) {
     try {
       if (_id && _id !== '') {
         return (
-          this.sliderSchema
-          .updateOne({
-            _id
-          }, {
-            $set: {
-              name,
-              image,
-              content
-            }
-          }, {
-            new: true
-          })
-          .catch(function (err) {
-            console.log(err);
-            return undefined
-          })
+          this.categorySchema
+            .updateOne({
+              _id
+            }, {
+              $set: {
+                name,
+                image,
+                isParent,
+              }
+            }, {
+              new: true
+            })
+            .catch(function (err) {
+              console.log(err);
+              return undefined
+            })
         );
       }
     } catch (err) {
@@ -115,13 +112,13 @@ export default class SliderModel {
   }
 
   /**
-   * @memberof SliderModel#
-   * @returns {Array} Return sliders is an array type
+   * @memberof CategoryModel#
+   * @returns {Array} Return categorys is an array type
    */
-  getSliders() {
+  getCategories() {
     try {
       return (
-        this.sliderSchema.find({})
+        this.categorySchema.find({})
         .catch(function (err) {
           console.log(err);
           return undefined
@@ -133,12 +130,49 @@ export default class SliderModel {
     }
   }
 
-  deleteSlider(_id = '') {
+  getListCategoryParent() {
+    try {
+      return (
+        this.categorySchema.find({ isParent: true })
+        .catch(function (err) {
+          console.log(err);
+          return undefined
+        })
+      );
+    } catch (error) {
+      console.log(error);
+      return undefined;
+    }
+  }
+
+  deleteCategory(_id = '') {
     try {
       if (_id !== '') {
         return(
-          this.sliderSchema.findOneAndRemove({ _id })
+          this.categorySchema.findOneAndRemove({ _id })
             .catch(function(err) {
+              console.log(err);
+              return undefined
+            })
+        );
+      }
+  
+      return false;
+    } catch (error) {
+      console.log(error);
+      return undefined;
+    }
+  }
+
+  UpdateChildParentCategory(parentId = '', childId = '') {
+    try {
+      if (parentId !== '' && childId !== '') {
+        return(
+          this.categorySchema
+            .findOneAndUpdate({ _id: parentId }, { $push: {childCategoryIds: childId} }, {
+              new: true
+            })
+            .catch(function (err) {
               console.log(err);
               return undefined
             })

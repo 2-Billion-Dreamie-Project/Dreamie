@@ -7,6 +7,10 @@ block append style
   link(rel='stylesheet', href='/assets/css/category_admin.min.css')
 
 block content
+  if messCategory && messCategory !== ''
+    div.mb-4.mess-create
+      h5=messCategory
+      
   .admin-category
     form(action='/admin/category/save-category', method='POST' id="form-category" novalidate)
       input(type="hidden" name="_csrf" value=csrfToken)
@@ -27,10 +31,16 @@ block content
           value=category && category.name ? category.name : '',
         )
       .form-group
-        label(for='categoryParent') Thuộc danh mục
-        select#categoryParent.form-control(name='categoryParent')
-          option Danh mục cha
-          option(value=category && category.name ? category.name : '')
+        label(for='categoryParentId') Thuộc danh mục
+        select#categoryParentId.form-control(name='categoryParentId')
+          option(value="") Danh mục cha
+          if getListCategoryParent && getListCategoryParent.length > 0
+            each categoryParent in getListCategoryParent
+              option(value=categoryParent._id) #{categoryParent.name}
+                
+              
+
+
       .form-group
         label(for='image-category') Ảnh đại diện danh mục
         input#image-category.form-control(
@@ -54,10 +64,6 @@ block content
         name: {
           required: true,
         },
-        content: {
-          required: true,
-          maxlength: 40,
-        },
         image:{
           required: true,
           url: true,
@@ -68,10 +74,6 @@ block content
           required: "Vui lòng điền tên danh mục",
           minlength: "Tên danh mục ít nhất có 5 ký tự",
           maxlength: "Tên danh mục không quá 20 ký tự"
-        },
-        content: {
-          required: "Vui lòng điền nội dung danh mục",
-          maxlength: "Nội dung danh mục không được quá 30 ký tự"
         },
         image:{
           required: "Vui lòng điền ảnh danh mục",

@@ -18,7 +18,7 @@ $('.slider-carousel').owlCarousel({
 });
 
 $('.slider-carousel').on('changed.owl.carousel', function(event) {
-  var item = event.item.index-1;
+  var item = event.item.index-2;
 
   $('h1').removeClass('animated flipInX');
   $('.owl-item').not('.cloned').eq(item).find('h1').addClass('animated flipInX');
@@ -57,7 +57,11 @@ $('.seller-carousel').owlCarousel({
 // NEWS HOME
 $('.news-carousel').owlCarousel({
   dots: true,
-  nav: false,
+  nav: true,
+  navText: [
+    "<i class='fa fa-angle-left' aria-hidden='true'></i>",
+    "<i class='fa fa-angle-right' aria-hidden='true'></i>"
+  ],
   margin: 30,
   responsive: {
     0: {
@@ -312,4 +316,11 @@ $('document').ready(function () {
     $('.xzoom-preview , .xzoom-source').css('opacity', '0')
   });
   // END SETTING MODAL OPACITY XZOOM
+
+  $('.box-category').eq(0).addClass('bounceInLeft')
+  $('.box-category').eq(1).addClass('bounceInDown').attr('data-wow-delay', '.1s')
+  $('.box-category').eq(2).addClass('bounceInRight').attr('data-wow-delay', '.2s')
+  $('.box-category').eq(3).addClass('bounceInLeft').attr('data-wow-delay', '.5s')
+  $('.box-category').eq(4).addClass('bounceInUp').attr('data-wow-delay', '.4s')
+  $('.box-category').eq(5).addClass('bounceInRight').attr('data-wow-delay', '.3s')
 });

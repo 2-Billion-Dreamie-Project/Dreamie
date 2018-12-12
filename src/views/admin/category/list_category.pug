@@ -1,25 +1,25 @@
 extends ../../layouts/admin/layout_admin
 
 block title 
-  title Danh sách Slider
+  title Danh sách danh mục
 
 block append style
   link(rel='stylesheet', href='/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css')
-  link(rel='stylesheet', href='/assets/css/slider_admin.min.css')
+  link(rel='stylesheet', href='/assets/css/category_admin.min.css')
   
 
 block content
-  if messDelSlider && messDelSlider !== ''
+  if messDelCategory && messDelCategory !== ''
     div.mb-4.mess-del
-      h5=messDelSlider
+      h5=messDelCategory
 
-  if messUpdateSlider && messUpdateSlider !== ''
+  if messUpdateCategory && messUpdateCategory !== ''
     div.mb-4.mess-del
-      h5=messUpdateSlider
+      h5=messUpdateCategory
       
-  a.btn.btn-success.mb-3(href="/admin/slider/custom-slider") Thêm mới
+  a.btn.btn-success.mb-3(href="/admin/category/custom-category") Thêm mới
   .table-responsive
-    table.table.table-dark.table-bordered.table-hover#slider-table
+    table.table.table-dark.table-bordered.table-hover#category-table
       thead
         tr
           th(scope='col') ID
@@ -30,22 +30,22 @@ block content
           th(scope='col') Trạng thái
           th(scope='col') Hành động
       tbody
-        if sliders && sliders.length
-          each slider in sliders
+        if categories && categories.length
+          each category in categories
             tr
-              th(scope='row')=slider.id ? slider.id : ''
-              td=slider.name ? slider.name : ''
-              td=slider.content ? slider.content : ''
+              th(scope='row')=category.id ? category.id : ''
+              td=category.name ? category.name : ''
               td
-                if slider.image && slider.image !== ''
-                  a(title='Phóng to hình', rel='gallery', href=slider.image, data-fancybox='', data-caption=slider.name)
-                    img(src=slider.image)
-              td=slider.createdAt ? moment(slider.createdAt).format('DD/MM/YYYY HH:mm') : ''
-              td=slider.updatedAt ? moment(slider.updatedAt).format('DD/MM/YYYY HH:mm') : ''
+                if category.image && category.image !== ''
+                  a(title='Phóng to hình', rel='gallery', href=category.image, data-fancybox='', data-caption=category.name)
+                    img(src=category.image)
+              td=category.childCategoryIds ? category.childCategoryIds : ''
+              td=category.updatedAt ? moment(category.updatedAt).format('DD/MM/YYYY HH:mm') : ''
+              td=category.status ? category.status : ''
               td
-                if slider._id
-                  a.btn.btn-info.mr-2.mb-xl-0.mb-2(href="/admin/slider/custom-slider/" + slider._id) Xem
-                  a.btn.btn-danger(href="/admin/slider/delete/" + slider._id) Xóa
+                if category._id
+                  a.btn.btn-info.mr-2.mb-xl-0.mb-2(href="/admin/category/custom-category/" + category._id) Xem
+                  a.btn.btn-danger(href="/admin/category/delete/" + category._id) Xóa
 
 
   script(src='/bower_components/jquery/dist/jquery.min.js')
@@ -53,7 +53,7 @@ block content
   script(src='/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js')
   script.
     $(document).ready( function () {
-      $('#slider-table').DataTable({
+      $('#category-table').DataTable({
         "language": {
           "lengthMenu": "Hiển thị _MENU_ mục",
           "emptyTable":     "Không có dữ liệu nào trong bảng",
