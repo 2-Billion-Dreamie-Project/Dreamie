@@ -120,10 +120,10 @@ export default class PartnerModel {
    * @memberof PartnerModel#
    * @returns {Array} Return partners is an array type
    */
-  getPartners() {
+  getPartners(limit = 0) {
     try {
       return (
-        this.partnerSchema.find({})
+        this.partnerSchema.find({}).limit(limit).sort({id: -1})
         .catch(function (err) {
           console.log(err);
           return undefined

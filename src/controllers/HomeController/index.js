@@ -25,7 +25,7 @@ export default class HomeController {
    * @todo Render view get partners, sliders
    */
   async index(req, res) {
-    let partners = await this.PartnerModel.getPartners();
+    let partners = await this.PartnerModel.getPartners(2);
     let sliders = await this.SliderModel.getSliders();
     
     res.render('client/home', {
