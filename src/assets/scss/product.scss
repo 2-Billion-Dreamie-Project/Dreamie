@@ -432,8 +432,6 @@ $main-color: #e6b31e;
                     position: relative;
                     
                     .xzoom-gallery {
-                        width: 60px;
-
                         &:hover {
                             border-color: $main-color;
                         }
@@ -672,7 +670,7 @@ $main-color: #e6b31e;
         }
     }
     .product-page .product-detail-1-detail .quantity a {
-        margin: 0 3px;
+        margin: 0 10px;
     }
 
     .product-page .product-detail-1-detail .quantity button {
@@ -710,9 +708,23 @@ $main-color: #e6b31e;
     }
 }
 
-@media (max-width:351px) {
-    .product-page .product-detail-1-detail .quantity button {
+@media (max-width:383px) {
+    .product-page .product-detail-1-detail .quantity {
+      font-size: 11px;
+
+      button {
         padding: 0 8px;
         font-size: 11px;
+        height: 30px;
+        
+        &.quantity-wishlist {
+          width: 30px;
+        }
+      }
+
+      input {
+        width: 30px;
+        height: 30px;
+      }
     }
 }

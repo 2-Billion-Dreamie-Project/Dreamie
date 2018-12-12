@@ -87,6 +87,10 @@ img {
   height: auto
 }
 
+button:focus {
+  outline: none;
+}
+
 section {
   margin-left: -15px !important;
   margin-right: -15px !important;
@@ -770,6 +774,7 @@ article {
         transform: rotate(180deg);
         transition: .5s;
         font-size: 16px;
+        cursor: pointer;
 
         &:hover {
           background: $main-color;
@@ -912,6 +917,7 @@ article {
 
 .best-seller {
   margin-bottom: 50px;
+  overflow: hidden;
 
   .owl-theme .owl-dots {
     margin-top: 20px !important;
@@ -967,7 +973,7 @@ article {
 
 .modal {
   cursor: url('../img/cursor.png'), auto;
-  z-index: 10000;
+  z-index: 1050;
 }
 
 .modal-content {
@@ -994,7 +1000,7 @@ article {
 }
 
 .xzoom-source img, .xzoom-preview img, .xzoom-lens img {
-  z-index: 10001;
+  z-index: 1051;
 }
 
 .jq-toast-wrap {
@@ -1002,10 +1008,20 @@ article {
   top: 70px !important;
 }
 
+.mfp-bg {
+  z-index: 1052;
+}
+
+.mfp-wrap {
+  z-index: 1053;
+}
+
 .partner {
   background: #383838;
   padding: 30px 0;
   margin-bottom: 50px;
+  position: relative;
+  z-index: 10;
 
   .owl-carousel .owl-item img {
     width: auto;
@@ -1129,7 +1145,7 @@ article {
     overflow: hidden;
 
     img {
-      transition: 1s;
+      transition: .5s;
     }
 
     &:hover img {
@@ -1189,6 +1205,7 @@ article {
         padding: 12px 15px;
         font-size: 16px;
         transition: .5s;
+        cursor: pointer;
 
         &:nth-child(1) {
           color: black;
@@ -1226,76 +1243,119 @@ article {
   }
 }
 
-.news-home,
-.news-page {
+.news-home {
   margin-bottom: 50px;
 
+  .owl-theme .owl-dots {
+    z-index: 1;
+    position: relative;
+    background: none;
+
+    .owl-dot span {
+      border: 2px solid white;
+      background: none;
+      width: 15px;
+      height: 15px;
+    }
+
+    .owl-dot.active span,
+    .owl-dot:hover span {
+      background: $main-color;
+      border: none;
+    }
+  }
+
   .box-news-home {
-    background: #383838;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 
     &-img {
+      overflow: hidden;
       position: relative;
 
-      .custom-news {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 1;
-        transition: .5s;
-        opacity: 0;
+      &:hover {
+        img {
+          transform: scale(1.2);
+          filter: brightness(60%);
 
-        i {
-          padding: 15px;
-          border: 2px solid white;
-          transition: .5s;
+        }
 
-          &:hover {
-            color: black;
-            border-color: $main-color;
-            background: $main-color;
+        span {
+          transform: translate(-50%, -50%) scaleY(1) rotate(0deg);
+
+          &::before {
+            transform: translate(-50%, 0%) scaleY(1) rotate(90deg);
+            transition-delay: 0.4s;
+          }
+
+          &::after {
+            transform: translate(-50%, 0%) scaleY(1) rotate(-90deg);
+            transition-delay: 0.5s;
           }
         }
       }
 
       img {
-        transition: .5s;
+        transition: 1s;
+
       }
 
-      &:hover {
-        img {
-          filter: brightness(70%);
+      span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scaleY(0) rotate(360deg);
+        width: 2px;
+        height: 50px;
+        background-color: #ffffff;
+        transition: all 0.4s ease 0s;
+        z-index: 1;
+
+        &::before {
+          content: '';
+          position: absolute;
+          width: 2px;
+          height: 25px;
+          transform: translate(-50%, 0%) scaleY(1) rotate(0);
+          background-color: #ffffff;
+          transition: all 0.4s cubic-bezier(0.64, -1.18, 0.68, 1.81) 0s;
+          top: 50%;
+          left: 50%;
+          transform-origin: 50% 0;
         }
 
-        .custom-news {
-          opacity: 1;
+        &::after {
+          content: '';
+          position: absolute;
+          width: 2px;
+          height: 25px;
+          transform: translate(-50%, 0%) scaleY(1) rotate(-180deg);
+          background-color: #ffffff;
+          transition: all 0.4s cubic-bezier(0.64, -1.18, 0.68, 1.81) 0s;
+          top: 50%;
+          left: 50%;
+          transform-origin: 50% 0;
         }
-      }
-    }
-
-    &-date {
-      background: $main-color;
-      margin-left: -30px;
-      height: 100%;
-      color: black;
-      padding: 20px 0;
-
-      h1 {
-        font-weight: bold;
-        margin-bottom: 10px;
       }
     }
 
     &-detail {
+      background: #383838;
+      border: 1px solid #4d4d4d;
+      width: 85%;
+      margin: auto;
+      margin-top: -80px;
+      position: relative;
+      padding: 30px;
+
       h3 {
-        margin: {
-          top: 30px;
-          bottom: 20px;
-        }
+        margin-bottom: 15px;
 
         a {
-          font-weight: bold;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          height: 68px;
           transition: .5s;
 
           &:hover {
@@ -1304,46 +1364,20 @@ article {
         }
       }
 
-      h5 {
-        color: #959595;
-        line-height: 1.6;
-      }
-    }
+      &-date {
+        li {
+          display: inline-block;
+          color: #cccccc;
 
-    &-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-
-      a {
-        width: 130px;
-        text-align: center;
-        padding: 10px 0;
-        background: $main-color;
-        display: block;
-        margin-bottom: 10px;
-        text-transform: uppercase;
-        font-weight: bold;
-        color: black;
-        font-size: 16px;
-        transition: .5s;
-        border: 2px solid $main-color;
-
-        &:hover {
-          color: $main-color;
-          background: none;
-        }
-
-        &:nth-child(2) {
-          background: #050505;
-          color: #959595;
-          border-color: #050505;
-          cursor: pointer;
-
-          &:hover {
-            color: $main-color;
-            background: none;
-            border-color: $main-color;
+          i {
+            padding-right: 5px;
+            color: #a9a9a9;
+          }
+          
+          &:first-child {
+            margin-right: 15px;
+            padding-right: 15px;
+            border-right: 1px solid #4d4d4d;
           }
         }
       }
@@ -1585,11 +1619,17 @@ article {
 
           i {
             float: right;
+            padding-left: 150px;
           }
 
           &:hover {
             a {
               border-bottom: 0;
+            }
+
+            .menu-bottom {
+              opacity: 0;
+              visibility: hidden;
             }
           }
 
@@ -1652,46 +1692,7 @@ article {
     }
   }
 
-  .news-home,
-  .news-page {
-    .box-news-home {
-
-      &-img {
-        .custom-news {
-          opacity: 1;
-        }
-      }
-
-      &-date {
-        padding: 10px 0;
-
-        h1,
-        i {
-          margin-bottom: 0;
-        }
-      }
-
-      &-btn {
-        position: relative;
-        text-align: center;
-        margin-bottom: 20px;
-
-        a {
-          font-size: 14px;
-          width: 100px;
-          display: inline-block;
-        }
-      }
-
-      &-detail {
-        margin: 10px;
-
-        h3 {
-          margin: 10px 0;
-        }
-      }
-    }
-  }
+  
 
   .title-footer i {
     opacity: 1 !important;
@@ -1725,38 +1726,7 @@ article {
     }
   }
 
-  .news-home,
-  .news-page {
-    .box-news-home {
-
-      &-img {
-        .custom-news {
-          opacity: 1;
-        }
-      }
-
-      &-date {
-        margin-left: 0;
-
-        h1,
-        i {
-          display: inline-block;
-        }
-      }
-
-      &-btn {
-        position: relative;
-        text-align: center;
-        margin-bottom: 20px;
-
-        a {
-          font-size: 14px;
-          width: 100px;
-          display: inline-block;
-        }
-      }
-    }
-  }
+  
 
   .title-footer h3 {
     border-bottom: 1px solid #383838;
@@ -1889,5 +1859,23 @@ article {
   .menu .custom-header .cart-form {
     right: 0px;
     margin-top: 22px;
+  }
+
+  .news-home {
+    .box-news-home {
+      &-detail {
+        margin: 0;
+        padding: 15px;
+        width: 100%;
+
+        h3 a {
+          height: auto;
+        }
+      }
+    }
+  }
+
+  .search-form {
+    width: 100%;
   }
 }

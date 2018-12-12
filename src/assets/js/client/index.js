@@ -1,3 +1,4 @@
+// SLIDER
 $('.slider-carousel').owlCarousel({
   loop: true,
   autoplay: true,
@@ -5,26 +6,19 @@ $('.slider-carousel').owlCarousel({
   autoplayHoverPause: true,
   dots: true,
   nav: true,
-  navText: ["<i class='mdi mdi-transfer'></i>", "<i class='mdi mdi-transfer'></i>"],
+  items: 1,
+  navText: [
+    "<i class='mdi mdi-transfer'></i>", 
+    "<i class='mdi mdi-transfer'></i>"
+  ],
   autoplaySpeed: 1000,
   animateOut: 'fadeOutRight',
   animateIn: 'bounceInRight',
   autoHeight: true,
-  responsive: {
-    0: {
-      items: 1
-    },
-    600: {
-      items: 1
-    },
-    1000: {
-      items: 1
-    }
-  }
 });
 
 $('.slider-carousel').on('changed.owl.carousel', function(event) {
-  var item = event.item.index-2;
+  var item = event.item.index-1;
 
   $('h1').removeClass('animated flipInX');
   $('.owl-item').not('.cloned').eq(item).find('h1').addClass('animated flipInX');
@@ -35,17 +29,17 @@ $('.slider-carousel').on('changed.owl.carousel', function(event) {
   $('a').removeClass('animated jackInTheBox');
   $('.owl-item').not('.cloned').eq(item).find('a').addClass('animated jackInTheBox');
 });
+// ---- END SLIDER
 
+// BEST SELLER
 $('.seller-carousel').owlCarousel({
-  loop: false,
-  autoplay: false,
-  autoplayTimeout: 3000,
-  autoplayHoverPause: true,
   dots: true,
   nav: true,
   margin: 30,
-  navText: ["<i class='fa fa-angle-left' aria-hidden='true'></i>", "<i class='fa fa-angle-right' aria-hidden='true'></i>"],
-  autoplaySpeed: 1000,
+  navText: [
+    "<i class='fa fa-angle-left' aria-hidden='true'></i>",
+    "<i class='fa fa-angle-right' aria-hidden='true'></i>"
+  ],
   responsive: {
     0: {
       items: 1
@@ -58,11 +52,32 @@ $('.seller-carousel').owlCarousel({
     }
   }
 });
+// ----- END BEST SELLSE
 
+// NEWS HOME
+$('.news-carousel').owlCarousel({
+  dots: true,
+  nav: false,
+  margin: 30,
+  responsive: {
+    0: {
+      items: 1
+    },
+    768: {
+      items: 2
+    },
+    1000: {
+      items: 2
+    }
+  }
+});
+// --END NEWS HOME
+
+// PARTNER HOME
 $('.partner-carousel').owlCarousel({
   loop: true,
   autoplay: true,
-  autoplayTimeout: 3000,
+  autoplayTimeout: 5000,
   autoplayHoverPause: true,
   dots: false,
   nav: false,
@@ -81,62 +96,53 @@ $('.partner-carousel').owlCarousel({
     }
   }
 });
+//END PARTNER HOME
 
+// XZOOM
 $('.xzoom-carousel').owlCarousel({
   loop: false,
   autoplay: false,
-  autoplayTimeout: 3000,
-  autoplayHoverPause: true,
   dots: false,
   nav: true,
-  navText: ["<i class='fa fa-angle-left' aria-hidden='true'></i>", "<i class='fa fa-angle-right' aria-hidden='true'></i>"],
+  items: 4,
+  navText: [
+    "<i class='fa fa-angle-left' aria-hidden='true'></i>", 
+    "<i class='fa fa-angle-right' aria-hidden='true'></i>"
+  ],
   margin: 10,
-  autoWidth: true,
-  autoplaySpeed: 1000,
-  responsive: {
-    0: {
-      items: 4
-    },
-    600: {
-      items: 4
-    },
-    1000: {
-      items: 4
-    }
-  }
 });
 
 $('.modal-carousel').owlCarousel({
-  loop: true,
-  autoplay: false,
-  autoplayTimeout: 3000,
-  autoplayHoverPause: true,
   dots: false,
   nav: true,
-  navText: ["<i class='fa fa-angle-left' aria-hidden='true'></i>", "<i class='fa fa-angle-right' aria-hidden='true'></i>"],
+  navText: [
+    "<i class='fa fa-angle-left' aria-hidden='true'></i>", 
+    "<i class='fa fa-angle-right' aria-hidden='true'></i>"
+  ],
   margin: 10,
-  autoWidth: true,
-  autoplaySpeed: 1000,
   responsive: {
     0: {
       items: 3
     },
     600: {
-      items: 3
+      items: 4
     },
     1000: {
-      items: 3
+      items: 4
     }
   }
 });
+// END XZOOM
 
+// WOW JS
 wow = new WOW({
   mobile: false,
 })
 wow.init();
-
+// END WOW JS
 
 $('document').ready(function () {
+  // ACTIVE MENU
   var url = window.location.href;
   $(".main-menu a").each(function () {
     if (url == (this.href)) {
@@ -144,28 +150,39 @@ $('document').ready(function () {
       $(this).closest("li li a").removeClass("active");
     }
   });
-
-  $('.toggleMenu').click(function () {
-    $(this).css('display', 'none');
-    $('.menu .nav').css('transform', 'translateX(0)');
-    $('.menu-close').css('display', 'block');
-    $('.custom-header .collapse').removeClass('show');
-  });
-
-  $('.menu-close').click(function () {
-    $(this).css('display', 'none');
-    $('.toggleMenu').css('display', 'block');
-    $('.menu .nav').css('transform', 'translateX(-150%)');
-    $('.menu .nav li .menu-bottom').css('position', 'absolute').css('visibility', 'hidden').css('opacity', '0')
-  });
-
+  // END ACTIVE MENU
 
   var ww = document.body.clientWidth;
 
+  // SETTING MENU
   if (ww < 1200) {
-    $('.menu .nav li i').click(function () {
-      $('.menu .nav li .menu-bottom').css('position', 'relative').css('visibility', 'initial').css('opacity', '1')
+    $('.toggleMenu').click(function () {
+      $(this).css('display', 'none');
+      $('.menu .nav').css('transform', 'translateX(0)');
+      $('.menu-close').css('display', 'block');
+      $('.custom-header .collapse').removeClass('show');
     });
+  
+    $('.menu-close').click(function () {
+      $(this).css('display', 'none');
+      $('.toggleMenu').css('display', 'block');
+      $('.menu .nav').css('transform', 'translateX(-250%)');
+      $('.menu .main-menu .nav li ul').css('display','none');
+    });
+    
+    $('.menu .main-menu .nav li .btn-menu-down').click(function() {
+      $('.menu .nav li .menu-bottom').css('position', 'relative').css('visibility', 'initial').css('opacity', '1').css('left','0')
+      $(this).css('display','none');
+      $('.menu .main-menu .nav li .btn-menu-up').css('display','block');
+      $('.menu .main-menu .nav li li').css('border-bottom','0');
+    });
+  
+    $('.menu .main-menu .nav li .btn-menu-up').click(function() {
+      $('.menu .main-menu .nav li .menu-bottom').css('position', 'absolute').css('visibility', 'hidden').css('opacity', '0').css('left','15px')
+      $(this).css('display','none');
+      $('.menu .main-menu .nav li .btn-menu-down').css('display','block');
+    });
+ 
 
     $('.custom-header i').click(function() {
       $('.menu .nav').css('transform', 'translateX(-150%)');
@@ -173,6 +190,8 @@ $('document').ready(function () {
       $('.menu-close').css('display', 'none');
     });
   }
+
+  $('.menu .main-menu .nav li .btn-menu-up').css('display','none');
 
   if (ww < 992) {
     $('.footer-bottom .collapse').removeClass('show');
@@ -197,9 +216,9 @@ $('document').ready(function () {
       }
     });
   }
-
+  // END SETTING MENU
   
-
+  // GO TOP
   $(window).scroll(function () {
     if ($(this).scrollTop() > 400) {
       $('#goTop').fadeIn();
@@ -215,17 +234,22 @@ $('document').ready(function () {
     }, 600);
     return false;
   });
+  // END GO TOP
 
+  // CATEGORY LEFT
   $('.list-cate-title').on('click', function () {
     $('.list-cate-title').removeClass('active');
     $(this).addClass('active');
   });
+  //END CATEGORY LEFT
+
+  // XZOOM SETTING
   $(".xzoom, .xzoom-gallery").xzoom({
     tint: '#333',
     Xoffset: 15
   });
 
-  $('#main-image').bind('click', function () {
+  $('.main-image').bind('click', function () {
     var xzoom = $(this).data('xzoom');
     xzoom.closezoom();
     var gallery = xzoom.gallery().cgallery;
@@ -244,7 +268,9 @@ $('document').ready(function () {
     });
     event.preventDefault();
   });
+  //END XZOOM SETING
 
+  // SETTING SEARCH FORM
   $('.search-btn').click(function() {
     $('.overlay').css('display', 'block');
   });
@@ -253,7 +279,9 @@ $('document').ready(function () {
     $(this).css('display', 'none');
     $('#search').removeClass('show');
   });
+  // END SETTING SEARCH FORM
 
+  // NOTIFICATION ADD TO CART + WISHLIST
   $('.custom-cart').click(function() {
     $.toast({
       heading: 'Thông báo',
@@ -277,4 +305,11 @@ $('document').ready(function () {
       showHideTransition: 'slide'
     })
   });
+  // END NOTIFICATION ADD TO CART + WISHLIST
+
+  // SETTING MODAL OPACITY XZOOM
+  $('.modal-footer button , .modal-header button , .modal').click(function() {
+    $('.xzoom-preview , .xzoom-source').css('opacity', '0')
+  });
+  // END SETTING MODAL OPACITY XZOOM
 });

@@ -29,7 +29,7 @@ block content
                 .row
                   .col-lg-6
                     .product-detail-1-img
-                      img#main-image.xzoom(src='/assets/img/product-1.png', xoriginal='/assets/img/product-1.png')
+                      img.main-image.xzoom(src='/assets/img/product-1.png', xoriginal='/assets/img/product-1.png')
                       .xzoom-thumbs
                         .owl-carousel.xzoom-carousel.owl-theme
                           .item
@@ -65,14 +65,14 @@ block content
                       h5
                         | This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit.
                       .quantity
-                        | Số lượng: 
+                        span Số lượng: 
                         a(href='#')
                           i.fa.fa-minus(aria-hidden='true')
                         input(type='text', value='1')
                         a(href='#')
                           i.fa.fa-plus(aria-hidden='true')
-                        button thêm vào giỏ
-                        button.quantity-wishlist
+                        button.custom-cart thêm vào giỏ
+                        button.custom-wishlist.quantity-wishlist
                           i.mdi.mdi-heart-multiple
               .product-detail-2
                 .product-detail-2-title
