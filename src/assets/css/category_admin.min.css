@@ -104,4 +104,29 @@ table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td
   height: 45px !important;
 }
 
+.delete-alert .modal.show .modal-dialog {
+  transform: translate(0, 50%);
+  transition: transform 0.2s ease;
+}
+.delete-alert.modal {
+  cursor: url("../img/cursor.png"), auto;
+}
+.delete-alert.modal .modal-dialog .modal-content {
+  cursor: default;
+  background: white;
+  border: 1px solid #e1e1e1;
+  color: #383838;
+}
+.delete-alert.modal .modal-dialog .modal-content img {
+  height: 100px;
+  margin-bottom: 20px;
+}
+.delete-alert.modal .modal-dialog .modal-content .modal-footer {
+  border-top: 0;
+  padding-top: 0;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 20px;
+}
+
 /*# sourceMappingURL=category_admin.min.css.map */

@@ -66,7 +66,6 @@ export default class CategoryController {
     const {_id, name, image, categoryParentId } = req.body;
     let category = {};
     let isParent = categoryParentId !== '' ? false : true;
-    console.log(isParent, categoryParentId);
     
     if (_id && _id !== '') {
       if (

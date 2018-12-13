@@ -28,10 +28,10 @@ html(lang='en')
           .row
             .col-xl-6.order-xl-4.col-lg-4.col-md-3.col-sm-3.col-6
               .main-menu
-                a.toggleMenu(href='#')
-                  i.fa.fa-bars(aria-hidden='true')
-                a.menu-close(href='#')
-                  i.fa.fa-times(aria-hidden='true')
+                a.toggleMenu
+                  i.mdi.mdi-menu
+                a.menu-close
+                  i.mdi.mdi-close
                 ul.nav
                   li.nav-item
                     a(href='/') Trang chủ
@@ -39,8 +39,8 @@ html(lang='en')
                     a(href='/demo/about_us') Giới thiệu
                   li.nav-item
                     a(href='/demo/product') Sản phẩm
-                    i.btn-menu-down.fa.fa-caret-down(aria-hidden='true')
-                    i.btn-menu-up.fa.fa-caret-up(aria-hidden='true')
+                    i.btn-menu-down.mdi.mdi-chevron-down
+                    i.btn-menu-up.mdi.mdi-minus
                     .menu-bottom
                       img(src='/assets/img/bg-menu.png')
                       .row

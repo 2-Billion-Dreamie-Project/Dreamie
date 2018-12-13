@@ -209,19 +209,15 @@ article {
 .toggleMenu,
 .menu-close {
   display: none;
-  background: #cccccc;
-  height: 40px;
-  line-height: 40px;
   text-align: center;
-  color: black;
-  margin: 30px 0;
   z-index: 10000;
   transition: 500ms;
   width: 50px;
 }
 .toggleMenu i,
 .menu-close i {
-  font-size: 16px;
+  font-size: 24px;
+  color: white;
 }
 .toggleMenu:hover,
 .menu-close:hover {
@@ -894,7 +890,6 @@ article {
   padding: 30px 0;
   margin-bottom: 50px;
   position: relative;
-  z-index: 10;
 }
 .partner .owl-carousel .owl-item img {
   width: auto;
@@ -1378,7 +1373,7 @@ article {
   .menu .main-menu .nav {
     display: block;
     text-align: left;
-    background: #050505;
+    background: rgba(0, 0, 0, 0.93);
     position: absolute;
     width: 320px;
     margin-top: -30px;
@@ -1390,11 +1385,13 @@ article {
   }
   .menu .main-menu .nav li {
     display: block;
-    border-bottom: 0;
+    border-bottom: 1px solid #252525;
   }
   .menu .main-menu .nav li i {
     float: right;
     padding-left: 150px;
+    font-size: 24px;
+    margin-top: -8px;
   }
   .menu .main-menu .nav li:hover a {
     border-bottom: 0;
@@ -1412,6 +1409,8 @@ article {
     width: 100%;
     height: auto;
     padding: 0;
+    background: none;
+    transition: none !important;
   }
   .menu .main-menu .nav li .menu-bottom img {
     display: none;
@@ -1433,7 +1432,8 @@ article {
     border-bottom: 0;
   }
   .menu-close {
-    display: none;
+    transform: scale(0) rotate(-180deg);
+    position: absolute;
   }
 
   .slider-text {
@@ -1506,7 +1506,7 @@ article {
   .menu .main-menu .nav {
     display: block;
     text-align: left;
-    background: #050505;
+    background: rgba(0, 0, 0, 0.93);
     position: absolute;
     width: 200%;
     margin-top: 0;
@@ -1519,7 +1519,6 @@ article {
   }
   .menu .main-menu .nav li {
     display: block;
-    border-bottom: 0;
   }
   .menu .main-menu .nav li i {
     float: right;
@@ -1555,9 +1554,6 @@ article {
   }
   .menu .main-menu .nav li .active {
     border-bottom: 0;
-  }
-  .menu-close {
-    display: none;
   }
   .menu .custom-header {
     margin: 22px 0;

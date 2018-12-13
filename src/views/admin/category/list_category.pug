@@ -39,14 +39,29 @@ block content
                 if category.image && category.image !== ''
                   a(title='Phóng to hình', rel='gallery', href=category.image, data-fancybox='', data-caption=category.name)
                     img(src=category.image)
-              td=category.childCategoryIds ? category.childCategoryIds : ''
+              td
+                if category.isParent === true
+                  | Danh mục cha
+                else 
+                  a=category.childCategoryIds.ObjectId
+              
               td=category.updatedAt ? moment(category.updatedAt).format('DD/MM/YYYY HH:mm') : ''
               td=category.status ? category.status : ''
               td
                 if category._id
                   a.btn.btn-info.mr-2.mb-xl-0.mb-2(href="/admin/category/custom-category/" + category._id) Xem
-                  a.btn.btn-danger(href="/admin/category/delete/" + category._id) Xóa
+                  a.btn.btn-danger(data-toggle="modal", data-target=".delete-alert") Xóa
 
+              .delete-alert.modal.fade(tabindex='-1', role='dialog', aria-labelledby='delete-alert', aria-hidden='true')
+                .modal-dialog(role='document')
+                  .modal-content                      
+                    .modal-body.text-center
+                      img(src="/assets/img/icon-warning.png")
+                      h6.text-center.mb-3 Xóa vĩnh viễn sẽ không thể phục hồi
+                      h4.text-center Bạn chắc chắn muốn xóa chứ ?
+                    .modal-footer
+                      button.btn.btn-dark(type='button', data-dismiss='modal') Hủy bỏ
+                      a.btn.btn-danger(href="/admin/category/delete/" + category._id) Xóa
 
   script(src='/bower_components/jquery/dist/jquery.min.js')
   script(src='/bower_components/datatables.net/js/jquery.dataTables.min.js')

@@ -161,15 +161,15 @@ $('document').ready(function () {
   // SETTING MENU
   if (ww < 1200) {
     $('.toggleMenu').click(function () {
-      $(this).css('display', 'none');
+      $(this).css('transform', 'scale(0) rotate(180deg)').css('position','fixed').css('top','0');
       $('.menu .nav').css('transform', 'translateX(0)');
-      $('.menu-close').css('display', 'block');
+      $('.menu-close').css('transform', 'scale(1) rotate(0)').css('position','relative')
       $('.custom-header .collapse').removeClass('show');
     });
   
     $('.menu-close').click(function () {
-      $(this).css('display', 'none');
-      $('.toggleMenu').css('display', 'block');
+      $(this).css('transform', 'scale(0) rotate(-180deg)').css('position','fixed').css('top','0');
+      $('.toggleMenu').css('transform', 'scale(1) rotate(0)').css('position','relative')
       $('.menu .nav').css('transform', 'translateX(-250%)');
       $('.menu .main-menu .nav li ul').css('display','none');
     });
@@ -190,9 +190,11 @@ $('document').ready(function () {
 
     $('.custom-header i').click(function() {
       $('.menu .nav').css('transform', 'translateX(-150%)');
-      $('.toggleMenu').css('display', 'block');
-      $('.menu-close').css('display', 'none');
+      $('.toggleMenu').css('transform', 'scale(1) rotate(0)').css('position','relative')
+      $('.menu-close').css('transform', 'scale(0) rotate(-180deg)').css('position','fixed').css('top','0');
     });
+
+    $('.btn-menu-down').removeClass('mdi-chevron-down').addClass('mdi-plus')
   }
 
   $('.menu .main-menu .nav li .btn-menu-up').css('display','none');
@@ -323,4 +325,13 @@ $('document').ready(function () {
   $('.box-category').eq(3).addClass('bounceInLeft').attr('data-wow-delay', '.5s')
   $('.box-category').eq(4).addClass('bounceInUp').attr('data-wow-delay', '.4s')
   $('.box-category').eq(5).addClass('bounceInRight').attr('data-wow-delay', '.3s')
+
+  $('.box-category h4').addClass('flipInX').attr('data-wow-delay', '.7s')
+
+  $('.box-category li:nth-child(1)').addClass('fadeInUp').attr('data-wow-delay', '.9s')
+  $('.box-category li:nth-child(2)').addClass('fadeInUp').attr('data-wow-delay', '1s')
+  $('.box-category li:nth-child(3)').addClass('fadeInUp').attr('data-wow-delay', '1.1s')
+  $('.box-category li:nth-child(4)').addClass('fadeInUp').attr('data-wow-delay', '1.2s')
+  $('.box-category li:nth-child(5)').addClass('fadeInUp').attr('data-wow-delay', '1.3s')
+  $('.box-category li:nth-child(6)').addClass('fadeInUp').attr('data-wow-delay', '1.4s')
 });

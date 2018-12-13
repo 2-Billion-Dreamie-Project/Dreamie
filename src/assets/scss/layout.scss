@@ -224,18 +224,15 @@ article {
 .toggleMenu,
 .menu-close {
   display: none;
-  background: #cccccc;
-  height: 40px;
-  line-height: 40px;
+
   text-align: center;
-  color: black;
-  margin: 30px 0;
   z-index: 10000;
   transition: 500ms;
   width: 50px;
 
   i {
-    font-size: 16px;
+    font-size: 24px;
+    color: white;
   }
 
   &:hover {
@@ -1056,7 +1053,6 @@ article {
   padding: 30px 0;
   margin-bottom: 50px;
   position: relative;
-  z-index: 10;
 
   .owl-carousel .owl-item img {
     width: auto;
@@ -1667,7 +1663,7 @@ article {
       .nav {
         display: block;
         text-align: left;
-        background: #050505;
+        background: rgba(0, 0, 0, .93);
         position: absolute;
         width: 320px;
         margin-top: -30px;
@@ -1679,11 +1675,13 @@ article {
 
         li {
           display: block;
-          border-bottom: 0;
+          border-bottom: 1px solid #252525;
 
           i {
             float: right;
             padding-left: 150px;
+            font-size: 24px;
+            margin-top: -8px;
           }
 
           &:hover {
@@ -1706,6 +1704,8 @@ article {
             width: 100%;
             height: auto;
             padding: 0;
+            background: none;
+            transition: none!important;
 
             img {
               display: none;
@@ -1738,7 +1738,8 @@ article {
     }
 
     &-close {
-      display: none;
+      transform: scale(0) rotate(-180deg);
+      position: absolute;
     }
   }
 
@@ -1830,7 +1831,7 @@ article {
       .nav {
         display: block;
         text-align: left;
-        background: #050505;
+        background:  rgba(0, 0, 0, .93);
         position: absolute;
         width: 200%;
         margin-top: 0;
@@ -1843,7 +1844,6 @@ article {
 
         li {
           display: block;
-          border-bottom: 0;
 
           i {
             float: right;
@@ -1893,10 +1893,6 @@ article {
           }
         }
       }
-    }
-
-    &-close {
-      display: none;
     }
 
     .custom-header {
