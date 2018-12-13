@@ -82,7 +82,6 @@ export default class CategoryController {
         && (image && image !== '')
       ) {
         category = await this.CategoryModel.saveCategory(name, image, isParent);
-
         if (category) {
           if (category.isParent === false && categoryParentId !== '') {
             this.CategoryModel.UpdateChildParentCategory(categoryParentId, category._id);
@@ -111,7 +110,7 @@ export default class CategoryController {
     let { messDelCategory , messUpdateCategory} = req.flash();
     messDelCategory = messDelCategory ? messDelCategory[0]: '';
     messUpdateCategory = messUpdateCategory ? messUpdateCategory[0]: '';
-
+    // console.log(categories);
     res.render('admin/category/list_category', {
       csrfToken: req.csrfToken(),
       categories,

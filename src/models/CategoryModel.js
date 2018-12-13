@@ -28,7 +28,7 @@ export default class CategoryModel {
     try {
       if (_id !== '') {
         return (
-          this.categorySchema.findById(_id)
+          this.categorySchema.findById(_id).populate('parentCategory')
           .catch(function (err) {
             console.log(err);
             return undefined
@@ -118,7 +118,7 @@ export default class CategoryModel {
   getCategories() {
     try {
       return (
-        this.categorySchema.find({})
+        this.categorySchema.find({}).populate('parentCategory')
         .catch(function (err) {
           console.log(err);
           return undefined
@@ -138,6 +138,25 @@ export default class CategoryModel {
           console.log(err);
           return undefined
         })
+      );
+    } catch (error) {
+      console.log(error);
+      return undefined;
+    }
+  }
+
+  getHomeCategories() {
+    try {
+      return (
+        this.categorySchema
+          .find({ isParent: true })
+            .limit(6)
+            .sort({id: -1})
+          .populate({ path: 'childCategoryIds', model: 'Category' })
+            .catch(function (err) {
+              console.log(err);
+              return undefined
+            })
       );
     } catch (error) {
       console.log(error);

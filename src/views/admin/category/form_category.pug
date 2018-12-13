@@ -7,6 +7,8 @@ block append style
   link(rel='stylesheet', href='/assets/css/category_admin.min.css')
 
 block content
+  - let parentId = category.parentCategory && category.parentCategory[0] ? category.parentCategory[0]._id : '';
+
   if messCategory && messCategory !== ''
     div.mb-4.mess-create
       h5=messCategory
@@ -36,7 +38,10 @@ block content
           option(value="") Danh mục cha
           if getListCategoryParent && getListCategoryParent.length > 0
             each categoryParent in getListCategoryParent
-              option(value=categoryParent._id) #{categoryParent.name}
+              option(
+                selected=(parentId && parentId.equals(categoryParent._id)), 
+                value=categoryParent._id,
+              ) #{categoryParent.name}
                 
               
 
