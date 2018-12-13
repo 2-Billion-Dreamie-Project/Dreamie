@@ -9,10 +9,13 @@ block append style
   link(rel='stylesheet', href='/assets/css/media_admin.min.css')
   
   script(src="/bower_components/jquery-file-upload/js/vendor/jquery.ui.widget.js")
+  script(src="/bower_components/blueimp-load-image/js/load-image.all.min.js")
+  script(src="/bower_components/blueimp-canvas-to-blob/js/canvas-to-blob.min.js")
+
   script(src="/bower_components/jquery-file-upload/js/jquery.iframe-transport.js")
   script(src="/bower_components/jquery-file-upload/js/jquery.fileupload.js")
-
   script(src="/bower_components/jquery-file-upload/js/jquery.fileupload-process.js")
+
   script(src="/bower_components/jquery-file-upload/js/jquery.fileupload-image.js")
 
 
@@ -47,8 +50,13 @@ block content
         'X-CSRF-Token': $('meta[name=_csrf]').attr('content')
       },
       paramName: 'media',
+      disableImageResize: /Android(?!.*Chrome)|Opera/
+        .test(window.navigator && navigator.userAgent),
+      imageMaxWidth: 800,
+      imageMaxHeight: 800,
+      imageCrop: true,
       add: function (e, data) {
-
+        console.log(data);
         let tempMediaItem = $('#file-item-media').html();
         let files = data.files[0];
 
@@ -62,7 +70,6 @@ block content
       },
       progress: function (e, data) {
         let progress = parseInt(data.loaded / data.total * 100, 10);
-        console.log({data, progress});
         data.fieldUpload.find('.progress-bar').css(
           'width', 
           progress + '%'

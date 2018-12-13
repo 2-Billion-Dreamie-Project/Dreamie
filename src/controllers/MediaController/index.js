@@ -44,6 +44,7 @@ export default class MediaController {
 
    */
   addMedia(req, res) {
+    console.log(req.file);
     res.json(req.file);
   }
 }
