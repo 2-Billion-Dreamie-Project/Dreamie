@@ -39,7 +39,7 @@ block content
           if getListCategoryParent && getListCategoryParent.length > 0
             each categoryParent in getListCategoryParent
               option(
-                selected=(parentId && parentId.equals(categoryParent._id)), 
+                selected=parentId ? parentId.equals(categoryParent._id) : false, 
                 value=categoryParent._id,
               ) #{categoryParent.name}
                 
