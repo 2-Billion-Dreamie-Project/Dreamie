@@ -42,21 +42,25 @@ block content
       
 
   script.
-    $('.media-upload-body').fileupload({
+    //- Config upload media
+    const mediaUpload = $('.media-upload-body').fileupload({
       dataType: 'json',
       url: '/admin/media/add-media',
+      autoUpload: false,
       type: 'post',
       headers: {
         'X-CSRF-Token': $('meta[name=_csrf]').attr('content')
       },
       paramName: 'media',
       disableImageResize: /Android(?!.*Chrome)|Opera/
-        .test(window.navigator && navigator.userAgent),
-      imageMaxWidth: 800,
-      imageMaxHeight: 800,
-      imageCrop: true,
-      add: function (e, data) {
-        console.log(data);
+            .test(window.navigator.userAgent),
+      previewMaxWidth: 100,
+      previewMaxHeight: 100,
+      previewCrop: true,
+    });
+
+    //- On add media and generate template
+    mediaUpload.on('fileuploadadd', function(e, data) {
         let tempMediaItem = $('#file-item-media').html();
         let files = data.files[0];
 
@@ -67,21 +71,36 @@ block content
         $('.media-upload-content').append(tempMediaItem);
         
         data.submit();
-      },
-      progress: function (e, data) {
+    });
+
+    //- Generate thumbnail
+    mediaUpload.on('fileuploadprocessalways', function(e, data) {
+        const { preview } = data.files[0];
+        const { fieldUpload } = data;
+      
+        fieldUpload.find('img').attr('src', preview.toDataURL());
+    });
+
+    //- Handle while process data upload
+    mediaUpload.on('fileuploadprogress', function(e, data) {
         let progress = parseInt(data.loaded / data.total * 100, 10);
         data.fieldUpload.find('.progress-bar').css(
           'width', 
           progress + '%'
         );
-      },
-      done: function (e, data) {
-        data
-        .fieldUpload
-          .find('a')
-          .prop('hidden', false);
-      },
+    });
 
+    //- Handle when upload media is done
+    mediaUpload.on('fileuploaddone', function(e, data) {
+      const { fieldUpload } = data;
+
+      fieldUpload
+        .find('a')
+          .prop('hidden', false);
+
+      fieldUpload
+        .find('.progress')
+          .remove();
     });
 
   
