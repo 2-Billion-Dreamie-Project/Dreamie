@@ -77,7 +77,6 @@ block content
     mediaUpload.on('fileuploadprocessalways', function(e, data) {
         const { preview } = data.files[0];
         const { fieldUpload } = data;
-      
         fieldUpload.find('img').attr('src', preview.toDataURL());
     });
 
@@ -93,7 +92,6 @@ block content
     //- Handle when upload media is done
     mediaUpload.on('fileuploaddone', function(e, data) {
       const { fieldUpload } = data;
-
       fieldUpload
         .find('a')
           .prop('hidden', false);

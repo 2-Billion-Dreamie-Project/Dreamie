@@ -1,5 +1,6 @@
 // import PartnerModel from '../../models/PartnerModel';
 import moment from 'moment';
+import sharp from 'sharp';
 
 /**
  * @class MediaController
@@ -45,6 +46,13 @@ export default class MediaController {
    */
   addMedia(req, res) {
     console.log(req.file);
+    sharp(req.file.path).resize(4460, 2973).toFile('src/storage/thumbnail/' + 'thumb-' + req.file.filename, function(err) {
+      if (err) {
+          console.error('sharp>>>', err)
+      }
+      console.log('ok okoko')
+    })
+
     res.json(req.file);
   }
 }
