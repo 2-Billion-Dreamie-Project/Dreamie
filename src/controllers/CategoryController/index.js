@@ -64,15 +64,16 @@ export default class CategoryController {
    */
   async saveCategory(req, res) {
     const {_id, name, image, categoryParentId } = req.body;
+    let parentId = (categoryParentId && categoryParentId !=='') ? categoryParentId : '';
+    let isParent = parentId !== '' ? false : true;
     let category = {};
-    let isParent = categoryParentId !== '' ? false : true;
     
     if (_id && _id !== '') {
       if (
         (name && name !== '')
         && (image && image !== '')
       ) {
-        category = await this.CategoryModel.updateCategory(_id, name, image, isParent);
+        category = await this.CategoryModel.updateCategory(_id, name, image, parentId, isParent);
       } 
 
       res.redirect('/admin/category/list-category');
@@ -81,12 +82,8 @@ export default class CategoryController {
         (name && name !== '')
         && (image && image !== '')
       ) {
-        category = await this.CategoryModel.saveCategory(name, image, isParent);
+        category = await this.CategoryModel.saveCategory(name, image, parentId, isParent);
         if (category) {
-          if (category.isParent === false && categoryParentId !== '') {
-            this.CategoryModel.UpdateChildParentCategory(categoryParentId, category._id);
-          }
-
           req.flash('messCategory', 'Bạn đã khởi tạo thành công, mời kiểm tra lại và lưu !');
           res.redirect('/admin/category/custom-category/' + category._id);
         } else {
@@ -108,9 +105,10 @@ export default class CategoryController {
   async getCategories(req, res) {
     let categories = await this.CategoryModel.getCategories();
     let { messDelCategory , messUpdateCategory} = req.flash();
+
     messDelCategory = messDelCategory ? messDelCategory[0]: '';
     messUpdateCategory = messUpdateCategory ? messUpdateCategory[0]: '';
-    // console.log(categories);
+
     res.render('admin/category/list_category', {
       csrfToken: req.csrfToken(),
       categories,

@@ -28,11 +28,15 @@ export default class CategoryModel {
     try {
       if (_id !== '') {
         return (
-          this.categorySchema.findById(_id).populate('parentCategory')
-          .catch(function (err) {
-            console.log(err);
-            return undefined
+          this.categorySchema.findById(_id).populate({ 
+            path: 'parentId', 
+            model: 'Category',
+            match: { isParent: true}
           })
+            .catch(function (err) {
+              console.log(err);
+              return undefined
+            })
         );
       }
 
@@ -46,6 +50,7 @@ export default class CategoryModel {
   saveCategory(
     name = '',
     image = '',
+    parentId = '',
     isParent = true,
   ) {
     let category;
@@ -57,6 +62,8 @@ export default class CategoryModel {
           image,
           isParent
         });
+
+        category.parentId = parentId !== '' ? parentId : category._id;
 
         category.save(function (err, category) {
           if (err) return console.log(err);
@@ -82,18 +89,22 @@ export default class CategoryModel {
     _id = '',
     name = '',
     image = '',
+    parentId = '',
     isParent = true,
   ) {
     try {
       if (_id && _id !== '') {
+        parentId = parentId !== '' ? parentId : _id;
+        
         return (
           this.categorySchema
-            .updateOne({
+            .findOneAndUpdate({
               _id
             }, {
               $set: {
                 name,
                 image,
+                parentId,
                 isParent,
               }
             }, {
@@ -118,11 +129,15 @@ export default class CategoryModel {
   getCategories() {
     try {
       return (
-        this.categorySchema.find({}).populate('parentCategory')
-        .catch(function (err) {
-          console.log(err);
-          return undefined
+        this.categorySchema.find({}).populate({ 
+          path: 'parentId', 
+          model: 'Category',
+          match: { isParent: true}
         })
+          .catch(function (err) {
+            console.log(err);
+            return undefined
+          })
       );
     } catch (error) {
       console.log(error);
@@ -152,7 +167,11 @@ export default class CategoryModel {
           .find({ isParent: true })
             .limit(6)
             .sort({id: -1})
-          .populate({ path: 'childCategoryIds', model: 'Category' })
+          .populate({ 
+            path: 'subCategories', 
+            model: 'Category',
+            match: { isParent: false}
+          })
             .catch(function (err) {
               console.log(err);
               return undefined

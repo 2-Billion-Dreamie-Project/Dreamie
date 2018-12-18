@@ -97,8 +97,8 @@ block content
                   h4.wow
                     a(href='/demo/product')=homeCategory.name ? homeCategory.name : ''
                   ul
-                    if homeCategory.childCategoryIds && homeCategory.childCategoryIds.length > 0
-                      each homeCategoryChild in homeCategory.childCategoryIds
+                    if homeCategory.subCategories && homeCategory.subCategories.length > 0
+                      each homeCategoryChild in homeCategory.subCategories
                         li.wow
                           a(href='/demo/product')=homeCategoryChild.name ? homeCategoryChild.name : ''
 

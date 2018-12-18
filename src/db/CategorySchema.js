@@ -9,15 +9,14 @@ const CategorySchema = new mongoose.Schema({
   image: {
     type: String,
   },
-  childCategoryIds: [{
-    type: 'ObjectId',
-    ref: 'Category',
-  }],
   homeMode: {
     type: Boolean,
   },
   status: {
     type: Number,
+  },
+  parentId: {
+    type: 'ObjectId',
   },
   isParent: {
     type: Boolean,
