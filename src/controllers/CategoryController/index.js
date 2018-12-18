@@ -72,7 +72,7 @@ export default class CategoryController {
         (name && name !== '')
         && (image && image !== '')
       ) {
-        category = await this.CategoryModel.updateCategory(_id, name, image);
+        category = await this.CategoryModel.updateCategory(_id, name, image, isParent);
       } 
 
       res.redirect('/admin/category/list-category');

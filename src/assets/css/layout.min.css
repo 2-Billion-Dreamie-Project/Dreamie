@@ -213,6 +213,7 @@ article {
   z-index: 10000;
   transition: 500ms;
   width: 50px;
+  margin: 30px 0;
 }
 .toggleMenu i,
 .menu-close i {
