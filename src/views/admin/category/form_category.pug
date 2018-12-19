@@ -7,8 +7,6 @@ block append style
   link(rel='stylesheet', href='/assets/css/category_admin.min.css')
 
 block content
-  - let parentId = category && category.parentId ? category.parentId._id : '';
-
   if messCategory && messCategory !== ''
     div.mb-4.mess-create
       h5=messCategory
@@ -33,19 +31,26 @@ block content
           value=category && category.name ? category.name : '',
         )
 
-      if category.isParent === false
+      if category && category._id
+        if category.parentId && !category.parentId._id.equals(category._id)
+          .form-group
+            label(for='categoryParentId') Thuộc danh mục
+            select#categoryParentId.form-control(name='categoryParentId')
+              option(value="") Danh mục cha
+              if getListCategoryParent && getListCategoryParent.length > 0
+                each categoryParent in getListCategoryParent
+                  option(
+                    selected=(category.isParent === false ? category.parentId._id.equals(categoryParent._id) : false), 
+                    value=categoryParent._id,
+                  ) #{categoryParent.name}
+      else 
         .form-group
           label(for='categoryParentId') Thuộc danh mục
           select#categoryParentId.form-control(name='categoryParentId')
             option(value="") Danh mục cha
-            if getListCategoryParent && getListCategoryParent.length > 0
-              each categoryParent in getListCategoryParent
-                option(
-                  selected=(parentId && category.isParent === false ? parentId.equals(categoryParent._id) : false), 
-                  value=categoryParent._id,
-                ) #{categoryParent.name}
-                
-              
+              if getListCategoryParent && getListCategoryParent.length > 0
+                each categoryParent in getListCategoryParent
+                  option(value=categoryParent._id) #{categoryParent.name}
 
 
       .form-group

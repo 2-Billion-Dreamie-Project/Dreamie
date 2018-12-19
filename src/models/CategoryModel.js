@@ -85,7 +85,7 @@ export default class CategoryModel {
    * @param {String} image - this param is required
    * @returns {Object} Return category is object type
    */
-  updateCategory(
+  async updateCategory(
     _id = '',
     name = '',
     image = '',
@@ -94,19 +94,26 @@ export default class CategoryModel {
   ) {
     try {
       if (_id && _id !== '') {
-        parentId = parentId !== '' ? parentId : _id;
-        
+        let category = await this.categorySchema.findById(_id);
+        let queryCondition = {
+          name,
+          image
+        };
+
+        if (category && category.isParent === true) {
+          queryCondition.isParent = true;
+          queryCondition.parentId = category._id;
+        } else {
+          queryCondition.isParent = isParent;
+          queryCondition.parentId = parentId;
+        }
+
         return (
           this.categorySchema
             .findOneAndUpdate({
               _id
             }, {
-              $set: {
-                name,
-                image,
-                parentId,
-                isParent,
-              }
+              $set: queryCondition
             }, {
               new: true
             })

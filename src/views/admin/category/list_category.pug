@@ -43,7 +43,7 @@ block content
                 if category.isParent === true
                   | Danh mục cha
                 else 
-                  a=category.parentId.name
+                  a=category.parentId && category.parentId.name ? category.parentId.name : ''
               
               td=category.updatedAt ? moment(category.updatedAt).format('DD/MM/YYYY HH:mm') : ''
               td=category.status ? category.status : ''
