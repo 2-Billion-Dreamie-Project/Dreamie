@@ -52,6 +52,7 @@ export default class CategoryModel {
     image = '',
     parentId = '',
     isParent = true,
+    homeMode = false,
   ) {
     let category;
 
@@ -60,7 +61,8 @@ export default class CategoryModel {
         category = new this.categorySchema({
           name,
           image,
-          isParent
+          isParent,
+          homeMode
         });
 
         category.parentId = parentId !== '' ? parentId : category._id;
@@ -91,13 +93,15 @@ export default class CategoryModel {
     image = '',
     parentId = '',
     isParent = true,
+    homeMode = false,
   ) {
     try {
       if (_id && _id !== '') {
         let category = await this.categorySchema.findById(_id);
         let queryCondition = {
           name,
-          image
+          image,
+          homeMode
         };
 
         if (category && category.isParent === true) {
@@ -171,13 +175,13 @@ export default class CategoryModel {
     try {
       return (
         this.categorySchema
-          .find({ isParent: true })
+          .find({ isParent: true, homeMode: true })
             .limit(6)
             .sort({id: -1})
           .populate({ 
             path: 'subCategories', 
             model: 'Category',
-            match: { isParent: false}
+            match: { isParent: false, homeMode: true }
           })
             .catch(function (err) {
               console.log(err);

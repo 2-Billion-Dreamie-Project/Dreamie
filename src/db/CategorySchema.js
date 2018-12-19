@@ -12,9 +12,6 @@ const CategorySchema = new mongoose.Schema({
   homeMode: {
     type: Boolean,
   },
-  status: {
-    type: Number,
-  },
   parentId: {
     type: 'ObjectId',
   },

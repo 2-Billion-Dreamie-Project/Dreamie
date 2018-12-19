@@ -17,12 +17,6 @@ block content
       if category && category._id !== 'undefined'
         input(type="hidden" name="_id" value=category._id)
       .form-group
-        label(for='status') Trạng thái
-        select#status.form-control(name='status')
-          option Hiển thị
-          option Ẩn
-          option(value=category && category.name ? category.name : '')
-      .form-group
         label(for='name-category') Tên danh mục
         input#name-category.form-control(
           name='name', 
@@ -60,10 +54,12 @@ block content
           type='text',
           value=category && category.image ? category.image : '',
         )
+
       .form-check.form-check-flat.form-check-primary.mb-3
         label.form-check-label
-          input(type='checkbox').form-check-warning
+          input(name='homeMode', type='checkbox', checked=category.homeMode).form-check-warning
           | Hiển thị trang chủ
+          - console.log(category);
       button.btn.btn-success.mr-2(type='submit') Lưu
       a.btn.btn-light(href="/admin/category/list-category") Trở lại
 

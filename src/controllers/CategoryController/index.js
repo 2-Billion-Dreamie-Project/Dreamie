@@ -63,17 +63,19 @@ export default class CategoryController {
    * If error show message error 
    */
   async saveCategory(req, res) {
-    const {_id, name, image, categoryParentId } = req.body;
+    let {_id, name, image, categoryParentId, homeMode } = req.body;
     let parentId = (categoryParentId && categoryParentId !=='') ? categoryParentId : '';
     let isParent = parentId !== '' ? false : true;
-    let category = {};
-    
+
+    let category = {};   
+    homeMode = homeMode === 'on' ? true : false;
+
     if (_id && _id !== '') {
       if (
         (name && name !== '')
         && (image && image !== '')
       ) {
-        category = await this.CategoryModel.updateCategory(_id, name, image, parentId, isParent);
+        category = await this.CategoryModel.updateCategory(_id, name, image, parentId, isParent, homeMode);
       } 
 
       res.redirect('/admin/category/list-category');
@@ -82,7 +84,7 @@ export default class CategoryController {
         (name && name !== '')
         && (image && image !== '')
       ) {
-        category = await this.CategoryModel.saveCategory(name, image, parentId, isParent);
+        category = await this.CategoryModel.saveCategory(name, image, parentId, isParent, homeMode);
         if (category) {
           req.flash('messCategory', 'Bạn đã khởi tạo thành công, mời kiểm tra lại và lưu !');
           res.redirect('/admin/category/custom-category/' + category._id);
