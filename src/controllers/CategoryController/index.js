@@ -131,7 +131,7 @@ export default class CategoryController {
     let category = {}
     
     if (_id && _id !== '') {
-      category = await this.CategoryModel.deleteCategory({_id: req.params._id});
+      category = await this.CategoryModel.deleteCategory(_id);
       if (category) {
         req.flash('messDelCategory', `Bạn vừa xóa danh mục có số ID ${category.id} thành công`);
       }

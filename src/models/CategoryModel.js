@@ -105,7 +105,7 @@ export default class CategoryModel {
           queryCondition.parentId = category._id;
         } else {
           queryCondition.isParent = isParent;
-          queryCondition.parentId = parentId;
+          queryCondition.parentId = category && parentId !=='' ? parentId : category._id;
         }
 
         return (
@@ -190,19 +190,29 @@ export default class CategoryModel {
     }
   }
 
-  deleteCategory(_id = '') {
+  async deleteCategory(_id = '') {
     try {
       if (_id !== '') {
-        return(
-          this.categorySchema.findOneAndRemove({ _id })
-            .catch(function(err) {
-              console.log(err);
-              return undefined
-            })
-        );
+        let query = {};
+        let category = await this.getOneCategory(_id);
+
+        if (category) {
+          if (category.isParent === true) {
+            query.parentId = category._id;
+          } else {
+            query._id = category._id;
+          }
+
+          let doDelete = await this.categorySchema.deleteMany(query);
+          if (doDelete) return category;
+          
+          return undefined;
+
+        }
+
       }
   
-      return false;
+      return undefined;
     } catch (error) {
       console.log(error);
       return undefined;
