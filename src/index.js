@@ -18,6 +18,7 @@ import connectMongo from 'connect-mongo';
 import routes from './routes';
 
 import timeout from 'connect-timeout';
+import cors from 'cors';
 
 const app = express();
 
@@ -52,6 +53,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); 
 // compress all responses
 app.use(compression()); 
+
+app.use(cors());
+app.options('*', cors());
 
 app.use(cookieParser());
 app.use(csurf({ cookie: true }));

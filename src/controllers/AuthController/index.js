@@ -75,7 +75,17 @@ export default class AuthController {
   }
 
   async getUsers(req, res) {
-    let listUsers = await this.userModel.getUsers();
+    let { search, page } = req.query;
+    let queryUser = {};
+    let skip = (page - 1) * 10;
+    console.log(skip);
+
+    if (search && search !== '') {
+      queryUser = { userName: new RegExp(search, 'i') }
+    }
+
+    let listUsers = await this.userModel.getUsers(queryUser, skip);
     res.status(200).json(listUsers);
+
   }
 }
