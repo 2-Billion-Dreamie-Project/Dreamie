@@ -1,6 +1,7 @@
 // import PartnerModel from '../../models/PartnerModel';
 import moment from 'moment';
 import sharp from 'sharp';
+import { getFileInfoByName } from '../../helpers';
 
 /**
  * @class MediaController
@@ -44,14 +45,15 @@ export default class MediaController {
    * @argument res  This is the second parameter to get response
 
    */
-  addMedia(req, res) {
+  async addMedia(req, res) {
     console.log(req.file);
-    sharp(req.file.path).resize(4460, 2973).toFile('src/storage/thumbnail/' + 'thumb-' + req.file.filename, function(err) {
-      if (err) {
-          console.error('sharp>>>', err)
-      }
-      console.log('ok okoko')
-    })
+    let getFileNameAndExt = getFileInfoByName(req.file.filename);
+    let resize = await sharp(req.file.path).resize(150, 150)
+      .toFile(
+        req.file.destination + getFileNameAndExt.name + '-150x150' + getFileNameAndExt.ext
+      );
+
+    console.log(resize);
 
     res.json(req.file);
   }
