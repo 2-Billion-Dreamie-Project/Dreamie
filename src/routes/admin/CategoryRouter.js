@@ -12,4 +12,6 @@ CategoryRouter.post('/save-category', CategoryCtlrIns.saveCategory);
 
 CategoryRouter.get('/delete/:_id', CategoryCtlrIns.deleteCategory);
 
+CategoryRouter.get('/api/list-category', CategoryCtlrIns.getApiCategories);
+
 export default CategoryRouter;

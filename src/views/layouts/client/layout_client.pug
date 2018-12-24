@@ -44,100 +44,17 @@ html(lang='en')
                     .menu-bottom
                       img(src='/assets/img/bg-menu.png')
                       .row
-                        .col-xl-2.text-left
-                          h4
-                            a(href='/demo/product') Chuột máy tính
-                          ul
-                            li
-                              a(href='/demo/product') Razer
-                            li
-                              a(href='/demo/product') Steelseries
-                            li
-                              a(href='/demo/product') Logitech
-                            li
-                              a(href='/demo/product') Zowie
-                            li
-                              a(href='/demo/product') Microsoft
-                            li
-                              a(href='/demo/product') Alienware
-                        .col-xl-2.text-left
-                          h4
-                            a(href='/demo/product') Bàn phím
-                          ul
-                            li
-                              a(href='/demo/product') Razer
-                            li
-                              a(href='/demo/product') Steelseries
-                            li
-                              a(href='/demo/product') Logitech
-                            li
-                              a(href='/demo/product') GSkill
-                            li
-                              a(href='/demo/product') Cooler Master
-                            li
-                              a(href='/demo/product') Alienware
-                        .col-xl-2.text-left
-                          h4
-                            a(href='/demo/product') Tai nghe
-                          ul
-                            li
-                              a(href='/demo/product') Razer
-                            li
-                              a(href='/demo/product') Steelseries
-                            li
-                              a(href='/demo/product') Logitech
-                            li
-                              a(href='/demo/product') Corsar
-                            li
-                              a(href='/demo/product') Ozone
-                            li
-                              a(href='/demo/product') TT Sport
-                        .col-xl-2.text-left
-                          h4
-                            a(href='/demo/product') Bàn di chuột
-                          ul
-                            li
-                              a(href='/demo/product') Razer
-                            li
-                              a(href='/demo/product') Steelseries
-                            li
-                              a(href='/demo/product') Logitech
-                            li
-                              a(href='/demo/product') Corsair
-                            li
-                              a(href='/demo/product') Zowie
-                            li
-                              a(href='/demo/product') Gamdias
-                        .col-xl-2.text-left
-                          h4
-                            a(href='/demo/product') Ghế gaming
-                          ul
-                            li
-                              a(href='/demo/product') Cross Fire
-                            li
-                              a(href='/demo/product') WCG
-                            li
-                              a(href='/demo/product') AutoFull
-                            li
-                              a(href='/demo/product') DXRacer
-                            li
-                              a(href='/demo/product') Extreme
-                        .col-xl-2.text-left
-                          h4
-                            a(href='/demo/product') Tay cầm
-                          ul
-                            li
-                              a(href='/demo/product') Xbox
-                            li
-                              a(href='/demo/product') Xbox One
-                            li
-                              a(href='/demo/product') PS3
-                            li
-                              a(href='/demo/product') PS4
-                            li
-                              a(href='/demo/product') New Game N1 Pro
-                            li
-                              a(href='/demo/product') New Game Q1
+                        if homeCategories && homeCategories.length > 0
+                          each homeCategory in homeCategories
+                            .col-xl-2.text-left
+                              h4
+                                a(href='/demo/product')=homeCategory.name ? homeCategory.name : ''
+                              ul
+                                if homeCategory.subCategories && homeCategory.subCategories.length > 0
+                                  each homeCategoryChild in homeCategory.subCategories
+                                    li
+                                      a(href='/demo/product')=homeCategoryChild.name ? homeCategoryChild.name : ''
+
                   li.nav-item
                     a(href='/demo/news') Tin tức
                   li.nav-item

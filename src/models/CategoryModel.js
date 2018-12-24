@@ -140,11 +140,13 @@ export default class CategoryModel {
   getCategories() {
     try {
       return (
-        this.categorySchema.find({}).populate({ 
-          path: 'parentId', 
-          model: 'Category',
-          match: { isParent: true}
-        })
+        this.categorySchema
+          .find({}).populate({ 
+            path: 'parentId', 
+            model: 'Category',
+            match: { isParent: true}
+          })
+          
           .catch(function (err) {
             console.log(err);
             return undefined
@@ -156,15 +158,29 @@ export default class CategoryModel {
     }
   }
 
-  getListCategoryParent() {
+  async getListCategoryParent(queryCategory, skip) {
     try {
-      return (
-        this.categorySchema.find({ isParent: true })
+      let categories = await this.categorySchema
+        .find(queryCategory)
+          .limit(10)
+          .skip(skip)
         .catch(function (err) {
           console.log(err);
           return undefined
-        })
-      );
+        });
+
+      let total = await this.categorySchema
+        .count(queryCategory)
+          .catch(function (err) {
+            console.log(err);
+            return undefined
+          });
+
+      return {
+        categories,
+        total,
+      }
+
     } catch (error) {
       console.log(error);
       return undefined;

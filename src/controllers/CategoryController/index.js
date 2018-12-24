@@ -16,6 +16,7 @@ export default class CategoryController {
     this.saveCategory = this.saveCategory.bind(this);
     this.getCategories = this.getCategories.bind(this);
     this.deleteCategory = this.deleteCategory.bind(this);
+    this.getApiCategories = this.getApiCategories.bind(this);
   }
 
   /**
@@ -29,8 +30,6 @@ export default class CategoryController {
     let category = {};
     let _id = typeof req.params._id !== 'undefined' ? req.params._id : '';
     let { messCategory } = req.flash();
-
-    let getListCategoryParent = await this.CategoryModel.getListCategoryParent();
 
     messCategory = messCategory ? messCategory[0]: '';
 
@@ -49,7 +48,6 @@ export default class CategoryController {
       csrfToken: req.csrfToken(),
       _id,
       category,
-      getListCategoryParent,
       messCategory
     });
   }
@@ -140,5 +138,21 @@ export default class CategoryController {
     }
     
     res.redirect('/admin/category/list-category');
+  }
+
+  async getApiCategories(req, res) {
+    let { search, page } = req.query;
+    let queryCategory = {
+      isParent: true,
+    };
+    let skip = (page - 1) * 10;
+
+    if (search && search !== '') {
+      queryCategory.name = new RegExp(search, 'i');
+    }
+
+    let categories = await this.CategoryModel.getListCategoryParent(queryCategory, skip);
+    // console.log(categories);
+    res.status(200).json(categories);
   }
 }

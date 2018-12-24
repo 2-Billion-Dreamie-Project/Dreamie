@@ -4,6 +4,7 @@ block title
   title Thêm danh mục
 
 block append style
+  link(rel='stylesheet', href='/bower_components/select2/dist/css/select2.min.css')
   link(rel='stylesheet', href='/assets/css/category_admin.min.css')
 
 block content
@@ -26,25 +27,17 @@ block content
         )
 
       if category && category._id
-        if category.parentId && !category.parentId._id.equals(category._id)
+        if category.parentId !== '' && !category.parentId.equals(category._id)
           .form-group
             label(for='categoryParentId') Thuộc danh mục
             select#categoryParentId.form-control(name='categoryParentId')
-              option(value="") Danh mục cha
-              if getListCategoryParent && getListCategoryParent.length > 0
-                each categoryParent in getListCategoryParent
-                  option(
-                    selected=(category.isParent === false ? category.parentId._id.equals(categoryParent._id) : false), 
-                    value=categoryParent._id,
-                  ) #{categoryParent.name}
+              
       else 
         .form-group
           label(for='categoryParentId') Thuộc danh mục
           select#categoryParentId.form-control(name='categoryParentId')
-            option(value="") Danh mục cha
-              if getListCategoryParent && getListCategoryParent.length > 0
-                each categoryParent in getListCategoryParent
-                  option(value=categoryParent._id) #{categoryParent.name}
+              
+
 
 
       .form-group
@@ -59,41 +52,108 @@ block content
         label.form-check-label
           input(name='homeMode', type='checkbox', checked=category.homeMode).form-check-warning
           | Hiển thị trang chủ
-          - console.log(category);
       button.btn.btn-success.mr-2(type='submit') Lưu
       a.btn.btn-light(href="/admin/category/list-category") Trở lại
 
   script(src='/bower_components/jquery/dist/jquery.min.js')
   script(src='/bower_components/jquery-validation/dist/jquery.validate.min.js')
   script(src='/bower_components/jquery-validation/dist/additional-methods.min.js')
+  script(src='/bower_components/select2/dist/js/select2.min.js')
+ 
   script.
-    $("#form-category").validate({
-      rules: {
-        name: {
-          required: true,
+    $(document).ready(function() {
+      $("#form-category").validate({
+        rules: {
+          name: {
+            required: true,
+          },
+          image:{
+            required: true,
+            url: true,
+          },
         },
-        image:{
-          required: true,
-          url: true,
+        messages: {
+          name: {
+            required: "Vui lòng điền tên danh mục",
+            minlength: "Tên danh mục ít nhất có 5 ký tự",
+            maxlength: "Tên danh mục không quá 20 ký tự"
+          },
+          image:{
+            required: "Vui lòng điền ảnh danh mục",
+            url: "Vui lòng điền đúng định dạng url"
+          },
         },
-      },
-      messages: {
-        name: {
-          required: "Vui lòng điền tên danh mục",
-          minlength: "Tên danh mục ít nhất có 5 ký tự",
-          maxlength: "Tên danh mục không quá 20 ký tự"
-        },
-        image:{
-          required: "Vui lòng điền ảnh danh mục",
-          url: "Vui lòng điền đúng định dạng url"
-        },
-      },
-      errorPlacement: function(error, element) {
-        $(error).addClass('text-danger mt-2');
-        $(element).addClass('form-control-danger');
+        errorPlacement: function(error, element) {
+          $(error).addClass('text-danger mt-2');
+          $(element).addClass('form-control-danger');
 
-        error.insertAfter(element);
+          error.insertAfter(element);
+        }
+      });
+
+      if ($('#categoryParentId').length > 0) {
+        let categories = $('#categoryParentId').select2({
+          allowClear: true,
+          placeholder: "Danh mục cha",
+          width: '100%',
+          ajax: {
+            url: 'http://localhost:3000/admin/category/api/list-category',
+            dataType: 'json',
+            delay: 360,
+            data: function (params) {
+              
+              var query = {
+                search: params.term,
+                page: params.page || 1
+              }
+
+              // Query parameters will be ?search=[term]&type=public
+              return query;
+            },
+            processResults: function (data, params) {
+              console.log({params, data});
+              let dataValue = [];
+              params.page = params.page || 1;
+              let { categories, total } = data;
+
+              if (categories && categories.length > 0) {
+                  for (let value of categories) {
+                    let newObj = {
+                      id: value._id,
+                      text: value.name,
+                    }
+
+                    dataValue.push(newObj);
+                  }
+
+              }
+
+              return {
+                results: dataValue,
+                pagination: {
+                  more: (params.page * 10) < total,
+                },
+              };
+              
+            }
+
+          }
+
+        });
+
+        let category = !{category ? JSON.stringify(category) : undefined}
+
+        if (category && category._id) {
+          if (category.parentId && category.parentId._id !== '') {
+            let option = new Option(category.parentId.name, category.parentId._id, true, true);
+            categories.append(option).trigger('change');
+          }
+        }
       }
+
     });
+
+    
+    
 
 

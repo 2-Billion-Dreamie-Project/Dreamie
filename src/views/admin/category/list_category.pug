@@ -26,8 +26,8 @@ block content
           th(scope='col') Tên danh mục
           th(scope='col') Ảnh danh mục
           th(scope='col') Thuộc danh mục
+          th(scope='col') Ngày thêm
           th(scope='col') Ngày sửa
-          th(scope='col') Trạng thái
           th(scope='col') Hành động
       tbody
         if categories && categories.length
@@ -45,8 +45,8 @@ block content
                 else 
                   a=category.parentId && category.parentId.name ? category.parentId.name : ''
               
+              td=category.createdAt ? moment(category.createdAt).format('DD/MM/YYYY HH:mm') : ''
               td=category.updatedAt ? moment(category.updatedAt).format('DD/MM/YYYY HH:mm') : ''
-              td=category.status ? category.status : ''
               td
                 if category._id
                   a.btn.btn-info.mr-2.mb-xl-0.mb-2(href="/admin/category/custom-category/" + category._id) Xem
