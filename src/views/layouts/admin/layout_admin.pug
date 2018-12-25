@@ -10,6 +10,7 @@ html(lang='en')
       link(rel='stylesheet', href='/assets/vendors/css/vendor.bundle.addons.css')
       link(rel='stylesheet', href='/assets/css/vertical-layout-dark/style-admin.min.css')
       link(rel='stylesheet', href='/bower_components/fancybox/dist/jquery.fancybox.min.css')
+      link(rel='stylesheet', href='/assets/css/admin.min.css')
       link(rel="shortcut icon", href="/assets/img/favicon.ico")
   body
     .container-scroller
@@ -73,6 +74,17 @@ html(lang='en')
                     a.nav-link(href='/admin/slider/custom-slider') Thêm Slider
                   li.nav-item
                     a.nav-link(href='/admin/slider/list-slider') Danh sách Slider
+            li.nav-item
+              a.nav-link(data-toggle='collapse', href='#ui-category', aria-expanded='false', aria-controls='ui-basic')
+                i.mdi.mdi-folder-multiple.menu-icon(aria-hidden='true')
+                span.menu-title Danh mục
+                i.menu-arrow
+              #ui-category.collapse
+                ul.nav.flex-column.sub-menu
+                  li.nav-item
+                    a.nav-link(href='/admin/category/custom-category') Thêm Danh mục
+                  li.nav-item
+                    a.nav-link(href='/admin/category/list-category') Danh sách danh mục
 
         .main-panel
           .content-wrapper

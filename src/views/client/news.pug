@@ -16,210 +16,213 @@ block content
               a(href='/demo/home') Trang chủ
             li.breadcrumb-item.active(aria-current='page') Tin tức
 
-    section.news-page
+    section.news-page.news-home
       .container
         .row
-          .col-lg-12
+          .col-md-6
             .box-news-home
-              .row
-                .col-lg-4
-                  .box-news-home-img
-                    .custom-news
-                      a(title='Phóng to hình', rel='gallery', href='/assets/img/news-1.png', data-fancybox='', data-caption='Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis')
-                        i.fa.fa-search-plus(aria-hidden='true')
-                    img(src='/assets/img/news-2.png', alt='')
-                .col-lg-1
-                  .box-news-home-date.text-center
-                    h1 07
-                    i.fa.fa-times(aria-hidden='true')
-                    h1 10
-                    i.fa.fa-times(aria-hidden='true')
-                    h1 18
-                .col-lg-5
-                  .box-news-home-detail
-                    h3
-                      a(href='/demo/news_detail') Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
-                    h5
-                      | Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit repellat odit perspiciatis necessitatibus adipisci nam, perferendis assumenda aliquam beatae id iure, quia, vero dolorum itaque asperiores cum. Nulla, libero cum.
-                .col-lg-2
-                  .box-news-home-btn
-                    a(href='/demo/news_detail') xem thêm
-                    a Xem nhanh
+              .box-news-home-img
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  img(src='/assets/img/news-3.png')
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  span
+              .box-news-home-detail
+                h3
+                  a(title='Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.', href='demo/news_detail') Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.
+                .box-news-home-detail-date
+                  li
+                    i.mdi.mdi-calendar-clock
+                    |  12/12/2018
+                  li
+                    i.mdi.mdi-account-plus
+                    |  Kemmie
+          .col-md-6
             .box-news-home
-              .row
-                .col-lg-4
-                  .box-news-home-img
-                    .custom-news
-                      a(title='Phóng to hình', rel='gallery', href='/assets/img/news-1.png', data-fancybox='', data-caption='Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis')
-                        i.fa.fa-search-plus(aria-hidden='true')
-                    img(src='/assets/img/news-1.png', alt='')
-                .col-lg-1
-                  .box-news-home-date.text-center
-                    h1 07
-                    i.fa.fa-times(aria-hidden='true')
-                    h1 10
-                    i.fa.fa-times(aria-hidden='true')
-                    h1 18
-                .col-lg-5
-                  .box-news-home-detail
-                    h3
-                      a(href='/demo/news_detail') Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
-                    h5
-                      | Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit repellat odit perspiciatis necessitatibus adipisci nam, perferendis assumenda aliquam beatae id iure, quia, vero dolorum itaque asperiores cum. Nulla, libero cum.
-                .col-lg-2
-                  .box-news-home-btn
-                    a(href='/demo/news_detail') xem thêm
-                    a Xem nhanh
+              .box-news-home-img
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  img(src='/assets/img/news-2.png')
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  span
+              .box-news-home-detail
+                h3
+                  a(title='Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.', href='demo/news_detail') Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.
+                .box-news-home-detail-date
+                  li
+                    i.mdi.mdi-calendar-clock
+                    |  12/12/2018
+                  li
+                    i.mdi.mdi-account-plus
+                    |  Kemmie
+          .col-md-6
             .box-news-home
-              .row
-                .col-lg-4
-                  .box-news-home-img
-                    .custom-news
-                      a(title='Phóng to hình', rel='gallery', href='/assets/img/news-1.png', data-fancybox='', data-caption='Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis')
-                        i.fa.fa-search-plus(aria-hidden='true')
-                    img(src='/assets/img/news-3.png', alt='')
-                .col-lg-1
-                  .box-news-home-date.text-center
-                    h1 07
-                    i.fa.fa-times(aria-hidden='true')
-                    h1 10
-                    i.fa.fa-times(aria-hidden='true')
-                    h1 18
-                .col-lg-5
-                  .box-news-home-detail
-                    h3
-                      a(href='/demo/news_detail') Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
-                    h5
-                      | Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit repellat odit perspiciatis necessitatibus adipisci nam, perferendis assumenda aliquam beatae id iure, quia, vero dolorum itaque asperiores cum. Nulla, libero cum.
-                .col-lg-2
-                  .box-news-home-btn
-                    a(href='/demo/news_detail') xem thêm
-                    a Xem nhanh
+              .box-news-home-img
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  img(src='/assets/img/news-1.png')
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  span
+              .box-news-home-detail
+                h3
+                  a(title='Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.', href='demo/news_detail') Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.
+                .box-news-home-detail-date
+                  li
+                    i.mdi.mdi-calendar-clock
+                    |  12/12/2018
+                  li
+                    i.mdi.mdi-account-plus
+                    |  Kemmie
+          .col-md-6
             .box-news-home
-              .row
-                .col-lg-4
-                  .box-news-home-img
-                    .custom-news
-                      a(title='Phóng to hình', rel='gallery', href='/assets/img/news-1.png', data-fancybox='', data-caption='Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis')
-                        i.fa.fa-search-plus(aria-hidden='true')
-                    img(src='/assets/img/news-1.png', alt='')
-                .col-lg-1
-                  .box-news-home-date.text-center
-                    h1 07
-                    i.fa.fa-times(aria-hidden='true')
-                    h1 10
-                    i.fa.fa-times(aria-hidden='true')
-                    h1 18
-                .col-lg-5
-                  .box-news-home-detail
-                    h3
-                      a(href='/demo/news_detail') Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
-                    h5
-                      | Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit repellat odit perspiciatis necessitatibus adipisci nam, perferendis assumenda aliquam beatae id iure, quia, vero dolorum itaque asperiores cum. Nulla, libero cum.
-                .col-lg-2
-                  .box-news-home-btn
-                    a(href='/demo/news_detail') xem thêm
-                    a Xem nhanh
+              .box-news-home-img
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  img(src='/assets/img/news-3.png')
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  span
+              .box-news-home-detail
+                h3
+                  a(title='Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.', href='demo/news_detail') Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.
+                .box-news-home-detail-date
+                  li
+                    i.mdi.mdi-calendar-clock
+                    |  12/12/2018
+                  li
+                    i.mdi.mdi-account-plus
+                    |  Kemmie
+          .col-md-6
             .box-news-home
-              .row
-                .col-lg-4
-                  .box-news-home-img
-                    .custom-news
-                      a(title='Phóng to hình', rel='gallery', href='/assets/img/news-1.png', data-fancybox='', data-caption='Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis')
-                        i.fa.fa-search-plus(aria-hidden='true')
-                    img(src='/assets/img/news-2.png', alt='')
-                .col-lg-1
-                  .box-news-home-date.text-center
-                    h1 07
-                    i.fa.fa-times(aria-hidden='true')
-                    h1 10
-                    i.fa.fa-times(aria-hidden='true')
-                    h1 18
-                .col-lg-5
-                  .box-news-home-detail
-                    h3
-                      a(href='/demo/news_detail') Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
-                    h5
-                      | Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit repellat odit perspiciatis necessitatibus adipisci nam, perferendis assumenda aliquam beatae id iure, quia, vero dolorum itaque asperiores cum. Nulla, libero cum.
-                .col-lg-2
-                  .box-news-home-btn
-                    a(href='/demo/news_detail') xem thêm
-                    a Xem nhanh
+              .box-news-home-img
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  img(src='/assets/img/news-1.png')
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  span
+              .box-news-home-detail
+                h3
+                  a(title='Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.', href='demo/news_detail') Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.
+                .box-news-home-detail-date
+                  li
+                    i.mdi.mdi-calendar-clock
+                    |  12/12/2018
+                  li
+                    i.mdi.mdi-account-plus
+                    |  Kemmie
+          .col-md-6
             .box-news-home
-              .row
-                .col-lg-4
-                  .box-news-home-img
-                    .custom-news
-                      a(title='Phóng to hình', rel='gallery', href='/assets/img/news-1.png', data-fancybox='', data-caption='Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis')
-                        i.fa.fa-search-plus(aria-hidden='true')
-                    img(src='/assets/img/news-1.png', alt='')
-                .col-lg-1
-                  .box-news-home-date.text-center
-                    h1 07
-                    i.fa.fa-times(aria-hidden='true')
-                    h1 10
-                    i.fa.fa-times(aria-hidden='true')
-                    h1 18
-                .col-lg-5
-                  .box-news-home-detail
-                    h3
-                      a(href='/demo/news_detail') Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
-                    h5
-                      | Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit repellat odit perspiciatis necessitatibus adipisci nam, perferendis assumenda aliquam beatae id iure, quia, vero dolorum itaque asperiores cum. Nulla, libero cum.
-                .col-lg-2
-                  .box-news-home-btn
-                    a(href='/demo/news_detail') xem thêm
-                    a Xem nhanh
+              .box-news-home-img
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  img(src='/assets/img/news-2.png')
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  span
+              .box-news-home-detail
+                h3
+                  a(title='Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.', href='demo/news_detail') Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.
+                .box-news-home-detail-date
+                  li
+                    i.mdi.mdi-calendar-clock
+                    |  12/12/2018
+                  li
+                    i.mdi.mdi-account-plus
+                    |  Kemmie
+          .col-md-6
             .box-news-home
-              .row
-                .col-lg-4
-                  .box-news-home-img
-                    .custom-news
-                      a(title='Phóng to hình', rel='gallery', href='/assets/img/news-1.png', data-fancybox='', data-caption='Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis')
-                        i.fa.fa-search-plus(aria-hidden='true')
-                    img(src='/assets/img/news-3.png', alt='')
-                .col-lg-1
-                  .box-news-home-date.text-center
-                    h1 07
-                    i.fa.fa-times(aria-hidden='true')
-                    h1 10
-                    i.fa.fa-times(aria-hidden='true')
-                    h1 18
-                .col-lg-5
-                  .box-news-home-detail
-                    h3
-                      a(href='/demo/news_detail') Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
-                    h5
-                      | Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit repellat odit perspiciatis necessitatibus adipisci nam, perferendis assumenda aliquam beatae id iure, quia, vero dolorum itaque asperiores cum. Nulla, libero cum.
-                .col-lg-2
-                  .box-news-home-btn
-                    a(href='/demo/news_detail') xem thêm
-                    a Xem nhanh
+              .box-news-home-img
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  img(src='/assets/img/news-3.png')
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  span
+              .box-news-home-detail
+                h3
+                  a(title='Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.', href='demo/news_detail') Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.
+                .box-news-home-detail-date
+                  li
+                    i.mdi.mdi-calendar-clock
+                    |  12/12/2018
+                  li
+                    i.mdi.mdi-account-plus
+                    |  Kemmie
+          .col-md-6
             .box-news-home
-              .row
-                .col-lg-4
-                  .box-news-home-img
-                    .custom-news
-                      a(title='Phóng to hình', rel='gallery', href='/assets/img/news-1.png', data-fancybox='', data-caption='Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis')
-                        i.fa.fa-search-plus(aria-hidden='true')
-                    img(src='/assets/img/news-1.png', alt='')
-                .col-lg-1
-                  .box-news-home-date.text-center
-                    h1 07
-                    i.fa.fa-times(aria-hidden='true')
-                    h1 10
-                    i.fa.fa-times(aria-hidden='true')
-                    h1 18
-                .col-lg-5
-                  .box-news-home-detail
-                    h3
-                      a(href='/demo/news_detail') Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
-                    h5
-                      | Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit repellat odit perspiciatis necessitatibus adipisci nam, perferendis assumenda aliquam beatae id iure, quia, vero dolorum itaque asperiores cum. Nulla, libero cum.
-                .col-lg-2
-                  .box-news-home-btn
-                    a(href='/demo/news_detail') xem thêm
-                    a Xem nhanh
+              .box-news-home-img
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  img(src='/assets/img/news-1.png')
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  span
+              .box-news-home-detail
+                h3
+                  a(title='Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.', href='demo/news_detail') Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.
+                .box-news-home-detail-date
+                  li
+                    i.mdi.mdi-calendar-clock
+                    |  12/12/2018
+                  li
+                    i.mdi.mdi-account-plus
+                    |  Kemmie
+          .col-md-6
+            .box-news-home
+              .box-news-home-img
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  img(src='/assets/img/news-2.png')
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  span
+              .box-news-home-detail
+                h3
+                  a(title='Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.', href='demo/news_detail') Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.
+                .box-news-home-detail-date
+                  li
+                    i.mdi.mdi-calendar-clock
+                    |  12/12/2018
+                  li
+                    i.mdi.mdi-account-plus
+                    |  Kemmie
+          .col-md-6
+            .box-news-home
+              .box-news-home-img
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  img(src='/assets/img/news-3.png')
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  span
+              .box-news-home-detail
+                h3
+                  a(title='Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.', href='demo/news_detail') Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.
+                .box-news-home-detail-date
+                  li
+                    i.mdi.mdi-calendar-clock
+                    |  12/12/2018
+                  li
+                    i.mdi.mdi-account-plus
+                    |  Kemmie
+          .col-md-6
+            .box-news-home
+              .box-news-home-img
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  img(src='/assets/img/news-2.png')
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  span
+              .box-news-home-detail
+                h3
+                  a(title='Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.', href='demo/news_detail') Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.
+                .box-news-home-detail-date
+                  li
+                    i.mdi.mdi-calendar-clock
+                    |  12/12/2018
+                  li
+                    i.mdi.mdi-account-plus
+                    |  Kemmie
+          .col-md-6
+            .box-news-home
+              .box-news-home-img
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  img(src='/assets/img/news-1.png')
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  span
+              .box-news-home-detail
+                h3
+                  a(title='Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.', href='demo/news_detail') Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.
+                .box-news-home-detail-date
+                  li
+                    i.mdi.mdi-calendar-clock
+                    |  12/12/2018
+                  li
+                    i.mdi.mdi-account-plus
+                    |  Kemmie
         .row
           .col-lg-12
             nav

@@ -1,50 +1,48 @@
 extends ../../layouts/admin/layout_admin
 
 block title 
-  title Danh sách Slider
+  title Danh sách danh mục
 
 block append style
   link(rel='stylesheet', href='/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css')
   link(rel='stylesheet', href='/bower_components/sweetalert2/dist/sweetalert2.min.css')
-  link(rel='stylesheet', href='/assets/css/slider_admin.min.css')
-  
+  link(rel='stylesheet', href='/assets/css/category_admin.min.css')
 
 block content
-  if messDelSlider && messDelSlider !== ''
-    div.mb-4.mess-del
-      h5=messDelSlider
-
-      
-  a.btn.btn-success.mb-3(href="/admin/slider/custom-slider") Thêm mới
+  a.btn.btn-success.mb-3(href="/admin/category/custom-category") Thêm mới
   .table-responsive
-    table.table.table-dark.table-bordered.table-hover#slider-table
+    table.table.table-dark.table-bordered.table-hover#category-table
       thead
         tr
           th(scope='col') ID
-          th(scope='col') Tên Slider
-          th(scope='col') Nội dung Slider
-          th(scope='col') Ảnh Slider
-          th(scope='col') Ngày tạo
+          th(scope='col') Tên danh mục
+          th(scope='col') Ảnh danh mục
+          th(scope='col') Thuộc danh mục
+          th(scope='col') Ngày thêm
           th(scope='col') Ngày sửa
           th(scope='col') Hành động
       tbody
-        if sliders && sliders.length
-          each slider in sliders
+        if categories && categories.length
+          each category in categories
             tr
-              th(scope='row')=slider.id ? slider.id : ''
-              td=slider.name ? slider.name : ''
-              td=slider.content ? slider.content : ''
+              th(scope='row')=category.id ? category.id : ''
+              td=category.name ? category.name : ''
               td
-                if slider.image && slider.image !== ''
-                  a(title='Phóng to hình', rel='gallery', href=slider.image, data-fancybox='', data-caption=slider.name)
-                    img(src=slider.image)
-              td=slider.createdAt ? moment(slider.createdAt).format('DD/MM/YYYY HH:mm') : ''
-              td=slider.updatedAt ? moment(slider.updatedAt).format('DD/MM/YYYY HH:mm') : ''
+                if category.image && category.image !== ''
+                  a(title='Phóng to hình', rel='gallery', href=category.image, data-fancybox='', data-caption=category.name)
+                    img(src=category.image)
               td
-                if slider._id
-                  a.btn.btn-info.mr-2.mb-xl-0.mb-2(href="/admin/slider/custom-slider/" + slider._id) Xem
-                  button.btn.btn-danger.delete-alert(type='button', url-remove="/admin/slider/delete/" + slider._id) Xóa
-
+                if category.isParent === true
+                  | Danh mục cha
+                else 
+                  a=category.parentId && category.parentId.name ? category.parentId.name : ''
+              
+              td=category.createdAt ? moment(category.createdAt).format('DD/MM/YYYY HH:mm') : ''
+              td=category.updatedAt ? moment(category.updatedAt).format('DD/MM/YYYY HH:mm') : ''
+              td
+                if category._id
+                  a.btn.btn-info.mr-2.mb-xl-0.mb-2(href="/admin/category/custom-category/" + category._id) Xem
+                  button.btn.btn-danger.delete-alert(type='button', url-remove="/admin/category/delete/" + category._id) Xóa
 
   script(src='/bower_components/jquery/dist/jquery.min.js')
   script(src='/bower_components/datatables.net/js/jquery.dataTables.min.js')
@@ -52,7 +50,7 @@ block content
   script(src='/bower_components/sweetalert2/dist/sweetalert2.min.js')
   script.
     $(document).ready( function () {
-      $('#slider-table').DataTable({
+      $('#category-table').DataTable({
         "language": {
           "lengthMenu": "Hiển thị _MENU_ mục",
           "emptyTable":     "Không có dữ liệu nào trong bảng",
@@ -72,7 +70,7 @@ block content
         "order": [[ 0, "desc" ]],
         "pagingType": "full_numbers"
       });
-
+      
       $('.delete-alert').click(function() {
         let url = $(this).attr('url-remove');
 
@@ -99,12 +97,10 @@ block content
           }
         })
       });
-      
+
     });
 
-    
-
-  if messUpdateSlider && messUpdateSlider !== ''
+  if messUpdateCategory && messUpdateCategory !== ''
     script.
       const toast = Swal.mixin({
         toast: true,
@@ -115,10 +111,10 @@ block content
 
       toast({
         type: 'success',
-        title: '#{messUpdateSlider}'
+        title: '#{messUpdateCategory}'
       })
 
-  if messDelSlider && messDelSlider !== ''
+  if messDelCategory && messDelCategory !== ''
     script.
       const toast = Swal.mixin({
         toast: true,
@@ -129,7 +125,6 @@ block content
 
       toast({
         type: 'success',
-        title: '#{messDelSlider}'
+        title: '#{messDelCategory}'
       })
-
 

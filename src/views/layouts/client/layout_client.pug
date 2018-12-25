@@ -18,6 +18,7 @@ html(lang='en')
       link(rel='stylesheet', href='/bower_components/xzoom/example/magnific-popup/css/magnific-popup.css')
       link(rel='stylesheet', href='/bower_components/mdi/css/materialdesignicons.min.css')
       link(rel="stylesheet", href="/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css")
+      link(rel='stylesheet', href='/bower_components/sweetalert2/dist/sweetalert2.min.css')
       link(rel='stylesheet', href='/assets/css/layout.min.css')
       link(rel="shortcut icon", href="/assets/img/favicon.ico")
   body
@@ -26,12 +27,10 @@ html(lang='en')
       section.menu
         .container
           .row
-            .col-xl-6.order-xl-4.col-lg-4.col-md-3.col-sm-3.col-6
+            .col-xl-6.order-xl-4.col-lg-4.col-md-3.col-sm-3.col-12
               .main-menu
-                a.toggleMenu(href='#')
-                  i.fa.fa-bars(aria-hidden='true')
-                a.menu-close(href='#')
-                  i.fa.fa-times(aria-hidden='true')
+                a.toggleMenu.ssm-toggle-nav
+                  i.mdi.mdi-menu
                 ul.nav
                   li.nav-item
                     a(href='/') Trang chủ
@@ -39,104 +38,22 @@ html(lang='en')
                     a(href='/demo/about_us') Giới thiệu
                   li.nav-item
                     a(href='/demo/product') Sản phẩm
-                    i.fa.fa-caret-down(aria-hidden='true')
+                    i.btn-menu-down.mdi.mdi-chevron-down
                     .menu-bottom
                       img(src='/assets/img/bg-menu.png')
                       .row
-                        .col-xl-2.text-left
-                          h4
-                            a(href='/demo/product') Chuột máy tính
-                          ul
-                            li
-                              a(href='/demo/product') Razer
-                            li
-                              a(href='/demo/product') Steelseries
-                            li
-                              a(href='/demo/product') Logitech
-                            li
-                              a(href='/demo/product') Zowie
-                            li
-                              a(href='/demo/product') Microsoft
-                            li
-                              a(href='/demo/product') Alienware
-                        .col-xl-2.text-left
-                          h4
-                            a(href='/demo/product') Bàn phím
-                          ul
-                            li
-                              a(href='/demo/product') Razer
-                            li
-                              a(href='/demo/product') Steelseries
-                            li
-                              a(href='/demo/product') Logitech
-                            li
-                              a(href='/demo/product') GSkill
-                            li
-                              a(href='/demo/product') Cooler Master
-                            li
-                              a(href='/demo/product') Alienware
-                        .col-xl-2.text-left
-                          h4
-                            a(href='/demo/product') Tai nghe
-                          ul
-                            li
-                              a(href='/demo/product') Razer
-                            li
-                              a(href='/demo/product') Steelseries
-                            li
-                              a(href='/demo/product') Logitech
-                            li
-                              a(href='/demo/product') Corsar
-                            li
-                              a(href='/demo/product') Ozone
-                            li
-                              a(href='/demo/product') TT Sport
-                        .col-xl-2.text-left
-                          h4
-                            a(href='/demo/product') Bàn di chuột
-                          ul
-                            li
-                              a(href='/demo/product') Razer
-                            li
-                              a(href='/demo/product') Steelseries
-                            li
-                              a(href='/demo/product') Logitech
-                            li
-                              a(href='/demo/product') Corsair
-                            li
-                              a(href='/demo/product') Zowie
-                            li
-                              a(href='/demo/product') Gamdias
-                        .col-xl-2.text-left
-                          h4
-                            a(href='/demo/product') Ghế gaming
-                          ul
-                            li
-                              a(href='/demo/product') Cross Fire
-                            li
-                              a(href='/demo/product') WCG
-                            li
-                              a(href='/demo/product') AutoFull
-                            li
-                              a(href='/demo/product') DXRacer
-                            li
-                              a(href='/demo/product') Extreme
-                        .col-xl-2.text-left
-                          h4
-                            a(href='/demo/product') Tay cầm
-                          ul
-                            li
-                              a(href='/demo/product') Xbox
-                            li
-                              a(href='/demo/product') Xbox One
-                            li
-                              a(href='/demo/product') PS3
-                            li
-                              a(href='/demo/product') PS4
-                            li
-                              a(href='/demo/product') New Game N1 Pro
-                            li
-                              a(href='/demo/product') New Game Q1
+                        if homeCategories && homeCategories.length > 0
+                          each homeCategory in homeCategories
+                            .col-xl-2.text-left.mobile-btn
+                              h4
+                                a(href='/demo/product')=homeCategory.name ? homeCategory.name : ''
+                                i.mdi.mdi-plus.d-inline-block.d-xl-none
+                              ul.out
+                                if homeCategory.subCategories && homeCategory.subCategories.length > 0
+                                  each homeCategoryChild in homeCategory.subCategories
+                                    li
+                                      a(href='/demo/product')=homeCategoryChild.name ? homeCategoryChild.name : ''
+
                   li.nav-item
                     a(href='/demo/news') Tin tức
                   li.nav-item
@@ -145,13 +62,13 @@ html(lang='en')
               .logo
                 a(href='/')
                   img(src='/assets/img/logo.png', alt='')
-            .col-xl-2.order-xl-4.col-lg-3.col-md-4.col-sm-4.col-6
+            .col-xl-2.order-xl-4.col-lg-3.col-md-4.col-sm-4.col-12
               .custom-header.text-right
                 #accordionExample.accordion
                   a(class='search-btn', title='Tìm kiếm', data-toggle='collapse', href='#search', role='button', aria-expanded='true', aria-controls='search')
-                    i.fa.fa-search
+                    i.mdi.mdi-magnify
                   a(title='Danh sách yêu thích', href='/demo/wishlist', role='button', aria-expanded='true', aria-controls='wishlist')
-                    i.mdi.mdi-heart-multiple
+                    i.mdi.mdi-heart
                     span.badge.badge-light 0
                   a(title='Giỏ hàng', data-toggle='collapse', href='#cart', role='button', aria-expanded='false', aria-controls='cart')
                     i.mdi.mdi-shopify
@@ -197,6 +114,7 @@ html(lang='en')
           button
             i.fa.fa-search(aria-hidden='true')
 
+      .ssm-overlay.ssm-toggle-nav
     block content
 
     block footer
@@ -341,6 +259,9 @@ html(lang='en')
       script(src='/bower_components/xzoom/dist/xzoom.min.js')
       script(src='/bower_components/xzoom/example/magnific-popup/js/magnific-popup.js')
       script(src='/bower_components/jquery-toast-plugin/dist/jquery.toast.min.js')
+      script(src='/bower_components/jquery-touchswipe/jquery.touchSwipe.min.js')
+      script(src='/bower_components/slide-and-swipe-menu/jquery.slideandswipe.min.js')
+      script(src='/bower_components/sweetalert2/dist/sweetalert2.min.js')
       script(src='/assets/js/client/index.js')
 
 
