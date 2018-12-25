@@ -5,18 +5,10 @@ block title
 
 block append style
   link(rel='stylesheet', href='/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css')
-  link(rel='stylesheet', href='/assets/css/category_admin.min.css')
   link(rel='stylesheet', href='/bower_components/sweetalert2/dist/sweetalert2.min.css')
+  link(rel='stylesheet', href='/assets/css/category_admin.min.css')
 
 block content
-  if messDelCategory && messDelCategory !== ''
-    div.mb-4.mess-del
-      h5=messDelCategory
-
-  if messUpdateCategory && messUpdateCategory !== ''
-    div.mb-4.mess-del
-      h5=messUpdateCategory
-      
   a.btn.btn-success.mb-3(href="/admin/category/custom-category") Thêm mới
   .table-responsive
     table.table.table-dark.table-bordered.table-hover#category-table
@@ -104,8 +96,35 @@ block content
             });
           }
         })
-
       });
 
     });
+
+  if messUpdateCategory && messUpdateCategory !== ''
+    script.
+      const toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      });
+
+      toast({
+        type: 'success',
+        title: '#{messUpdateCategory}'
+      })
+
+  if messDelCategory && messDelCategory !== ''
+    script.
+      const toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      });
+
+      toast({
+        type: 'success',
+        title: '#{messDelCategory}'
+      })
 

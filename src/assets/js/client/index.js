@@ -168,80 +168,23 @@ $('document').ready(function () {
   });
   // END ACTIVE MENU
 
+  $('.menu .nav').slideAndSwipe();
+
   var ww = document.body.clientWidth;
 
   // SETTING MENU
-  if (ww < 1200) {
-    $('.toggleMenu').click(function () {
-      $(this)
-        .css('transform', 'scale(0) rotate(180deg)')
-        .css('position','fixed')
-        .css('top','0');
-
-      $('.menu .nav').css('transform', 'translateX(0)');
-      $('.menu-close')
-        .css('transform', 'scale(1) rotate(0)')
-        .css('position','relative');
-
-      $('.custom-header .collapse').removeClass('show');
-    });
-  
-    $('.menu-close').click(function () {
-      $(this)
-        .css('transform', 'scale(0) rotate(-180deg)')
-        .css('position','fixed')
-        .css('top','0');
-
-      $('.toggleMenu')
-        .css('transform', 'scale(1) rotate(0)')
-        .css('position','relative');
-
-      $('.menu .nav').css('transform', 'translateX(-250%)');
-      $('.menu .main-menu .nav li ul').css('display','none');
+    $('.btn-menu-down').click(function() {
+      $('.menu-bottom').toggleClass('menu-bottom-down')
     });
     
-    $('.menu .main-menu .nav li .btn-menu-down').click(function() {
-      $('.menu .nav li .menu-bottom')
-        .css('position', 'relative')
-        .css('visibility', 'initial')
-        .css('opacity', '1')
-        .css('left','0');
-
-      $(this).css('display','none');
-      $('.menu .main-menu .nav li .btn-menu-up').css('display','block');
-      $('.menu .main-menu .nav li li').css('border-bottom','0');
-    });
-  
-    $('.menu .main-menu .nav li .btn-menu-up').click(function() {
-      $('.menu .main-menu .nav li .menu-bottom')
-        .css('position', 'absolute')
-        .css('visibility', 'hidden')
-        .css('opacity', '0')
-        .css('left','15px');
-
-      $(this).css('display','none');
-      $('.menu .main-menu .nav li .btn-menu-down').css('display','block');
-    });
- 
-
-    $('.custom-header i').click(function() {
-      $('.menu .nav').css('transform', 'translateX(-150%)');
-      $('.toggleMenu')
-        .css('transform', 'scale(1) rotate(0)')
-        .css('position','relative')
-
-      $('.menu-close')
-        .css('transform', 'scale(0) rotate(-180deg)')
-        .css('position','fixed')
-        .css('top','0');
+    $('.mobile-btn').click(function () {
+      let $ul = $(this).find('ul');
+      $ul
+        .css('display', 'block')
+        .toggleClass('in out')
     });
 
-    $('.btn-menu-down')
-      .removeClass('mdi-chevron-down')
-      .addClass('mdi-plus')
-  }
 
-  $('.menu .main-menu .nav li .btn-menu-up').css('display','none');
 
   if (ww < 992) {
     $('.footer-bottom .collapse').removeClass('show');
@@ -250,29 +193,11 @@ $('document').ready(function () {
   if (ww > 1200) {
     $(window).scroll(function () {
       if ($(this).scrollTop() > 20) {
-        $('.menu')
-          .css('background', 'rgba(0, 0, 0, 0.8)')
-          .css('height', '70px')
-          .css('right', '15px')
-          .css('border-bottom', '1px solid #383838')
-          .addClass('wow animated slideInDown');
-
-        $('.logo img').css('height', '40px');
-        $('.logo').css('margin', '15px 0');
-        $('.menu .main-menu .nav').css('margin', '10px 0');
-
-        $('.menu .custom-header').css('margin', '20px 0');
+        $('.menu').addClass('menu-down wow animated slideInDown');
+        $('.cart-form').addClass('cart-form-down');
       } else {
-        $('.menu')
-          .css('height', '100px')
-          .css('border-bottom', '0')
-          .removeClass('wow animated slideInDown');
-
-        $('.logo img').css('height', 'auto');
-        $('.logo').css('margin', '20px 0');
-        $('.menu .main-menu .nav').css('margin', '20px 0');
-        
-        $('.menu .custom-header').css('margin', '30px 0');
+        $('.menu').removeClass('menu-down wow animated slideInDown');
+        $('.cart-form').removeClass('cart-form-down');
       }
     });
   }
@@ -343,26 +268,32 @@ $('document').ready(function () {
 
   // NOTIFICATION ADD TO CART + WISHLIST
   $('.custom-cart').click(function() {
-    $.toast({
-      heading: 'Thông báo',
-      text: 'Bạn đã thêm vào giỏ thành công',
-      icon: 'success',
-      loader: true,
-      position: 'top-center',
-      textAlign: 'center',
-      showHideTransition: 'slide'
+    Swal({
+      title: 'Thông báo',
+      type: 'success',
+      html: 'Bạn đã thêm vào giỏ thành công',
+      showCloseButton: true,
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText:
+        '<a href="/cart">Vào giỏ hàng</a>',
+      cancelButtonText:
+        'Tiếp tục mua sắm',
     })
   });
 
   $('.custom-wishlist').click(function() {
-    $.toast({
-      heading: 'Thông báo',
-      text: 'Bạn đã thêm vào danh sách yêu thích thành công',
-      icon: 'info',
-      loader: true,
-      position: 'top-center',
-      textAlign: 'center',
-      showHideTransition: 'slide'
+    Swal({
+      title: 'Thông báo',
+      type: 'success',
+      html: 'Bạn đã thêm vào danh sách yêu thích thành công',
+      showCloseButton: true,
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText:
+        '<a href="/wishlist">Vào danh sách yêu thích</a>',
+      cancelButtonText:
+        'Tiếp tục mua sắm',
     })
   });
   // END NOTIFICATION ADD TO CART + WISHLIST

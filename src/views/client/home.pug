@@ -65,7 +65,7 @@ block content
                       i.fa.fa-plus(aria-hidden='true')
                     button.custom-cart thêm vào giỏ
                     button.quantity-wishlist.custom-wishlist
-                      i.mdi.mdi-heart-multiple
+                      i.mdi.mdi-heart
           .modal-footer
             button.btn.btn-secondary(type='button', data-dismiss='modal') Đóng
     section.slider.d-none.d-sm-block
@@ -91,9 +91,6 @@ block content
             each homeCategory in homeCategories
               .col-lg-4.col-md-6
                 .box-category.wow
-                  if homeCategory.image
-                    a(href='/demo/product')
-                      img(src=homeCategory.image, alt='')
                   h4.wow
                     a(href='/demo/product')=homeCategory.name ? homeCategory.name : ''
                   ul
@@ -101,6 +98,9 @@ block content
                       each homeCategoryChild in homeCategory.subCategories
                         li.wow
                           a(href='/demo/product')=homeCategoryChild.name ? homeCategoryChild.name : ''
+                  if homeCategory.image
+                    a(href='/demo/product')
+                      img(src=homeCategory.image, alt='')
 
     section.service.d-xl-block.d-lg-none.d-md-none.d-sm-none.d-none
       .container
@@ -137,7 +137,7 @@ block content
                   a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                     i.mdi.mdi-eye-plus
                   a.custom-wishlist
-                    i.mdi.mdi-heart-multiple
+                    i.mdi.mdi-heart
                   a.custom-cart
                     i.mdi.mdi-shopify
                 a(href='/demo/product_detail')
@@ -161,7 +161,7 @@ block content
                   a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                     i.mdi.mdi-eye-plus
                   a.custom-wishlist
-                    i.mdi.mdi-heart-multiple
+                    i.mdi.mdi-heart
                   a.custom-cart
                     i.mdi.mdi-shopify
                 a(href='/demo/product_detail')
@@ -185,7 +185,7 @@ block content
                   a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                     i.mdi.mdi-eye-plus
                   a.custom-wishlist
-                    i.mdi.mdi-heart-multiple
+                    i.mdi.mdi-heart
                   a.custom-cart
                     i.mdi.mdi-shopify
                 a(href='/demo/product_detail')
@@ -209,7 +209,7 @@ block content
                   a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                     i.mdi.mdi-eye-plus
                   a.custom-wishlist
-                    i.mdi.mdi-heart-multiple
+                    i.mdi.mdi-heart
                   a.custom-cart
                     i.mdi.mdi-shopify
                 a(href='/demo/product_detail')
@@ -233,7 +233,7 @@ block content
                   a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                     i.mdi.mdi-eye-plus
                   a.custom-wishlist
-                    i.mdi.mdi-heart-multiple
+                    i.mdi.mdi-heart
                   a.custom-cart
                     i.mdi.mdi-shopify
                 a(href='/demo/product_detail')
@@ -303,7 +303,7 @@ block content
                           a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
                           a.custom-wishlist
-                            i.mdi.mdi-heart-multiple
+                            i.mdi.mdi-heart
                           a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
@@ -327,7 +327,7 @@ block content
                           a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
                           a.custom-wishlist
-                            i.mdi.mdi-heart-multiple
+                            i.mdi.mdi-heart
                           a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
@@ -351,7 +351,7 @@ block content
                           a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
                           a.custom-wishlist
-                            i.mdi.mdi-heart-multiple
+                            i.mdi.mdi-heart
                           a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
@@ -375,7 +375,7 @@ block content
                           a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
                           a.custom-wishlist
-                            i.mdi.mdi-heart-multiple
+                            i.mdi.mdi-heart
                           a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
@@ -399,7 +399,7 @@ block content
                           a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
                           a.custom-wishlist
-                            i.mdi.mdi-heart-multiple
+                            i.mdi.mdi-heart
                           a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
@@ -423,7 +423,7 @@ block content
                           a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
                           a.custom-wishlist
-                            i.mdi.mdi-heart-multiple
+                            i.mdi.mdi-heart
                           a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
@@ -449,7 +449,7 @@ block content
                           a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
                           a.custom-wishlist
-                            i.mdi.mdi-heart-multiple
+                            i.mdi.mdi-heart
                           a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
@@ -473,7 +473,7 @@ block content
                           a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
                           a.custom-wishlist
-                            i.mdi.mdi-heart-multiple
+                            i.mdi.mdi-heart
                           a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
@@ -525,7 +525,7 @@ block content
                   i.mdi.mdi-shopify
                   |  thêm vào giỏ
                 a(class='custom-wishlist')
-                  i.mdi.mdi-heart-multiple
+                  i.mdi.mdi-heart
                   
     section.news-home.wow.bounceInLeft
       .container
