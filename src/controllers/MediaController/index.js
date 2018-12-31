@@ -10,6 +10,8 @@ import { getFileInfoByName } from '../../helpers';
 import { doUploadMedia } from '../../middlewares/doUploadMedia';
 import { STT_FILE_ERROR_EXTENSION,  STT_FILE_ERROR_EXCEPTION} from '../../global/statusFileError';
 
+import { MAX_FILE_SIZE } from '../../global/common';
+
 /**
  * @class MediaController
  * @author ChungNQ
@@ -44,6 +46,9 @@ export default class MediaController {
   viewAddMedia(req, res) {
     res.render('admin/media/add_media', {
       csrfToken: req.csrfToken(),
+      sttFileErrorExtension: STT_FILE_ERROR_EXTENSION,
+      sttFileErrorExcepsion: STT_FILE_ERROR_EXCEPTION,
+      maxFileSize: MAX_FILE_SIZE,
     });
   }
 

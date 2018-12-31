@@ -31,7 +31,7 @@ block content
         p hoặc
 
         label.btn.btn-sm.btn-primary Chọn tập tin
-          input(type="file", multiple, hidden)
+          input(type="file", multiple, hidden, accept="image/png, image/jpeg, image/png, image/jpg")
       //- END UPLOAD ZONE
 
       //- UPLOAD CONTENT
@@ -42,6 +42,16 @@ block content
       
 
   script.
+    const maxFileSize = #{ maxFileSize ? maxFileSize : 0 };
+    const maxFileSizeUpload = 1024 * 1024 * maxFileSize;
+    const acceptFileTypes = /^image\/(jpe?g|png)$/i;
+
+    const messMaxFileSize = `Tệp tải lên chỉ cho phép tối đa ${maxFileSize}Mb!`;
+    const messErrorExtention = 'Chỉ cho phép tệp có định dạng PNG, JPG, JPEG';
+    const messErrorException = 'Tập tải lên bị lỗi';
+
+    const imageError = '/assets/img/icon/rsz_error-image-white.png';
+
     //- Config upload media
     const mediaUpload = $('.media-upload-body').fileupload({
       dataType: 'json',
@@ -63,21 +73,40 @@ block content
     mediaUpload.on('fileuploadadd', function(e, data) {
         let tempMediaItem = $('#file-item-media').html();
         let files = data.files[0];
+        let allowUpload = true;
 
         tempMediaItem = $(tempMediaItem);
         tempMediaItem.find('span').text(files.name);
 
         data.fieldUpload = tempMediaItem;
+
+        if (files.size > maxFileSizeUpload) {
+          allowUpload = false;
+          tempMediaItem.find('span').text(messMaxFileSize);
+        }
+
+        if (acceptFileTypes.test(files.type) === false) {
+          allowUpload = false;
+          tempMediaItem.find('span').text(messErrorExtention);
+        }
+
+        if (allowUpload === false) tempMediaItem.find('.progress').remove();
+
         $('.media-upload-content').append(tempMediaItem);
         
-        data.submit();
+        if (allowUpload === true) data.submit();
     });
 
     //- Generate thumbnail
     mediaUpload.on('fileuploadprocessalways', function(e, data) {
         const { preview } = data.files[0];
         const { fieldUpload } = data;
-        fieldUpload.find('img').attr('src', preview.toDataURL());
+
+        if (acceptFileTypes.test(data.files[0].type) === true) {
+          fieldUpload.find('img').attr('src', preview.toDataURL());
+        } else {
+          fieldUpload.find('img').attr('src', imageError);
+        }
     });
 
     //- Handle while process data upload
@@ -103,15 +132,39 @@ block content
 
     //- Handle when upload media is fail
     mediaUpload.on('fileuploadfail', function(e, data) {
-      //- console.log(data);
-      //- const { fieldUpload } = data;
-      //- fieldUpload
-      //-   .find('a')
-      //-     .prop('hidden', false);
+      const { fieldUpload } = data;
+      const { responseJSON } = data.jqXHR;
 
-      //- fieldUpload
-      //-   .find('.progress')
-      //-     .remove();
+      const sttFileErrorExtension = '#{ sttFileErrorExtension ? sttFileErrorExtension : '' }';
+      const sttFileErrorExcepsion = '#{ sttFileErrorExcepsion ? sttFileErrorExcepsion : '' }';
+      let mess = '';
+
+      if (responseJSON && responseJSON.mess) {
+        switch(responseJSON.mess) {
+          case sttFileErrorExtension: 
+            mess = 'Tệp tải lên bị sai định dạng!'
+            break;
+          case sttFileErrorExcepsion:
+            mess = 'Tệp tải lên bị lỗi!';
+            break;
+          case 'LIMIT_FILE_SIZE':
+            mess = `Tệp tải lên chỉ cho phép tối đa ${maxFileSize}Mb!`;
+            break;
+          default:
+            mess = '';
+            break;
+        }
+      }
+
+      fieldUpload
+        .find('.progress')
+          .remove();
+
+      fieldUpload
+        .find('span')
+          .addClass('text-danger')
+          .text(mess);
+          
     });
 
   

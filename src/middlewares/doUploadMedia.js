@@ -2,7 +2,7 @@ import multer from 'multer';
 import fs from 'fs';
 
 import { getFileInfoByName } from '../helpers';
-import { URL_STORAGE, MAX_FILE_SIZE } from '../global/common';
+import { URL_STORAGE, MAX_FILE_SIZE_UPLOAD } from '../global/common';
 import { STT_FILE_ERROR_EXTENSION } from '../global/statusFileError';
 
 const storage = multer.diskStorage({
@@ -17,9 +17,9 @@ const storage = multer.diskStorage({
 });
 
 function fileFilter(req, file, cb) {
-  let ext = getFileInfoByName(file.originalname).ext;
-  if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
-      return cb(STT_FILE_ERROR_EXTENSION, false);
+  const acceptFileTypes = /^image\/(jpe?g|png)$/i;
+  if (acceptFileTypes.test(file.mimetype) === false) {
+    return cb(STT_FILE_ERROR_EXTENSION, false);
   }
 
   cb(null, true)
@@ -44,6 +44,6 @@ export const doUploadMedia = multer({
   storage, 
   fileFilter,
   limits: {
-    fileSize: MAX_FILE_SIZE,
+    fileSize: MAX_FILE_SIZE_UPLOAD,
   },
 }).single('media');
