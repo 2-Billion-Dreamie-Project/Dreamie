@@ -11,4 +11,4 @@
 /bower_components
 
 # Ignore storages 
-/src/storage
+/storage

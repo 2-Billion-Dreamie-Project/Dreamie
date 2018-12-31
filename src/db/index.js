@@ -10,7 +10,7 @@ import SliderSchema from './SliderSchema';
 
 import PartnerSchema from './PartnerSchema';
 import PostSchema from './PostSchema';
-import ImageSchema from './ImageSchema';
+import MediaSchema from './MediaSchema';
 
 import CategorySchema from './CategorySchema';
 import ProductSchema from './ProductSchema';
@@ -59,7 +59,7 @@ SliderSchema.plugin(autoIncrement.plugin, { model: 'Slider', field: 'id', startA
 PartnerSchema.plugin(autoIncrement.plugin, { model: 'Partner', field: 'id', startAt: 1 });
 
 PostSchema.plugin(autoIncrement.plugin, { model: 'Post', field: 'id', startAt: 1 });
-ImageSchema.plugin(autoIncrement.plugin, { model: 'Image', field: 'id', startAt: 1 });
+MediaSchema.plugin(autoIncrement.plugin, { model: 'Media', field: 'id', startAt: 1 });
 CategorySchema.plugin(autoIncrement.plugin, { model: 'Category', field: 'id', startAt: 1 });
 
 CategorySchema.virtual('products', {
@@ -81,7 +81,7 @@ const Slider = mongoose.model('Slider', SliderSchema);
 
 const Partner = mongoose.model('Partner', PartnerSchema);
 const Post = mongoose.model('Post', PostSchema);
-const Image = mongoose.model('Image', ImageSchema);
+const Media = mongoose.model('Media', MediaSchema);
 
 const Category = mongoose.model('Category', CategorySchema);
 const Product = mongoose.model('Product', ProductSchema);
@@ -97,7 +97,7 @@ export {
   Slider,
   Partner,
   Post,
-  Image,
+  Media,
   Category,
   Product,
   Order,

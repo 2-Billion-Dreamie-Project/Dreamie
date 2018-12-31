@@ -39,6 +39,7 @@ app.set('x-powered-by', false);
 
 app.use('/bower_components', express.static(path.join(__dirname, '../bower_components')));
 app.use('/assets', express.static(path.join(__dirname, '/assets')));
+app.use('/storage', express.static(path.join(__dirname, '../storage')));
 
 // Configuration passport
 passportConfig(passport, LocalStrategy);

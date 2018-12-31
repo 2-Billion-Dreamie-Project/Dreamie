@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const ImageSchema = new mongoose.Schema({
+const MediaSchema = new mongoose.Schema({
     name: {
         type: String,
     },
@@ -9,6 +9,12 @@ const ImageSchema = new mongoose.Schema({
         required: true,
         unique: true,
         trim: true,
+    },
+    thumbNail: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
     },
     desc: {
         type: String,
@@ -32,4 +38,4 @@ const ImageSchema = new mongoose.Schema({
     timestamps: true,    
 });
 
-export default ImageSchema;
+export default MediaSchema;

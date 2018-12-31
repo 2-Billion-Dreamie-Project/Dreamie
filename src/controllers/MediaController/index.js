@@ -1,7 +1,14 @@
-// import PartnerModel from '../../models/PartnerModel';
 import moment from 'moment';
 import sharp from 'sharp';
+import sizeOf from 'image-size';
+
+import multer from 'multer';
+import fs from 'fs';
+import MediaModel from '../../models/MediaModel';
+
 import { getFileInfoByName } from '../../helpers';
+import { doUploadMedia } from '../../middlewares/doUploadMedia';
+import { STT_FILE_ERROR_EXTENSION,  STT_FILE_ERROR_EXCEPTION} from '../../global/statusFileError';
 
 /**
  * @class MediaController
@@ -14,7 +21,8 @@ import { getFileInfoByName } from '../../helpers';
 
 export default class MediaController {
   constructor() {
-    // this.PartnerModel = new PartnerModel;
+    this.MediaModel = new MediaModel;
+    this.addMedia = this.addMedia.bind(this);
   }
 
   /**
@@ -46,15 +54,86 @@ export default class MediaController {
 
    */
   async addMedia(req, res) {
-    console.log(req.file);
-    let getFileNameAndExt = getFileInfoByName(req.file.filename);
-    let resize = await sharp(req.file.path).resize(150, 150)
-      .toFile(
-        req.file.destination + getFileNameAndExt.name + '-150x150' + getFileNameAndExt.ext
-      );
+    const { file } = req;
+    let fileRes = null;
 
-    console.log(resize);
+    if (file) {
+      let getFileNameAndExt = getFileInfoByName(file.filename);
+      let thumbNail = file.destination + getFileNameAndExt.name + '-150x150' + getFileNameAndExt.ext;
+      let resize = await sharp(file.path).resize(150, 150)
+        .toFile(thumbNail)
+          .catch(function(err) {
+            console.log(err);
+            this.deleteFileError(file.path);
+            return undefined;
+          });
 
-    res.json(req.file);
+      if (resize) {
+        let dimensions = sizeOf(file.path);
+
+        let { height } = dimensions;
+        let { width }  = dimensions;
+        let { type }   = dimensions;
+        let desc   = '';
+
+
+        fileRes = await this.MediaModel.addMedia(
+          file.originalname,
+          file.path,
+          thumbNail,
+          desc,
+          type,
+          file.size,
+          height,
+          width,
+        );
+
+        if (!fileRes) {
+          this.deleteFileError(file.path);
+          this.deleteFileError(thumbNail);
+        }
+
+        return res.status(200).json(fileRes);
+      }
+
+      return res.status(500).json({mess: STT_FILE_ERROR_EXCEPTION});
+    } 
+    
+    return res.status(500).json({mess: STT_FILE_ERROR_EXCEPTION});
   }
+
+  errorHandleUpload(req, res, next) {
+    doUploadMedia(req, res, function (err) {
+      if (err) {
+        if (err instanceof multer.MulterError) {
+          return res.status(500).json({ mess: err.code });
+        } 
+    
+        if (err === STT_FILE_ERROR_EXTENSION) {
+          return res.status(500).json({ mess: STT_FILE_ERROR_EXTENSION });
+        }
+    
+        console.log(err);
+        return res.status(500).json({mess: STT_FILE_ERROR_EXCEPTION});
+      }
+
+      next();
+    });
+
+  }
+
+  deleteFileError(file) {
+    try {
+      if (typeof file === 'string' && file !== '') {
+        fs.unlinkSync(file);
+        return true;
+      }
+      
+      return false;
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  }
+
 }
