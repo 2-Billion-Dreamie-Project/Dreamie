@@ -62,6 +62,13 @@ PostSchema.plugin(autoIncrement.plugin, { model: 'Post', field: 'id', startAt: 1
 MediaSchema.plugin(autoIncrement.plugin, { model: 'Media', field: 'id', startAt: 1 });
 CategorySchema.plugin(autoIncrement.plugin, { model: 'Category', field: 'id', startAt: 1 });
 
+CategorySchema.virtual('subCategories', {
+  ref: 'Category',
+  localField: '_id',
+  foreignField: 'parentId',
+  justOne: false,   
+});
+
 CategorySchema.virtual('products', {
   ref: 'Product',
   localField: 'id',

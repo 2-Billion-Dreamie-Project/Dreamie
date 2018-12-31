@@ -51,11 +51,13 @@ export default class UserModel {
     }
   }
 
-  getUsers() {
+  getUsers(queryUser, skip) {
     try {
       return(
         this.userSchema
-          .find({})
+          .find(queryUser)
+            .limit(10)
+            .skip(skip)
           .catch(function() {
             console.log(err);
             return undefined;

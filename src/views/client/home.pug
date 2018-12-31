@@ -21,7 +21,7 @@ block content
             .row
               .col-lg-6
                 .product-detail-1-img
-                  img.xzoom(src='/assets/img/product-1.png', xoriginal='/assets/img/product-1.png')
+                  img.main-image.xzoom(src='/assets/img/product-1.png', xoriginal='/assets/img/product-1.png')
                   .xzoom-thumbs
                     .owl-carousel.modal-carousel.owl-theme
                       .item
@@ -57,7 +57,7 @@ block content
                   h5
                     | This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit.
                   .quantity
-                    | Số lượng: 
+                    span Số lượng: 
                     a(href='#')
                       i.fa.fa-minus(aria-hidden='true')
                     input(type='text', value='1')
@@ -65,7 +65,7 @@ block content
                       i.fa.fa-plus(aria-hidden='true')
                     button.custom-cart thêm vào giỏ
                     button.quantity-wishlist.custom-wishlist
-                      i.mdi.mdi-heart-multiple
+                      i.mdi.mdi-heart
           .modal-footer
             button.btn.btn-secondary(type='button', data-dismiss='modal') Đóng
     section.slider.d-none.d-sm-block
@@ -87,112 +87,20 @@ block content
     section.category
       .container
         .row
-          .col-lg-4.col-md-6
-            .box-category.wow.bounceInLeft
-              img(src='/assets/img/cate-1.png', alt='')
-              h4
-                a(href='/demo/product') chuột máy tính
-              ul
-                li
-                  a(href='/demo/product') Razer
-                li
-                  a(href='/demo/product') Steelseries
-                li
-                  a(href='/demo/product') Logitech
-                li
-                  a(href='/demo/product') Zowie
-                li
-                  a(href='/demo/product') Microsoft
-                li
-                  a(href='/demo/product') Alienware
-          .col-lg-4.col-md-6
-            .box-category.wow.bounceInDown(data-wow-delay='0.1s')
-              img(src='/assets/img/cate-2.png', alt='')
-              h4
-                a(href='/demo/product') bàn phím
-              ul
-                li
-                  a(href='/demo/product') Razer
-                li
-                  a(href='/demo/product') Steelseries
-                li
-                  a(href='/demo/product') Logitech
-                li
-                  a(href='/demo/product') GSkill
-                li
-                  a(href='/demo/product') Cooler Master
-                li
-                  a(href='/demo/product') Alienware
-          .col-lg-4.col-md-6
-            .box-category.wow.bounceInRight(data-wow-delay='0.2s')
-              img(src='/assets/img/cate-3.png', alt='')
-              h4
-                a(href='/demo/product') tai nghe
-              ul
-                li
-                  a(href='/demo/product') Razer
-                li
-                  a(href='/demo/product') Steelseries
-                li
-                  a(href='/demo/product') Logitech
-                li
-                  a(href='/demo/product') Corsar
-                li
-                  a(href='/demo/product') Ozone
-                li
-                  a(href='/demo/product') TT Sport
-          .col-lg-4.col-md-6
-            .box-category.wow.bounceInLeft(data-wow-delay='0.5s')
-              img(src='/assets/img/cate-4.png', alt='')
-              h4
-                a(href='/demo/product') bàn di chuột
-              ul
-                li
-                  a(href='/demo/product') Razer
-                li
-                  a(href='/demo/product') Steelseries
-                li
-                  a(href='/demo/product') Logitech
-                li
-                  a(href='/demo/product') Corsair
-                li
-                  a(href='/demo/product') Zowie
-                li
-                  a(href='/demo/product') Gamdias
-          .col-lg-4.col-md-6
-            .box-category.wow.bounceInUp(data-wow-delay='0.4s')
-              img(src='/assets/img/cate-5.png', alt='')
-              h4
-                a(href='/demo/product') ghế game thủ
-              ul
-                li
-                  a(href='/demo/product') Cross Fire
-                li
-                  a(href='/demo/product') WCG
-                li
-                  a(href='/demo/product') AutoFull
-                li
-                  a(href='/demo/product') DXRacer
-                li
-                  a(href='/demo/product') Extreme
-          .col-lg-4.col-md-6
-            .box-category.wow.bounceInRight(data-wow-delay='0.3s')
-              img(src='/assets/img/cate-6.png', alt='')
-              h4
-                a(href='/demo/product') tay cầm
-              ul
-                li
-                  a(href='/demo/product') Xbox
-                li
-                  a(href='/demo/product') Xbox One
-                li
-                  a(href='/demo/product') PS3
-                li
-                  a(href='/demo/product') PS4
-                li
-                  a(href='/demo/product') New Game N1 Pro
-                li
-                  a(href='/demo/product') New Game Q1
+          if homeCategories && homeCategories.length > 0
+            each homeCategory in homeCategories
+              .col-lg-4.col-md-6
+                .box-category.wow
+                  h4.wow
+                    a(href='/demo/product')=homeCategory.name ? homeCategory.name : ''
+                  ul
+                    if homeCategory.subCategories && homeCategory.subCategories.length > 0
+                      each homeCategoryChild in homeCategory.subCategories
+                        li.wow
+                          a(href='/demo/product')=homeCategoryChild.name ? homeCategoryChild.name : ''
+                  if homeCategory.image
+                    a(href='/demo/product')
+                      img(src=homeCategory.image, alt='')
 
     section.service.d-xl-block.d-lg-none.d-md-none.d-sm-none.d-none
       .container
@@ -229,7 +137,7 @@ block content
                   a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                     i.mdi.mdi-eye-plus
                   a.custom-wishlist
-                    i.mdi.mdi-heart-multiple
+                    i.mdi.mdi-heart
                   a.custom-cart
                     i.mdi.mdi-shopify
                 a(href='/demo/product_detail')
@@ -253,7 +161,7 @@ block content
                   a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                     i.mdi.mdi-eye-plus
                   a.custom-wishlist
-                    i.mdi.mdi-heart-multiple
+                    i.mdi.mdi-heart
                   a.custom-cart
                     i.mdi.mdi-shopify
                 a(href='/demo/product_detail')
@@ -277,7 +185,7 @@ block content
                   a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                     i.mdi.mdi-eye-plus
                   a.custom-wishlist
-                    i.mdi.mdi-heart-multiple
+                    i.mdi.mdi-heart
                   a.custom-cart
                     i.mdi.mdi-shopify
                 a(href='/demo/product_detail')
@@ -301,7 +209,7 @@ block content
                   a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                     i.mdi.mdi-eye-plus
                   a.custom-wishlist
-                    i.mdi.mdi-heart-multiple
+                    i.mdi.mdi-heart
                   a.custom-cart
                     i.mdi.mdi-shopify
                 a(href='/demo/product_detail')
@@ -325,7 +233,7 @@ block content
                   a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                     i.mdi.mdi-eye-plus
                   a.custom-wishlist
-                    i.mdi.mdi-heart-multiple
+                    i.mdi.mdi-heart
                   a.custom-cart
                     i.mdi.mdi-shopify
                 a(href='/demo/product_detail')
@@ -395,7 +303,7 @@ block content
                           a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
                           a.custom-wishlist
-                            i.mdi.mdi-heart-multiple
+                            i.mdi.mdi-heart
                           a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
@@ -419,7 +327,7 @@ block content
                           a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
                           a.custom-wishlist
-                            i.mdi.mdi-heart-multiple
+                            i.mdi.mdi-heart
                           a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
@@ -443,7 +351,7 @@ block content
                           a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
                           a.custom-wishlist
-                            i.mdi.mdi-heart-multiple
+                            i.mdi.mdi-heart
                           a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
@@ -467,7 +375,7 @@ block content
                           a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
                           a.custom-wishlist
-                            i.mdi.mdi-heart-multiple
+                            i.mdi.mdi-heart
                           a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
@@ -491,7 +399,7 @@ block content
                           a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
                           a.custom-wishlist
-                            i.mdi.mdi-heart-multiple
+                            i.mdi.mdi-heart
                           a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
@@ -515,7 +423,7 @@ block content
                           a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
                           a.custom-wishlist
-                            i.mdi.mdi-heart-multiple
+                            i.mdi.mdi-heart
                           a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
@@ -541,7 +449,7 @@ block content
                           a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
                           a.custom-wishlist
-                            i.mdi.mdi-heart-multiple
+                            i.mdi.mdi-heart
                           a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
@@ -565,7 +473,7 @@ block content
                           a.custom-quickview(data-toggle="modal" data-target=".product-modal-1", href='#')
                             i.mdi.mdi-eye-plus
                           a.custom-wishlist
-                            i.mdi.mdi-heart-multiple
+                            i.mdi.mdi-heart
                           a.custom-cart
                             i.mdi.mdi-shopify
                         a(href='/demo/product_detail')
@@ -613,92 +521,67 @@ block content
               h5
                 | Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus unde alias velit debitis, deserunt sunt saepe ab nesciunt nisi eos reiciendis inventore porro reprehenderit sit ullam quae, tempora impedit consequatur?
               .product-hot-btn
-                a(href='#')
+                a(class='custom-cart')
                   i.mdi.mdi-shopify
                   |  thêm vào giỏ
-                a(href='#')
-                  i.mdi.mdi-heart-multiple
+                a(class='custom-wishlist')
+                  i.mdi.mdi-heart
                   
-    section.news-home.wow.bounce
+    section.news-home.wow.bounceInLeft
       .container
         .title-cate.text-center
           h1
             a tin tức mới nhất
-        .box-news-home
-          .row
-            .col-lg-4
+        .owl-carousel.news-carousel.owl-theme
+          .item
+            .box-news-home
               .box-news-home-img
-                .custom-news
-                  a(title='Phóng to hình', rel='gallery', href='/assets/img/news-1.png', data-fancybox='', data-caption='Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis')
-                    i.fa.fa-search-plus(aria-hidden='true')
-                img(src='/assets/img/news-1.png', alt='')
-            .col-lg-1
-              .box-news-home-date.text-center
-                h1 07
-                i.fa.fa-times(aria-hidden='true')
-                h1 10
-                i.fa.fa-times(aria-hidden='true')
-                h1 18
-            .col-lg-5
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  img(src='/assets/img/news-1.png')
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  span
               .box-news-home-detail
                 h3
-                  a(href='/demo/news_detail') Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
-                h5
-                  | Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit repellat odit perspiciatis necessitatibus adipisci nam, perferendis assumenda aliquam beatae id iure, quia, vero dolorum itaque asperiores cum. Nulla, libero cum.
-            .col-lg-2
-              .box-news-home-btn
-                a(href='/demo/news_detail') xem thêm
-                a Xem nhanh
-        .box-news-home
-          .row
-            .col-lg-4
+                  a(title='Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.', href='demo/news_detail') Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.
+                .box-news-home-detail-date
+                  li
+                    i.mdi.mdi-calendar-clock
+                    |  12/12/2018
+                  li
+                    i.mdi.mdi-account-plus
+                    |  Kemmie
+          .item
+            .box-news-home
               .box-news-home-img
-                .custom-news
-                  a(title='Phóng to hình', rel='gallery', href='/assets/img/news-1.png', data-fancybox='', data-caption='Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis')
-                    i.fa.fa-search-plus(aria-hidden='true')
-                img(src='/assets/img/news-2.png', alt='')
-            .col-lg-1
-              .box-news-home-date.text-center
-                h1 07
-                i.fa.fa-times(aria-hidden='true')
-                h1 10
-                i.fa.fa-times(aria-hidden='true')
-                h1 18
-            .col-lg-5
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  img(src='/assets/img/news-2.png')
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  span
               .box-news-home-detail
                 h3
-                  a(href='/demo/news_detail') Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
-                h5
-                  | Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit repellat odit perspiciatis necessitatibus adipisci nam, perferendis assumenda aliquam beatae id iure, quia, vero dolorum itaque asperiores cum. Nulla, libero cum.
-            .col-lg-2
-              .box-news-home-btn
-                a(href='/demo/news_detail') xem thêm
-                a Xem nhanh
-        .box-news-home
-          .row
-            .col-lg-4
+                  a(title='Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.', href='demo/news_detail') Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.
+                .box-news-home-detail-date
+                  li
+                    i.mdi.mdi-calendar-clock
+                    |  12/12/2018
+                  li
+                    i.mdi.mdi-account-plus
+                    |  Kemmie
+          .item
+            .box-news-home
               .box-news-home-img
-                .custom-news
-                  a(title='Phóng to hình', rel='gallery', href='/assets/img/news-1.png', data-fancybox='', data-caption='Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis')
-                    i.fa.fa-search-plus(aria-hidden='true')
-                img(src='/assets/img/news-3.png', alt='')
-            .col-lg-1
-              .box-news-home-date.text-center
-                h1 07
-                i.fa.fa-times(aria-hidden='true')
-                h1 10
-                i.fa.fa-times(aria-hidden='true')
-                h1 18
-            .col-lg-5
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  img(src='/assets/img/news-3.png')
+                a(title='Bấm để xem chi tiết', href='demo/news_detail')
+                  span
               .box-news-home-detail
                 h3
-                  a(href='/demo/news_detail') Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
-                h5
-                  | Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit repellat odit perspiciatis necessitatibus adipisci nam, perferendis assumenda aliquam beatae id iure, quia, vero dolorum itaque asperiores cum. Nulla, libero cum.
-            .col-lg-2
-              .box-news-home-btn
-                a(href='/demo/news_detail') xem thêm
-                a Xem nhanh
-
-
+                  a(title='Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.', href='demo/news_detail') Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, totam.
+                .box-news-home-detail-date
+                  li
+                    i.mdi.mdi-calendar-clock
+                    |  12/12/2018
+                  li
+                    i.mdi.mdi-account-plus
+                    |  Kemmie
 

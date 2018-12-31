@@ -4,13 +4,10 @@ block title
   title Thêm Slider
 
 block append style
+  link(rel='stylesheet', href='/bower_components/sweetalert2/dist/sweetalert2.min.css')
   link(rel='stylesheet', href='/assets/css/slider_admin.min.css')
 
 block content
-  if messSlider && messSlider !== ''
-    div.mb-4.mess-create
-      h5=messSlider
-
   .admin-slider
     form(action='/admin/slider/save-slider', method='POST' id="form-slider" novalidate)
       input(type="hidden" name="_csrf" value=csrfToken)
@@ -39,16 +36,13 @@ block content
           type='text',
           value=slider && slider.image ? slider.image : '',
         )
-      .form-check.form-check-flat.form-check-primary.mb-3
-        label.form-check-label
-          input(type='checkbox').form-check-warning
-          | Hiển thị trang chủ
       button.btn.btn-success.mr-2(type='submit') Lưu
       a.btn.btn-light(href="/admin/slider/list-slider") Trở lại
 
   script(src='/bower_components/jquery/dist/jquery.min.js')
   script(src='/bower_components/jquery-validation/dist/jquery.validate.min.js')
   script(src='/bower_components/jquery-validation/dist/additional-methods.min.js')
+  script(src='/bower_components/sweetalert2/dist/sweetalert2.min.js')
   script.
     $("#form-slider").validate({
       rules: {
@@ -88,5 +82,19 @@ block content
         error.insertAfter(element);
       }
     });
+  
+  if messSlider && messSlider !== ''
+    script.
+      const toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      });
+
+      toast({
+        type: 'success',
+        title: '#{messSlider}'
+      })
 
 

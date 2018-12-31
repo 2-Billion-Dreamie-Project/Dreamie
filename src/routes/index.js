@@ -1,7 +1,9 @@
 import AuthRouter from './admin/AuthRouter';
 import DemoRouter from './DemoRouter';
 import PartnerRouter from './admin/PartnerRouter';
+
 import SliderRouter from './admin/SliderRouter';
+import CategoryRouter from './admin/CategoryRouter';
 
 import MediaRouter from './admin/MediaRouter';
 
@@ -46,6 +48,9 @@ export default function routes(app, passport) {
 
   // Router Slider
   app.use('/admin/slider', SliderRouter);
+
+  // Router Slider
+  app.use('/admin/category', CategoryRouter);
 
   // Router profile
   // app.get('/user/profile', isAuthentication, function (req, res) {

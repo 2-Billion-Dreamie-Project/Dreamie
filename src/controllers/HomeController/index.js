@@ -1,5 +1,6 @@
 import PartnerModel from '../../models/PartnerModel';
 import SliderModel from '../../models/SliderModel';
+import CategoryModel from '../../models/CategoryModel';
 
 /**
  * @class HomeController
@@ -14,6 +15,7 @@ export default class HomeController {
   constructor() {
     this.PartnerModel = new PartnerModel;
     this.SliderModel = new SliderModel;
+    this.CategoryModel = new CategoryModel;
     this.index = this.index.bind(this);
   }
 
@@ -25,13 +27,15 @@ export default class HomeController {
    * @todo Render view get partners, sliders
    */
   async index(req, res) {
-    let partners = await this.PartnerModel.getPartners();
+    let partners = await this.PartnerModel.getPartners(2);
     let sliders = await this.SliderModel.getSliders();
+    let homeCategories = await this.CategoryModel.getHomeCategories();
     
     res.render('client/home', {
       csrfToken: req.csrfToken(),
       partners,
-      sliders
+      sliders,
+      homeCategories,
     });
   }
 }
