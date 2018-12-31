@@ -18,16 +18,24 @@ block content
           th(scope='col') Ngày tạo
           th(scope='col') 
       tbody
-        tr
-          td 
-            img(src="http://img.k13cdn.net/f/2015/05/mot-ngay-cua-d-soda-an-bun-cha-chup-ao-dai-toi-quay-tren-bar-15.jpg")
-          td
-            | DJ Soda
-          td 
-            | 04/12/2018
-          td 
-            button.btn.btn-sm.btn-primary
-              | Xem
+        if (medias && Array.isArray(medias) && medias.length > 0)
+          each media in medias
+            tr
+              td 
+                if (media.thumbNail && media.url)
+                  a(
+                    title='Phóng to hình', 
+                    rel='gallery', 
+                    href='/' + media.url, 
+                    data-fancybox='', 
+                    data-caption=media.name ? media.name : '',
+                  )
+                    img(src='/' + media.thumbNail)
+              td=media.name ? media.name : ''
+              td=media.createdAt ? moment(media.createdAt).format('DD/MM/YYYY HH:mm') : ''
+              td 
+                button.btn.btn-sm.btn-primary
+                  | Xem
 
   script(src='/bower_components/datatables.net/js/jquery.dataTables.min.js')
   script(src='/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js')

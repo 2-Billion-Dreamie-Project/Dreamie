@@ -14,6 +14,26 @@ export default class MediaModel {
   constructor() {
     this.mediaSchema = Media;
     this.addMedia = this.addMedia.bind(this);
+    this.listMedias = this.listMedias.bind(this);
+  }
+
+  /**
+   * @memberof UserModel#
+   * @returns {Object} Return promise object medias
+   */
+  listMedias() {
+    try {
+      return (
+        this.mediaSchema.find({})
+          .catch(function(err) {
+            console.log(err);
+            return undefined;
+          })
+      );
+    } catch (err) {
+      console.log(err);
+      return undefined;
+    }
   }
 
   /**
@@ -66,5 +86,7 @@ export default class MediaModel {
       console.log(err);
       return undefined;
     }
+
   }
+
 }

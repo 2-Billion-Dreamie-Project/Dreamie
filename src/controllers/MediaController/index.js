@@ -25,6 +25,7 @@ export default class MediaController {
   constructor() {
     this.MediaModel = new MediaModel;
     this.addMedia = this.addMedia.bind(this);
+    this.listMedias = this.listMedias.bind(this);
   }
 
   /**
@@ -34,7 +35,11 @@ export default class MediaController {
    * @todo Render view list medias
    */
   async listMedias(req, res) {
-    res.render('admin/media/list_media');;
+    let medias = await this.MediaModel.listMedias();
+    res.render('admin/media/list_media', {
+      medias,
+      moment,
+    });
   }
 
   /**
