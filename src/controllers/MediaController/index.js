@@ -56,19 +56,22 @@ export default class MediaController {
    * @memberof MediaController#
    * @argument req This is the first paramter to get request
    * @argument res  This is the second parameter to get response
-
+   * @todo Generate thumbnail and save detail of file to database
+   * @returns {Object}
    */
   async addMedia(req, res) {
     const { file } = req;
     let fileRes = null;
 
     if (file) {
+      // Generate thumbnail
       let getFileNameAndExt = getFileInfoByName(file.filename);
       let thumbNail = file.destination + getFileNameAndExt.name + '-150x150' + getFileNameAndExt.ext;
       let resize = await sharp(file.path).resize(150, 150)
         .toFile(thumbNail)
           .catch(function(err) {
             console.log(err);
+            // Upload has error, remove file 
             this.deleteFileError(file.path);
             return undefined;
           });
@@ -93,6 +96,7 @@ export default class MediaController {
           width,
         );
 
+        // Save info media was failed, remove media and thumbnail
         if (!fileRes) {
           this.deleteFileError(file.path);
           this.deleteFileError(thumbNail);
@@ -101,12 +105,21 @@ export default class MediaController {
         return res.status(200).json(fileRes);
       }
 
+      // Return message error if file has does not generate thumbnail
       return res.status(500).json({mess: STT_FILE_ERROR_EXCEPTION});
     } 
-    
+
+    // Return message if file does not exist
     return res.status(500).json({mess: STT_FILE_ERROR_EXCEPTION});
   }
-
+  
+  /**
+   * @memberof MediaController#
+   * @argument req This is the first paramter to get request
+   * @argument res  This is the second parameter to get response
+   * @argument next  This is the second parameter to get response
+   * @todo Error handle when file is uploading
+   */
   errorHandleUpload(req, res, next) {
     doUploadMedia(req, res, function (err) {
       if (err) {
@@ -127,6 +140,11 @@ export default class MediaController {
 
   }
 
+  /**
+   * @memberof MediaController#
+   * @param {String} file - param is url - path of file
+   * @todo Remove file by param
+   */
   deleteFileError(file) {
     try {
       if (typeof file === 'string' && file !== '') {

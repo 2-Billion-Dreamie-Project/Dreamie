@@ -16,6 +16,19 @@ export default class MediaModel {
     this.addMedia = this.addMedia.bind(this);
   }
 
+  /**
+   * @memberof UserModel#
+   * @param {String} name - this param is required
+   * @param {String} url - this param is required
+   * @param {String} thumbNail - this param is required 
+   * @param {String} desc - this param is required 
+   * @param {String} ext - this param is required 
+   * @param {Number} size - this param is required 
+   * @param {Number} height - this param is required 
+   * @param {Number} width - this param is required 
+   * @param {Boolean} mainMode - this param is required 
+   * @returns {Object} Return promise object media
+   */
   addMedia(
     name = '',
     url = '',
