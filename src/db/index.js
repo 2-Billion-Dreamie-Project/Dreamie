@@ -2,6 +2,8 @@ require('dotenv').config();
 
 import mongoose from 'mongoose';
 import autoIncrement from 'mongoose-auto-increment';
+import mongoosePaginate from 'mongoose-paginate';
+
 import bcrypt from 'bcrypt';
 
 import UserSchema from './UserSchema';
@@ -60,6 +62,8 @@ PartnerSchema.plugin(autoIncrement.plugin, { model: 'Partner', field: 'id', star
 
 PostSchema.plugin(autoIncrement.plugin, { model: 'Post', field: 'id', startAt: 1 });
 MediaSchema.plugin(autoIncrement.plugin, { model: 'Media', field: 'id', startAt: 1 });
+MediaSchema.plugin(mongoosePaginate);
+
 CategorySchema.plugin(autoIncrement.plugin, { model: 'Category', field: 'id', startAt: 1 });
 
 CategorySchema.virtual('subCategories', {

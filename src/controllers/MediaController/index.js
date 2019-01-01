@@ -49,15 +49,77 @@ export default class MediaController {
    */
 
   async getMedias(req, res) {
-    console.log(req.body)
-    let medias = await this.MediaModel.listMedias(req.body);
-    let resMedias = {
-      draw: req.body.draw,
-      recordsTotal: 124,
-      recordsFiltered: 124,
-      data: medias,
+    let resMedias = undefined;
+    if (req.body) {
+      let queryBuild = this.handleQuery(req.body);
+      let medias = await this.MediaModel.listMedias(queryBuild);
+
+      if (medias) {
+        resMedias = {
+          draw: req.body.draw,
+          recordsTotal: medias.total,
+          recordsFiltered: medias.total,
+          data: medias.docs,
+        }
+
+      }
+      
     }
+
     return res.status(200).json(resMedias); 
+  }
+
+  /**
+   * @memberof MediaController#
+   * @argument req This is the first paramter to get request
+   * @argument res  This is the second parameter to get response
+   * @todo Handle and return queryBuilder from datatables
+   * @return {Object} Return queryBuilder is Object
+   */
+
+  handleQuery(params = undefined) {
+    let queryBuilder = {};
+
+    if (params) {
+      let query = {};
+      let { columns } = params;
+      let { order } = params;
+
+      let sort = {};
+      let limit = params.length ? parseInt(params.length) : 0;
+      let offset = params.start ? parseInt(params.start) : 0;
+
+      if (params.search && params.search.value !== '') {
+        query.name = new RegExp(params.search.value, 'i');
+      }
+
+      // Get column has sorted
+      if (columns && columns.length > 0) {
+        if (order && order.length > 0) {
+          let indexColumnSort = order[0].column;
+          let nameColumnIsSort = columns[indexColumnSort].data;
+
+          if (nameColumnIsSort === 'name' || nameColumnIsSort === 'createdAt') {
+            sort[nameColumnIsSort] = order[0].dir;
+          }
+          
+        }
+
+      }
+
+      // Assign query and option to queryBuilder
+      queryBuilder = {
+        query,
+        options: {
+          sort,
+          limit,
+          offset,
+        }
+
+      }
+    }
+
+    return queryBuilder;
   }
 
   /**

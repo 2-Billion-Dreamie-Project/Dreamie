@@ -36,34 +36,36 @@ block content
               'X-CSRF-Token': $('meta[name=_csrf]').attr('content')
             },
         },
+        "order": [[ 2, 'desc' ]],
         "columns": [
             { 
-              "data": function(row, type, val, meta) {
-                console.log(row)
-                return { url: row.url, thumbNail: row.thumbNail, name: row.name }
-              },
+              "data": "thumbNail",
               "render": function(data, type, row, meta) {
                 return (
                   `<a title="Phóng to hình" rel="gallery" href="/${row.url}" data-fancybox="" data-caption="${row.name}">
                     <img src="/${row.thumbNail}"/>
                   </a>`
-                )
+                );
               },
+              "orderable": false,
             },
             { 
-              "data": "name"
+              "data": "name",
+              "orderable": true,
             },
             { 
               "data": "createdAt",
               "render": function(data, type, row, meta) {
                 return moment(row.createdAt).format('DD/MM/YYYY HH:mm');
               },
+              "orderable": true,
             },
             { 
               "data": "_id",
               "render": function(data, type, row, meta) {
                 return `<a class="btn btn-sm btn-primary">Xem</a>`;
               },
+              "orderable": false,
             },
         ],
         "language": {

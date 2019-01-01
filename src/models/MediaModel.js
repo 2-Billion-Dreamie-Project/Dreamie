@@ -21,10 +21,10 @@ export default class MediaModel {
    * @memberof UserModel#
    * @returns {Object} Return promise object medias
    */
-  listMedias() {
+  listMedias({ query = {}, options = {} }) {
     try {
       return (
-        this.mediaSchema.find({})
+        this.mediaSchema.paginate(query, options)
           .catch(function(err) {
             console.log(err);
             return undefined;
