@@ -25,7 +25,7 @@ export default class MediaController {
   constructor() {
     this.MediaModel = new MediaModel;
     this.addMedia = this.addMedia.bind(this);
-    this.listMedias = this.listMedias.bind(this);
+    this.getMedias = this.getMedias.bind(this);
   }
 
   /**
@@ -34,12 +34,30 @@ export default class MediaController {
    * @argument res  This is the second parameter to get response
    * @todo Render view list medias
    */
-  async listMedias(req, res) {
-    let medias = await this.MediaModel.listMedias();
+  listMedias(req, res) {
     res.render('admin/media/list_media', {
-      medias,
+      csrfToken: req.csrfToken(),
       moment,
     });
+  }
+
+  /**
+   * @memberof MediaController#
+   * @argument req This is the first paramter to get request
+   * @argument res  This is the second parameter to get response
+   * @return {Object} Return list medias
+   */
+
+  async getMedias(req, res) {
+    console.log(req.body)
+    let medias = await this.MediaModel.listMedias(req.body);
+    let resMedias = {
+      draw: req.body.draw,
+      recordsTotal: 124,
+      recordsFiltered: 124,
+      data: medias,
+    }
+    return res.status(200).json(resMedias); 
   }
 
   /**

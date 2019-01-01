@@ -4,6 +4,8 @@ block title
   title Thư viện
 
 block append style
+  meta(name="_csrf", content=csrfToken)
+
   link(rel='stylesheet', href='/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css')
   link(rel='stylesheet', href='/assets/css/media_admin.min.css')
 
@@ -13,35 +15,57 @@ block content
     table.table.table-dark.table-bordered.table-hover#media-table
       thead
         tr
-          th(scope='col') 
+          th(scope='col') Ảnh
           th(scope='col') Tên tập tin
           th(scope='col') Ngày tạo
-          th(scope='col') 
-      tbody
-        if (medias && Array.isArray(medias) && medias.length > 0)
-          each media in medias
-            tr
-              td 
-                if (media.thumbNail && media.url)
-                  a(
-                    title='Phóng to hình', 
-                    rel='gallery', 
-                    href='/' + media.url, 
-                    data-fancybox='', 
-                    data-caption=media.name ? media.name : '',
-                  )
-                    img(src='/' + media.thumbNail)
-              td=media.name ? media.name : ''
-              td=media.createdAt ? moment(media.createdAt).format('DD/MM/YYYY HH:mm') : ''
-              td 
-                button.btn.btn-sm.btn-primary
-                  | Xem
+          th(scope='col') Hành động
+      
 
   script(src='/bower_components/datatables.net/js/jquery.dataTables.min.js')
   script(src='/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js')
   script.
     $(document).ready( function () {
       $('#media-table').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "responsive": true,
+        "ajax": {
+            "url": "/admin/media/get-medias",
+            "type": "POST",
+            "headers": {
+              'X-CSRF-Token': $('meta[name=_csrf]').attr('content')
+            },
+        },
+        "columns": [
+            { 
+              "data": function(row, type, val, meta) {
+                console.log(row)
+                return { url: row.url, thumbNail: row.thumbNail, name: row.name }
+              },
+              "render": function(data, type, row, meta) {
+                return (
+                  `<a title="Phóng to hình" rel="gallery" href="/${row.url}" data-fancybox="" data-caption="${row.name}">
+                    <img src="/${row.thumbNail}"/>
+                  </a>`
+                )
+              },
+            },
+            { 
+              "data": "name"
+            },
+            { 
+              "data": "createdAt",
+              "render": function(data, type, row, meta) {
+                return moment(row.createdAt).format('DD/MM/YYYY HH:mm');
+              },
+            },
+            { 
+              "data": "_id",
+              "render": function(data, type, row, meta) {
+                return `<a class="btn btn-sm btn-primary">Xem</a>`;
+              },
+            },
+        ],
         "language": {
           "lengthMenu": "Hiển thị _MENU_ mục",
           "emptyTable":     "Không có dữ liệu nào trong bảng",
@@ -51,6 +75,7 @@ block content
           "infoEmpty": "Không có mục nào có sẵn",
           "infoFiltered": "(Lọc từ _MAX_ mục)",
           "search": "Tìm kiếm:",
+          "processing": "Đang tải...",
           "paginate": {
               "first":      "Đầu",
               "last":       "Cuối",
@@ -58,7 +83,6 @@ block content
               "previous":   "Trước"
           },
         },
-        "order": [[ 0, "desc" ]],
         "pagingType": "full_numbers"
       });
       

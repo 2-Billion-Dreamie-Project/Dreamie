@@ -12,3 +12,6 @@
 
 # Ignore storages 
 /storage
+
+# Ignore quick start db loacl 
+/start-db.bat

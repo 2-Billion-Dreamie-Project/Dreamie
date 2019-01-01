@@ -49,7 +49,7 @@ passportConfig(passport, LocalStrategy);
 app.use(timeout('120s'));
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false })); 
+app.use(bodyParser.urlencoded({ extended: true })); 
 // parse application/json
 app.use(bodyParser.json()); 
 // compress all responses
