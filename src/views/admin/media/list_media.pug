@@ -8,6 +8,7 @@ block append style
 
   link(rel='stylesheet', href='/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css')
   link(rel='stylesheet', href='/assets/css/media_admin.min.css')
+  link(rel='stylesheet', href='/bower_components/sweetalert2/dist/sweetalert2.min.css')
 
 
 block content
@@ -23,6 +24,8 @@ block content
 
   script(src='/bower_components/datatables.net/js/jquery.dataTables.min.js')
   script(src='/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js')
+  script(src='/bower_components/sweetalert2/dist/sweetalert2.min.js')
+
   script.
     $(document).ready( function () {
       $('#media-table').DataTable({
@@ -43,7 +46,7 @@ block content
               "render": function(data, type, row, meta) {
                 return (
                   `<a title="Phóng to hình" rel="gallery" href="/${row.url}" data-fancybox="" data-caption="${row.name}">
-                    <img src="/${row.thumbNail}"/>
+                    <img class="img-thumbnail" src="/${row.thumbNail}"/>
                   </a>`
                 );
               },
@@ -63,7 +66,7 @@ block content
             { 
               "data": "_id",
               "render": function(data, type, row, meta) {
-                return `<a class="btn btn-sm btn-primary">Xem</a>`;
+                return `<a href="/admin/media/detail-media/${row._id}" class="btn btn-sm btn-primary">Xem</a>`;
               },
               "orderable": false,
             },
@@ -87,7 +90,18 @@ block content
         },
         "pagingType": "full_numbers"
       });
+
+      //- Alert error info media  
+      let errInfoMedia = '#{errInfoMedia ? errInfoMedia : ''}';
+      if (errInfoMedia && errInfoMedia !== '') {
+        Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 5000,
+          type: 'error',
+          title: errInfoMedia
+        })();
+      }
       
     });
-
-  

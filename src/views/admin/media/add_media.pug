@@ -22,7 +22,7 @@ block append style
 block content
   .card
     .card-body
-      h4.card-title Tải media
+      h5.card-title.title-add-media Tải media mới
 
       //- UPLOAD ZONE
       
@@ -32,6 +32,8 @@ block content
 
         label.btn.btn-sm.btn-primary Chọn tập tin
           input(type="file", multiple, hidden, accept="image/png, image/jpeg, image/png, image/jpg")
+
+        i.note (*) Media tải lên tối đa #{ maxFileSize ? maxFileSize : '' }Mb
       //- END UPLOAD ZONE
 
       //- UPLOAD CONTENT
@@ -121,8 +123,12 @@ block content
     //- Handle when upload media is done
     mediaUpload.on('fileuploaddone', function(e, data) {
       const { fieldUpload } = data;
+      const { responseJSON } = data.jqXHR;
+      let url = responseJSON && responseJSON._id ? `/admin/media/detail-media/${responseJSON._id}` : '#';
+
       fieldUpload
         .find('a')
+          .attr('href', url)
           .prop('hidden', false);
 
       fieldUpload

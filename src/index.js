@@ -13,7 +13,7 @@ import cookieParser from 'cookie-parser';
 import passport from 'passport';
 import Strategy from 'passport-local';
 
-import flash from 'connect-flash'; // fla
+import flash from 'connect-flash';
 import connectMongo from 'connect-mongo';
 import routes from './routes';
 

@@ -6,10 +6,12 @@ import multer from 'multer';
 import fs from 'fs';
 import MediaModel from '../../models/MediaModel';
 
+import _ from 'lodash';
 import { getFileInfoByName } from '../../helpers';
 import { doUploadMedia } from '../../middlewares/doUploadMedia';
-import { STT_FILE_ERROR_EXTENSION,  STT_FILE_ERROR_EXCEPTION} from '../../global/statusFileError';
 
+import filesize from 'filesize.js';
+import { STT_FILE_ERROR_EXTENSION,  STT_FILE_ERROR_EXCEPTION} from '../../global/statusFileError';
 import { MAX_FILE_SIZE } from '../../global/common';
 
 /**
@@ -26,6 +28,7 @@ export default class MediaController {
     this.MediaModel = new MediaModel;
     this.addMedia = this.addMedia.bind(this);
     this.getMedias = this.getMedias.bind(this);
+    this.viewDetailMedia = this.viewDetailMedia.bind(this);
   }
 
   /**
@@ -35,9 +38,11 @@ export default class MediaController {
    * @todo Render view list medias
    */
   listMedias(req, res) {
+    let errInfoMedia = _.get(req.flash(), 'errInfoMedia[0]');
     res.render('admin/media/list_media', {
       csrfToken: req.csrfToken(),
       moment,
+      errInfoMedia,
     });
   }
 
@@ -141,6 +146,37 @@ export default class MediaController {
    * @memberof MediaController#
    * @argument req This is the first paramter to get request
    * @argument res  This is the second parameter to get response
+   * @todo Render view detail medias
+   */
+  async viewDetailMedia(req, res) {
+    let { _id } = req.params;
+    let media; 
+
+    if (_id && _id !== '') {
+      media = await this.MediaModel.getMedia(_id);
+
+      if (!media) {
+        req.flash('errInfoMedia', 'Không tồn tại media bạn yêu cầu!')
+        return res.redirect('/admin/media/list-medias');
+      }
+
+      return res.render('admin/media/detail_media', {
+        csrfToken: req.csrfToken(),
+        moment,
+        filesize,
+        media,
+      });
+    }
+
+    // redirect when id is undefined
+    return res.redirect('/admin/media/list-medias');
+  
+  }
+
+  /**
+   * @memberof MediaController#
+   * @argument req This is the first paramter to get request
+   * @argument res  This is the second parameter to get response
    * @todo Generate thumbnail and save detail of file to database
    * @returns {Object}
    */
@@ -149,6 +185,8 @@ export default class MediaController {
     let fileRes = null;
 
     if (file) {
+      let url = file.destination + file.filename;
+
       // Generate thumbnail
       let getFileNameAndExt = getFileInfoByName(file.filename);
       let thumbNail = file.destination + getFileNameAndExt.name + '-150x150' + getFileNameAndExt.ext;
@@ -172,7 +210,7 @@ export default class MediaController {
 
         fileRes = await this.MediaModel.addMedia(
           file.originalname,
-          file.path,
+          url,
           thumbNail,
           desc,
           type,

@@ -1,0 +1,82 @@
+extends ../../layouts/admin/layout_admin
+
+block title 
+  title Chi tiết thư viện
+
+  link(rel='stylesheet', href='/assets/css/media_admin.min.css')
+
+block append style
+
+block content
+  form.detail-media
+    input(type="hidden", name="_id", value=(media && media._id ? media._id : ''))
+    input(type="hidden", name="_csrf", value=csrfToken)
+
+    .row
+      .col-md-12 
+        h3.w-100.mb-3 Chi tiết Media
+    .row
+      //- LEFT COLUMN
+      .col-md-8
+        .form-group
+          input#name.form-control.form-control-sm(
+            type='text', 
+            name="name", 
+            placeholder='Điền tên media...',
+            value=(media && media.name ? media.name : '')
+          ) 
+
+        if media && media.url 
+          .form-group
+            a(
+              title='Phóng to hình', 
+              rel='gallery', 
+              href='/' + media.url, 
+              data-fancybox='', 
+              data-caption=media && media.name ? media.name : ''
+            )
+              .img-fluid.show-media(style='background-image: url("/' + media.url + '")')
+      
+        .form-group
+          label(for='desc') Mô tả
+          textarea#desc.form-control(
+            name="desc", 
+            rows='3', 
+            value=media && media.desc ? media.desc : ''
+          )
+
+      //- RIGHT COLUMN
+      .col-md-4
+        .card
+          .card-header  
+            h5.card-title.card-title-detail Thông tin
+          .card-body#body-detail-media
+            .form-group
+              label 
+                | Tải lên: 
+                b=media && media.createdAt ? moment(media.createdAt).format('DD/MM/YYYY HH:mm') : ''
+            .form-group
+              label 
+                | Định dạng: 
+                b=media && media.ext ? media.ext.toUpperCase()  : ''
+            - console.log(filesize)
+            .form-group
+              label 
+                | Dung lượng: 
+                b=media && media.size ? filesize(media.size)  : '0Mb'
+            .form-group
+              label 
+                | Kích thước: 
+                b=media && media.width ? media.width  : 0
+                |  x 
+                b=media && media.height ? media.height  : 0
+
+          .card-footer.d-flex.justify-content-between
+            button.btn.btn-sm.btn-outline-danger.btn-icon-text(type='button')
+              i.mdi.mdi-delete.btn-icon-prepend
+              | Xoá vĩnh viễn
+
+            button.btn.btn-sm.btn-outline-info.btn-icon-text(type='submit')
+              i.mdi.mdi-pencil.btn-icon-prepend
+              | Cập nhật
+

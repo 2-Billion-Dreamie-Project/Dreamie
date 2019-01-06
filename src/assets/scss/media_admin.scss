@@ -31,6 +31,31 @@ table {
   height: 16rem;
   width: 100%;
   border: 2px dotted #8110a5;
+
+  .note {
+    font-size: 0.8rem;
+  }
+}
+
+.card {
+  .card-header {
+    h5.card-title-detail {
+      margin-bottom: 0;
+    }
+
+  }
+
+  .card-body {
+    h5.title-add-media {
+      font-size: 1.5rem;
+    }
+
+  }
+
+  .card-body#body-detail-media {
+    padding: 1.4rem 1.4rem 0 1.4rem;
+  }
+
 }
 
 .media-upload-item {
@@ -50,6 +75,21 @@ table {
 
   span {
     margin-left: 2rem;
+  }
+
+}
+
+/** FIELD UPLOAD MEDIA  **/ 
+form.detail-media {
+  .show-media {
+    height: 350px;
+    background-position: center;
+    width: 100%;
+    overflow: hidden;
+    background-size: cover;
+  }
+  textarea#desc {
+    resize: vertical;
   }
 }
 

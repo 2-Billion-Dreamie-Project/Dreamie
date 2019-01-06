@@ -15,6 +15,7 @@ export default class MediaModel {
     this.mediaSchema = Media;
     this.addMedia = this.addMedia.bind(this);
     this.listMedias = this.listMedias.bind(this);
+    this.getMedia = this.getMedia.bind(this);
   }
 
   /**
@@ -47,7 +48,7 @@ export default class MediaModel {
    * @param {Number} height - this param is required 
    * @param {Number} width - this param is required 
    * @param {Boolean} mainMode - this param is required 
-   * @returns {Object} Return promise object media
+   * @returns {Object} Return promise object medias
    */
   addMedia(
     name = '',
@@ -87,6 +88,26 @@ export default class MediaModel {
       return undefined;
     }
 
+  }
+
+  /**
+   * @memberof UserModel#
+   * @param {ObjectId} _id - this param is required 
+   * @returns {Object} Return promise object media
+   */
+  getMedia(_id = '') {
+    try {
+      return(
+        this.mediaSchema.findById(_id)
+        .catch(function(err) {
+          console.log(err);
+          return undefined;
+        })  
+      );
+    } catch (err) {
+      console.log(err);
+      return undefined;
+    }
   }
 
 }
