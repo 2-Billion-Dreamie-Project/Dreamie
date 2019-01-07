@@ -14,6 +14,8 @@ import filesize from 'filesize.js';
 import { STT_FILE_ERROR_EXTENSION,  STT_FILE_ERROR_EXCEPTION} from '../../global/statusFileError';
 import { MAX_FILE_SIZE } from '../../global/common';
 
+import {validationResult } from 'express-validator/check';
+
 /**
  * @class MediaController
  * @author ChungNQ
@@ -28,7 +30,10 @@ export default class MediaController {
     this.MediaModel = new MediaModel;
     this.addMedia = this.addMedia.bind(this);
     this.getMedias = this.getMedias.bind(this);
+
     this.viewDetailMedia = this.viewDetailMedia.bind(this);
+    this.updateMedia = this.updateMedia.bind(this);
+    this.deleteMedia = this.deleteMedia.bind(this);
   }
 
   /**
@@ -38,11 +43,12 @@ export default class MediaController {
    * @todo Render view list medias
    */
   listMedias(req, res) {
-    let errInfoMedia = _.get(req.flash(), 'errInfoMedia[0]');
+    let errMedia = _.get(req.flash(), 'errMedia[0]');
+
     res.render('admin/media/list_media', {
       csrfToken: req.csrfToken(),
       moment,
-      errInfoMedia,
+      errMedia,
     });
   }
 
@@ -150,13 +156,14 @@ export default class MediaController {
    */
   async viewDetailMedia(req, res) {
     let { _id } = req.params;
+    let errUpdateMedia = _.get(req.flash(), 'errUpdateMedia[0]')
     let media; 
 
     if (_id && _id !== '') {
       media = await this.MediaModel.getMedia(_id);
 
       if (!media) {
-        req.flash('errInfoMedia', 'Không tồn tại media bạn yêu cầu!')
+        req.flash('errMedia', 'Không tồn tại media bạn yêu cầu!')
         return res.redirect('/admin/media/list-medias');
       }
 
@@ -165,6 +172,7 @@ export default class MediaController {
         moment,
         filesize,
         media,
+        errUpdateMedia,
       });
     }
 
@@ -195,7 +203,7 @@ export default class MediaController {
           .catch(function(err) {
             console.log(err);
             // Upload has error, remove file 
-            this.deleteFileError(file.path);
+            this.deleteFileFs(file.path);
             return undefined;
           });
 
@@ -221,8 +229,8 @@ export default class MediaController {
 
         // Save info media was failed, remove media and thumbnail
         if (!fileRes) {
-          this.deleteFileError(file.path);
-          this.deleteFileError(thumbNail);
+          this.deleteFileFs(file.path);
+          this.deleteFileFs(thumbNail);
         }
 
         return res.status(200).json(fileRes);
@@ -268,7 +276,7 @@ export default class MediaController {
    * @param {String} file - param is url - path of file
    * @todo Remove file by param
    */
-  deleteFileError(file) {
+  deleteFileFs(file) {
     try {
       if (typeof file === 'string' && file !== '') {
         fs.unlinkSync(file);
@@ -280,6 +288,86 @@ export default class MediaController {
       console.log(err);
       return false;
     }
+  }
+
+   /**
+   * @memberof MediaController#
+   * @argument req This is the first paramter to get request
+   * @argument res  This is the second parameter to get response
+   * @todo Update Media 
+   */
+
+  async updateMedia(req, res) {
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      errors = errors.mapped();
+
+      let errId = _.get(errors, '_id');
+      let errName = _.get(errors, 'name');
+
+      if (errId) {
+        req.flash('errMedia', errId.msg);
+        return res.redirect('/admin/media/list-medias');
+      }
+
+      if (errName) {
+        let _id = req.body._id;
+        req.flash('errUpdateMedia', errName.msg);
+        return res.redirect('/admin/media/detail-media/' + _id);
+      }
+      
+    }
+
+    let media;
+    let { _id, name, desc } = req.body;
+    desc = desc ? desc : '';
+
+    media = await this.MediaModel.updateMedia(_id, name, desc);
+
+    if (!media) {
+      req.flash('errMedia', 'Xảy ra lỗi trong quá trình cập nhật');
+      return res.redirect('/admin/media/list-medias');
+    }
+
+    return res.redirect('/admin/media/detail-media/' + media._id);
+  }
+
+   /**
+   * @memberof MediaController#
+   * @argument req This is the first paramter to get request
+   * @argument res  This is the second parameter to get response
+   * @todo Delete Media 
+   */
+  async deleteMedia(req, res) {
+    let errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      errors = errors.mapped();
+      let errId = _.get(errors, '_id');
+
+      if (errId) {
+        req.flash('errMedia', errId.msg);
+        return res.redirect('/admin/media/list-medias');
+      }
+      
+    }
+
+    let media;
+    let { _id } = req.params;
+
+
+
+    media = await this.MediaModel.deleteMedia(_id);
+
+    if (!media) {
+      req.flash('errMedia', 'Xảy ra lỗi trong quá trình xoá');
+      return res.redirect('/admin/media/list-medias');
+    }
+
+    res.redirect('/admin/media/list-medias');
+
+    this.deleteFileFs(media.url);
+    this.deleteFileFs(media.thumbNail);
   }
 
 }

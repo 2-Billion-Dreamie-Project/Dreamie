@@ -15,7 +15,10 @@ export default class MediaModel {
     this.mediaSchema = Media;
     this.addMedia = this.addMedia.bind(this);
     this.listMedias = this.listMedias.bind(this);
+
     this.getMedia = this.getMedia.bind(this);
+    this.updateMedia = this.updateMedia.bind(this);
+    this.deleteMedia = this.deleteMedia.bind(this);
   }
 
   /**
@@ -104,6 +107,61 @@ export default class MediaModel {
           return undefined;
         })  
       );
+    } catch (err) {
+      console.log(err);
+      return undefined;
+    }
+  }
+
+  /**
+   * @memberof UserModel#
+   * @param {ObjectId} _id - this param is required 
+   * @param {ObjectId} name - this param is required 
+   * @param {ObjectId} desc 
+   * @returns {Object} Return promise object media
+   */
+  updateMedia(_id = '', name = '', desc = '',) {
+    try {
+      if (_id !== '' && name !== '') {
+        return(
+          this.mediaSchema
+          .findOneAndUpdate(
+            { _id }, 
+            { 
+              $set: { name, desc },
+            },
+            {
+              new: true
+            },
+          ).catch(function(err) {
+            console.log(err);
+            return undefined;
+          })
+        );
+      }
+    } catch (err) {
+      console.log(err);
+      return undefined;
+    }
+  }
+
+
+  /**
+   * @memberof UserModel#
+   * @param {ObjectId} _id - this param is required 
+   * @returns {Object} Return promise object media
+   */
+  deleteMedia(_id = '') {
+    try {
+      if (_id !== '') {
+        return(
+          this.mediaSchema
+          .findOneAndDelete({ _id }).catch(function(err) {
+            console.log(err);
+            return undefined;
+          })
+        );
+      }
     } catch (err) {
       console.log(err);
       return undefined;
