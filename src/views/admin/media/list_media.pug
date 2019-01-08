@@ -12,14 +12,19 @@ block append style
 
 
 block content
-  .table-responsive
+  .row.mb-3
+    h3.mb-0.mt-1.mr-2 Danh sách media
+    a.btn.btn-sm.btn-success(href="/admin/media/add-media") Tạo media
+
+  .row
+    .table-responsive
     table.table.table-dark.table-bordered.table-hover#media-table
       thead
         tr
           th(scope='col') Ảnh
           th(scope='col') Tên tập tin
           th(scope='col') Ngày tạo
-          th(scope='col') Hành động
+          th(scope='col', width="135px") Hành động
       
 
   script(src='/bower_components/datatables.net/js/jquery.dataTables.min.js')
@@ -33,7 +38,7 @@ block content
       $('#media-table').DataTable({
         "processing": true,
         "serverSide": true,
-        "responsive": true,
+        "responsive": false,
         "ajax": {
             "url": "/admin/media/get-medias",
             "type": "POST",
@@ -68,7 +73,11 @@ block content
             { 
               "data": "_id",
               "render": function(data, type, row, meta) {
-                return `<a href="/admin/media/detail-media/${row._id}" class="btn btn-sm btn-primary">Xem</a>`;
+                return(
+                  `<a href="/admin/media/detail-media/${row._id}" class="btn btn-sm btn-primary">Xem</a>
+                  <button type="button" _id="${row._id}" class="btn btn-sm btn-danger btn-remove-media">Xoá</button>
+                  `
+                );
               },
               "orderable": false,
             },
@@ -106,6 +115,30 @@ block content
             title: errMedia,
           })();
       }
+
+      //- Remove Media
+      $('#media-table').on('click', '.btn-remove-media', function() {
+        let _id = $(this).attr('_id');
+        if (_id !== '') {
+          Swal({
+            title: 'Bạn có chắc chắn?',
+            text: "Media này sẽ bị xoá vĩnh viễn!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Đồng ý',
+            cancelButtonText: 'Huỷ bỏ!',
+          }).then((result) => {
+            if (result.value) {
+              window.location.replace(`/admin/media/delete-media/${_id}`);
+            }
+
+          });
+
+        }
+
+      });
 
     });
     

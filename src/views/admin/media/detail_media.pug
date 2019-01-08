@@ -13,9 +13,11 @@ block content
     input(type="hidden", name="_id", value=(media && media._id ? media._id : ''))
     input(type="hidden", name="_csrf", value=csrfToken)
 
-    .row
+    .row.mb-3
       .col-md-12 
-        h3.w-100.mb-3 Chi tiết Media
+        h3.mb-0.mr-2.mt-1.d-inline-block.float-left Sửa media
+        a.btn.btn-sm.btn-success.float-left(href="/admin/media/add-media") Tạo media
+        
     .row
       //- LEFT COLUMN
       .col-md-8
@@ -147,5 +149,11 @@ block content
         }
 
       });
+
+      //- Active Menu
+
+      let menuMedia = $('#sidebar').find('#root-menu-media');
+      menuMedia.addClass('active');
+      menuMedia.find('.collapse').addClass('show');
 
     });
