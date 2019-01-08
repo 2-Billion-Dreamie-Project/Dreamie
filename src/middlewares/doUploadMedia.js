@@ -34,7 +34,7 @@ function createFolderUpload() {
   // Check exist folder 
   if (!fs.existsSync(folder)) {
     // Create folder that not exist
-    fs.mkdirSync(folder, { recursive: true, mode: 0o744 });
+    fs.mkdirSync(folder, { recursive: true });
   }
 
   return folder;
