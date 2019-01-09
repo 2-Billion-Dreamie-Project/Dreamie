@@ -1,0 +1,100 @@
+extends ../../layouts/admin/layout_admin
+
+block title 
+  title Thêm Slider
+
+block append style
+  link(rel='stylesheet', href='/bower_components/sweetalert2/dist/sweetalert2.min.css')
+  link(rel='stylesheet', href='/assets/css/slider_admin.min.css')
+
+block content
+  .admin-slider
+    form(action='/admin/slider/save-slider', method='POST' id="form-slider" novalidate)
+      input(type="hidden" name="_csrf" value=csrfToken)
+      if slider && slider._id !== 'undefined'
+        input(type="hidden" name="_id" value=slider._id)
+      .form-group
+        label(for='name-slider') Tên Slider
+        input#name-slider.form-control(
+          name='name', 
+          type='text', 
+          placeholder='Nhập tên Slider',
+          value=slider && slider.name ? slider.name : '',
+        )
+      .form-group
+        label(for='name-slider') Nội dung Slider
+        input#content-slider.form-control(
+          name='content', 
+          type='text', 
+          placeholder='Nhập nội dung Slider',
+          value=slider && slider.content ? slider.content : '',
+        )
+      .form-group
+        label(for='image-slider') Hình ảnh Slider
+        input#image-slider.form-control(
+          name='image', 
+          type='text',
+          value=slider && slider.image ? slider.image : '',
+        )
+      button.btn.btn-success.mr-2(type='submit') Lưu
+      a.btn.btn-light(href="/admin/slider/list-slider") Trở lại
+
+  script(src='/bower_components/jquery/dist/jquery.min.js')
+  script(src='/bower_components/jquery-validation/dist/jquery.validate.min.js')
+  script(src='/bower_components/jquery-validation/dist/additional-methods.min.js')
+  script(src='/bower_components/sweetalert2/dist/sweetalert2.min.js')
+  script.
+    $("#form-slider").validate({
+      rules: {
+        name: {
+          required: true,
+          maxlength: 20,
+          minlength: 5,
+        },
+        content: {
+          required: true,
+          maxlength: 40,
+        },
+        image:{
+          required: true,
+          url: true,
+        },
+      },
+      messages: {
+        name: {
+          required: "Vui lòng điền tên Slider",
+          minlength: "Tên Slider ít nhất có 5 ký tự",
+          maxlength: "Tên slider không quá 20 ký tự"
+        },
+        content: {
+          required: "Vui lòng điền nội dung Slider",
+          maxlength: "Nội dung Slider không được quá 30 ký tự"
+        },
+        image:{
+          required: "Vui lòng điền ảnh Slider",
+          url: "Vui lòng điền đúng định dạng url"
+        },
+      },
+      errorPlacement: function(error, element) {
+        $(error).addClass('text-danger mt-2');
+        $(element).addClass('form-control-danger');
+
+        error.insertAfter(element);
+      }
+    });
+  
+  if messSlider && messSlider !== ''
+    script.
+      const toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      });
+
+      toast({
+        type: 'success',
+        title: '#{messSlider}'
+      })
+
+

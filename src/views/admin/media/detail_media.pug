@@ -1,0 +1,159 @@
+extends ../../layouts/admin/layout_admin
+
+block title 
+  title Chi tiết thư viện
+
+  link(rel='stylesheet', href='/assets/css/media_admin.min.css')
+  link(rel='stylesheet', href='/bower_components/sweetalert2/dist/sweetalert2.min.css')
+
+block append style
+
+block content
+  form.detail-media(action="/admin/media/update-media", method="POST")
+    input(type="hidden", name="_id", value=(media && media._id ? media._id : ''))
+    input(type="hidden", name="_csrf", value=csrfToken)
+
+    .row.mb-3
+      .col-md-12 
+        h3.mb-0.mr-2.mt-1.d-inline-block.float-left Sửa media
+        a.btn.btn-sm.btn-success.float-left(href="/admin/media/add-media") Tạo media
+        
+    .row
+      //- LEFT COLUMN
+      .col-md-8
+        .form-group
+          input#name.form-control.form-control-sm(
+            type='text', 
+            name="name", 
+            placeholder='Điền tên media...',
+            value=(media && media.name ? media.name : '')
+          )
+
+        if media && media.url 
+          .form-group
+            a(
+              title='Phóng to hình', 
+              rel='gallery', 
+              href='/' + media.url, 
+              data-fancybox='', 
+              data-caption=media && media.name ? media.name : ''
+            )
+              .img-fluid.show-media(style='background-image: url("/' + media.url + '")')
+      
+        .form-group
+          label(for='desc') Mô tả
+          textarea#desc.form-control(
+            name="desc", 
+            rows='3', 
+          ) #{media && media.desc ? media.desc : ''}
+
+      //- RIGHT COLUMN
+      .col-md-4
+        .card
+          .card-header  
+            h5.card-title.card-title-detail Thông tin
+          .card-body#body-detail-media
+            .form-group
+              label 
+                | Tải lên: 
+                b=media && media.createdAt ? moment(media.createdAt).format('DD/MM/YYYY HH:mm') : ''
+
+            .form-group
+              label 
+                | Định dạng: 
+                b=media && media.ext ? media.ext.toUpperCase()  : ''
+
+            .form-group
+              label 
+                | Dung lượng: 
+                b=media && media.size ? filesize(media.size)  : '0Mb'
+
+            .form-group
+              label 
+                | Kích thước: 
+                b=media && media.width ? media.width  : 0
+                |  x 
+                b=media && media.height ? media.height  : 0
+
+          .card-footer.d-flex.justify-content-between
+            button#btn-remove-media.btn.btn-sm.btn-outline-danger.btn-icon-text(type='button')
+              i.mdi.mdi-delete.btn-icon-prepend
+              | Xoá vĩnh viễn
+
+            button.btn.btn-sm.btn-outline-info.btn-icon-text(type='submit')
+              i.mdi.mdi-pencil.btn-icon-prepend
+              | Cập nhật
+
+
+  script(src='/bower_components/sweetalert2/dist/sweetalert2.min.js')
+  script(src='/bower_components/jquery-validation/dist/jquery.validate.min.js')
+  script.
+    $(document).ready(function() {
+      //- Alert error update media  
+      let errUpdateMedia = '#{errUpdateMedia ? errUpdateMedia : ''}';
+      
+      if (errUpdateMedia && errUpdateMedia !== '') {
+        Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 5000,
+          type: 'error',
+          title: errUpdateMedia
+        })();
+
+      }
+
+      //- VALIDATE FORM
+      $("form.detail-media").validate({
+        rules: {
+          name: {
+            required: true,
+          },
+        },
+        messages: {
+          name: {
+            required: "Tên media không được để trống",
+          },
+        },
+        errorPlacement: function(error, element) {
+          $(error).addClass('text-danger mt-2');
+          $(element).addClass('form-control-danger');
+
+          error.insertAfter(element);
+        },
+
+      });
+
+      //- REMOVE MEDIA
+      $('#btn-remove-media').click(function() {
+        let _id = $('[name=_id]').val();
+        if (_id !== '') {
+          Swal({
+            title: 'Bạn có chắc chắn?',
+            text: "Media này sẽ bị xoá vĩnh viễn!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Đồng ý',
+            cancelButtonText: 'Huỷ bỏ!',
+          }).then((result) => {
+
+            if (result.value) {
+              window.location.replace(`/admin/media/delete-media/${_id}`);
+            }
+
+          });
+
+        }
+
+      });
+
+      //- Active Menu
+
+      let menuMedia = $('#sidebar').find('#root-menu-media');
+      menuMedia.addClass('active');
+      menuMedia.find('.collapse').addClass('show');
+
+    });

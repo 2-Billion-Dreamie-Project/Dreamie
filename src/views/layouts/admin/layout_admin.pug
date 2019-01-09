@@ -1,0 +1,123 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    block title
+    block style
+      link(rel='stylesheet', href='/assets/vendors/iconfonts/mdi/font/css/materialdesignicons.min.css')
+      link(rel='stylesheet', href='/assets/vendors/css/vendor.bundle.base.css')
+      link(rel='stylesheet', href='/assets/vendors/css/vendor.bundle.addons.css')
+      link(rel='stylesheet', href='/assets/css/vertical-layout-dark/style-admin.min.css')
+      link(rel='stylesheet', href='/bower_components/fancybox/dist/jquery.fancybox.min.css')
+      link(rel='stylesheet', href='/assets/css/admin.min.css')
+      link(rel="shortcut icon", href="/assets/img/favicon.ico")
+
+      //- Common Script
+      script(src='/bower_components/jquery/dist/jquery.min.js')
+  body
+    .container-scroller
+      nav.navbar.col-lg-12.col-12.p-0.fixed-top.d-flex.flex-row
+        .text-center.navbar-brand-wrapper.d-flex.align-items-center.justify-content-center
+          a.navbar-brand.brand-logo(href='/admin/dashboard')
+            img(src='/assets/img/logo-admin.png', alt='logo')
+          a.navbar-brand.brand-logo-mini(href='/admin/dashboard')
+            img(src='/assets/img/logo-admin-mini.png', alt='logo')
+        .navbar-menu-wrapper.d-flex.align-items-center.justify-content-end.justify-content-lg-start
+          button.navbar-toggler.navbar-toggler.align-self-center(type='button', data-toggle='minimize')
+            span.mdi.mdi-menu
+          
+          ul.navbar-nav.navbar-nav-right
+            li.nav-item.nav-profile.dropdown
+              a#profileDropdown.nav-link.dropdown-toggle(href='#', data-toggle='dropdown')
+                img(src='/assets/img/avatar.png', alt='profile')
+                span.nav-profile-name Kemmie
+              .dropdown-menu.dropdown-menu-right.navbar-dropdown(aria-labelledby='profileDropdown')
+                a.dropdown-item
+                  i.mdi.mdi-settings.text-primary
+                  | Cài đặt
+                .dropdown-divider
+                a.dropdown-item
+                  i.mdi.mdi-logout.text-primary
+                  | Đăng xuất
+            li.nav-item.nav-view-page
+              a(href="/") Xem trang
+            
+          button.navbar-toggler.navbar-toggler-right.d-lg-none.align-self-center(type='button', data-toggle='offcanvas')
+            span.mdi.mdi-menu
+      // partial
+      .container-fluid.page-body-wrapper
+        // partial:../../partials/_settings-panel.html
+        
+        nav#sidebar.sidebar.sidebar-offcanvas
+          ul.nav
+            li.nav-item
+              a.nav-link(href='/admin/dashboard')
+                i.mdi.mdi-view-quilt.menu-icon
+                span.menu-title Bảng điều khiển
+            li.nav-item
+              a.nav-link(data-toggle='collapse', href='#partner', aria-expanded='false', aria-controls='partner')
+                i.mdi.mdi-account-switch.menu-icon(aria-hidden='true')
+                span.menu-title Đối tác
+                i.menu-arrow
+              #partner.collapse
+                ul.nav.flex-column.sub-menu
+                  li.nav-item
+                    a.nav-link(href='/admin/partner/custom-partner') Thêm đối tác
+                  li.nav-item
+                    a.nav-link(href='/admin/partner/list-partner') Danh sách đối tác
+            li.nav-item#root-menu-media
+              a.nav-link(data-toggle='collapse', href='#media', aria-expanded='false', aria-controls='media')
+                i.mdi.mdi-image-multiple.menu-icon(aria-hidden='true')
+                span.menu-title Thư viện
+                i.menu-arrow
+              #media.collapse
+                ul.nav.flex-column.sub-menu
+                  li.nav-item
+                    a.nav-link(href='/admin/media/list-medias') Danh sách
+                  li.nav-item
+                    a.nav-link(href='/admin/media/add-media') Tải lên
+            li.nav-item
+              a.nav-link(data-toggle='collapse', href='#slider', aria-expanded='false', aria-controls='slider')
+                i.mdi.mdi-palette-advanced.menu-icon(aria-hidden='true')
+                span.menu-title Slider
+                i.menu-arrow
+              #slider.collapse
+                ul.nav.flex-column.sub-menu
+                  li.nav-item
+                    a.nav-link(href='/admin/slider/custom-slider') Thêm Slider
+                  li.nav-item
+                    a.nav-link(href='/admin/slider/list-slider') Danh sách Slider
+            li.nav-item
+              a.nav-link(data-toggle='collapse', href='#ui-category', aria-expanded='false', aria-controls='ui-basic')
+                i.mdi.mdi-folder-multiple.menu-icon(aria-hidden='true')
+                span.menu-title Danh mục
+                i.menu-arrow
+              #ui-category.collapse
+                ul.nav.flex-column.sub-menu
+                  li.nav-item
+                    a.nav-link(href='/admin/category/custom-category') Thêm Danh mục
+                  li.nav-item
+                    a.nav-link(href='/admin/category/list-category') Danh sách danh mục
+
+        .main-panel
+          .content-wrapper
+            block content
+          footer.footer
+            .d-sm-flex.justify-content-center.justify-content-sm-between
+              span.text-muted.text-center.text-sm-left.d-block.d-sm-inline-block
+                | Copyright © 2018 
+                a(href='', target='_blank') Dreamie
+                | . All rights reserved.
+              span.float-none.float-sm-right.d-block.mt-1.mt-sm-0.text-center
+                | Kemmie & Chung2C 
+                i.mdi.mdi-heart.text-danger
+    script(src='/assets/vendors/js/vendor.bundle.base.js')
+    script(src='/assets/vendors/js/vendor.bundle.addons.js')
+    script(src='/assets/js/default/off-canvas.js')
+    script(src='/assets/js/default/hoverable-collapse.js')
+    script(src='/assets/js/default/template.js')
+    script(src='/bower_components/fancybox/dist/jquery.fancybox.min.js')
+    //- script(src='/assets/js/default/toastDemo.js')
+    //- script(src='/assets/js/default/settings.js')
+    //- script(src='/assets/js/default/todolist.js')

@@ -1,3 +1,17 @@
 # Ignore node_modules
-
 /node_modules
+
+# Ignore dist
+/dist
+
+# Ignore docs
+/docs
+
+# Ignore bower_components
+/bower_components
+
+# Ignore storages 
+/storage
+
+# Ignore quick start db loacl 
+/start-db.bat

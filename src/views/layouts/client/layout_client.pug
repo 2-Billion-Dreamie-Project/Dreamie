@@ -1,0 +1,268 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    block title
+    block style
+      link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap-grid.min.css')
+      link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap-reboot.min.css')
+      link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
+      link(rel='stylesheet', href='/bower_components/font-awesome/css/font-awesome.min.css')
+      link(rel='stylesheet', href='/bower_components/owl.carousel/dist/assets/owl.theme.default.min.css')
+      link(rel='stylesheet', href='/bower_components/owl.carousel/dist/assets/owl.carousel.min.css')
+      link(rel='stylesheet', href='/bower_components/fancybox/dist/jquery.fancybox.min.css')
+      link(rel='stylesheet', href='/bower_components/animate.css/animate.min.css')
+      link(rel='stylesheet', href='/bower_components/xzoom/src/xzoom.css')
+      link(rel='stylesheet', href='/bower_components/xzoom/example/magnific-popup/css/magnific-popup.css')
+      link(rel='stylesheet', href='/bower_components/mdi/css/materialdesignicons.min.css')
+      link(rel="stylesheet", href="/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css")
+      link(rel='stylesheet', href='/bower_components/sweetalert2/dist/sweetalert2.min.css')
+      link(rel='stylesheet', href='/assets/css/layout.min.css')
+      link(rel="shortcut icon", href="/assets/img/favicon.ico")
+  body
+    
+    block menu
+      section.menu
+        .container
+          .row
+            .col-xl-6.order-xl-4.col-lg-4.col-md-3.col-sm-3.col-12
+              .main-menu
+                a.toggleMenu.ssm-toggle-nav
+                  i.mdi.mdi-menu
+                ul.nav
+                  li.nav-item
+                    a(href='/') Trang chủ
+                  li.nav-item
+                    a(href='/demo/about_us') Giới thiệu
+                  li.nav-item
+                    a(href='/demo/product') Sản phẩm
+                    i.btn-menu-down.mdi.mdi-chevron-down
+                    .menu-bottom
+                      img(src='/assets/img/bg-menu.png')
+                      .row
+                        if homeCategories && homeCategories.length > 0
+                          each homeCategory in homeCategories
+                            .col-xl-2.text-left.mobile-btn
+                              h4
+                                a(href='/demo/product')=homeCategory.name ? homeCategory.name : ''
+                                i.mdi.mdi-plus.d-inline-block.d-xl-none
+                              ul.out
+                                if homeCategory.subCategories && homeCategory.subCategories.length > 0
+                                  each homeCategoryChild in homeCategory.subCategories
+                                    li
+                                      a(href='/demo/product')=homeCategoryChild.name ? homeCategoryChild.name : ''
+
+                  li.nav-item
+                    a(href='/demo/news') Tin tức
+                  li.nav-item
+                    a(href='/demo/contact') Liên hệ
+            .col-xl-4.col-lg-5.col-md-5.col-sm-5.col-12.order-sm-0.order-12
+              .logo
+                a(href='/')
+                  img(src='/assets/img/logo.png', alt='')
+            .col-xl-2.order-xl-4.col-lg-3.col-md-4.col-sm-4.col-12
+              .custom-header.text-right
+                #accordionExample.accordion
+                  a(class='search-btn', title='Tìm kiếm', data-toggle='collapse', href='#search', role='button', aria-expanded='true', aria-controls='search')
+                    i.mdi.mdi-magnify
+                  a(title='Danh sách yêu thích', href='/demo/wishlist', role='button', aria-expanded='true', aria-controls='wishlist')
+                    i.mdi.mdi-heart
+                    span.badge.badge-light 0
+                  a(title='Giỏ hàng', data-toggle='collapse', href='#cart', role='button', aria-expanded='false', aria-controls='cart')
+                    i.mdi.mdi-shopify
+                    span.badge.badge-light 2
+                  #cart.collapse(data-parent='#accordionExample')
+                    .card.card-body.cart-form
+                      .cart-form-box-product
+                        .cart-form-box-product-img
+                          img(src='/assets/img/product-1.png', alt='')
+                        .cart-form-box-product-detail
+                          h5
+                            a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                          h6
+                            b 690.000 đ
+                            |  x 
+                            span 1
+                          a(href='#')
+                            i.fa.fa-times(title='Xóa', aria-hidden='true')
+                      .cart-form-box-product
+                        .cart-form-box-product-img
+                          img(src='/assets/img/product-1.png', alt='')
+                        .cart-form-box-product-detail
+                          h5
+                            a(href='/demo/product_detail') Logitech G502 Proteus Spectrum
+                          h6
+                            b 690.000 đ
+                            |  x 
+                            span 1
+                          a(href='#')
+                            i.fa.fa-times(title='Xóa', aria-hidden='true')
+                      h4
+                        | TỔNG TIỀN: 
+                        span 1.380.000 đ
+                      .cart-form-btn.text-center
+                        a(href='/demo/cart') Vào giỏ hàng
+                        a(href='/demo/pay') Thanh toán
+
+      .overlay
+      #search.collapse(data-parent='#accordionExample')
+        .card.card-body.search-form
+          h3 Tìm kiếm
+          input#search-form(type='text', name='search', placeholder='Nhập từ khóa')
+          button
+            i.fa.fa-search(aria-hidden='true')
+
+      .ssm-overlay.ssm-toggle-nav
+    block content
+
+    block footer
+      section.footer-top.d-md-block.d-none.d-sm-none
+        .container
+          .row
+            .col-lg-4.col-md-5.col-sm-12
+              .footer-top-left
+                i.fa.fa-comments(aria-hidden='true')
+                h5 Đăng ký để nhận thông tin về 
+                h4 Các chương trình khuyến mãi
+            .col-lg-5.col-md-4.col-sm-7
+              .footer-top-mid
+                input#newsletter(type='text', name='newsletter', placeholder='Nhập email của bạn . . .')
+                button(type='submit')
+                  i.fa.fa-paper-plane(aria-hidden='true')
+            .col-lg-3.col-md-3.col-sm-5.text-sm-right
+              .footer-top-right
+                a(href='#')
+                  i.fa.fa-facebook(aria-hidden='true')
+                a(href='#')
+                  i.fa.fa-twitter(aria-hidden='true')
+                a(href='#')
+                  i.fa.fa-skype(aria-hidden='true')
+      section.footer-bottom
+        .container
+          .row
+            .col-lg-4
+              .title-footer
+                h3
+                  a(data-toggle='collapse', href='#info', role='button', aria-expanded='false', aria-controls='info')
+                    | thông tin liên hệ
+                    i.fa.fa-angle-down(aria-hidden='true')
+              #info.collapse.show
+                .card.card-body.info-contact
+                  ul
+                    li
+                      i.fa.fa-industry(aria-hidden='true')
+                      p địa chỉ:
+                      h5 Số 69, Thành phố New York, Mỹ
+                    li
+                      i.fa.fa-phone(aria-hidden='true')
+                      p số điện thoại
+                      h5 0981 210 696 - 01636755456
+                    li
+                      i.fa.fa-envelope(aria-hidden='true')
+                      p email:
+                      h5 kemmie.xd@gmail.com
+            .col-lg-2
+              .title-footer
+                h3
+                  a(data-toggle='collapse', href='#cate-footer', role='button', aria-expanded='false', aria-controls='cate-footer')
+                    | danh mục
+                    i.fa.fa-angle-down(aria-hidden='true')
+              #cate-footer.collapse.show
+                .card.card-body.cate-footer
+                  ul
+                    li
+                      a(href='/demo/product')
+                        i.fa.fa-circle-o(aria-hidden='true')
+                        | Chuột máy tính
+                    li
+                      a(href='/demo/product')
+                        i.fa.fa-circle-o(aria-hidden='true')
+                        | Bàn phím
+                    li
+                      a(href='/demo/product')
+                        i.fa.fa-circle-o(aria-hidden='true')
+                        | Tai nghe
+                    li
+                      a(href='/demo/product')
+                        i.fa.fa-circle-o(aria-hidden='true')
+                        | Bàn di chuột
+                    li
+                      a(href='/demo/product')
+                        i.fa.fa-circle-o(aria-hidden='true')
+                        | Ghế gaming
+                    li
+                      a(href='/demo/product')
+                        i.fa.fa-circle-o(aria-hidden='true')
+                        | Tay cầm
+            .col-lg-3
+              .title-footer
+                h3
+                  a(data-toggle='collapse', href='#legal', role='button', aria-expanded='false', aria-controls='legal')
+                    | chính sách
+                    i.fa.fa-angle-down(aria-hidden='true')
+              #legal.collapse.show
+                .card.card-body.legal
+                  ul
+                    li
+                      a(href='#')
+                        i.fa.fa-circle-o(aria-hidden='true')
+                        | Các câu hỏi thường gặp
+                    li
+                      a(href='#')
+                        i.fa.fa-circle-o(aria-hidden='true')
+                        | Gửi yêu cầu hỗ trợ
+                    li
+                      a(href='#')
+                        i.fa.fa-circle-o(aria-hidden='true')
+                        | Hướng dẫn đặt hàng
+                    li
+                      a(href='#')
+                        i.fa.fa-circle-o(aria-hidden='true')
+                        | Phương thức vận chuyển
+                    li
+                      a(href='#')
+                        i.fa.fa-circle-o(aria-hidden='true')
+                        | Chính sách đổi trả
+            .col-lg-3
+              .title-footer
+                h3
+                  a(data-toggle='collapse', href='#company', role='button', aria-expanded='false', aria-controls='legal')
+                    | lời tựa
+                    i.fa.fa-angle-down(aria-hidden='true')
+              #company.collapse.show
+                .card.card-body.company
+                  h5
+                    | Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet enim sunt amet fugit impedit dolores adipisci magnam perferendis perspiciatis, omnis eaque quidem! Itaque distinctio molestias, consequatur alias culpa aut iusto!
+          .row
+            .col-lg-4.d-lg-block.d-none
+              .info-contact
+                ul
+                  li
+                  li
+                    i.fa.fa-clock-o(aria-hidden='true')
+                    p thời gian làm việc:
+                    h5 Thứ 2 - Thứ 7 / 8AM - 17.30PM
+            .col-lg-8
+              .copyright.text-lg-left.text-center
+                h5 Copyright @ 2018 DREAMIE GEAR. All Reserved. Designed by Kemmie and Chumie
+      a#goTop.wow.zoomInRight(href='#',title='Lên đầu trang', data-wow-duration='2s')
+        i.mdi.mdi-xbox-controller
+
+    block script
+      script(src='/bower_components/jquery/dist/jquery.min.js')
+      script(src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
+      script(src='/bower_components/owl.carousel/dist/owl.carousel.min.js')
+      script(src='/bower_components/fancybox/dist/jquery.fancybox.min.js')
+      script(src='/bower_components/wow/dist/wow.min.js')
+      script(src='/bower_components/xzoom/dist/xzoom.min.js')
+      script(src='/bower_components/xzoom/example/magnific-popup/js/magnific-popup.js')
+      script(src='/bower_components/jquery-toast-plugin/dist/jquery.toast.min.js')
+      script(src='/bower_components/jquery-touchswipe/jquery.touchSwipe.min.js')
+      script(src='/bower_components/slide-and-swipe-menu/jquery.slideandswipe.min.js')
+      script(src='/bower_components/sweetalert2/dist/sweetalert2.min.js')
+      script(src='/assets/js/client/index.js')
+
+
+                  

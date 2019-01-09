@@ -1,0 +1,144 @@
+extends ../../layouts/admin/layout_admin
+
+block title 
+  title Thư viện
+
+block append style
+  meta(name="_csrf", content=csrfToken)
+
+  link(rel='stylesheet', href='/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css')
+  link(rel='stylesheet', href='/assets/css/media_admin.min.css')
+  link(rel='stylesheet', href='/bower_components/sweetalert2/dist/sweetalert2.min.css')
+
+
+block content
+  .row.mb-3
+    h3.mb-0.mt-1.mr-2 Danh sách media
+    a.btn.btn-sm.btn-success(href="/admin/media/add-media") Tạo media
+
+  .row
+    .table-responsive
+    table.table.table-dark.table-bordered.table-hover#media-table
+      thead
+        tr
+          th(scope='col') Ảnh
+          th(scope='col') Tên tập tin
+          th(scope='col') Ngày tạo
+          th(scope='col', width="135px") Hành động
+      
+
+  script(src='/bower_components/datatables.net/js/jquery.dataTables.min.js')
+  script(src='/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js')
+  script(src='/bower_components/sweetalert2/dist/sweetalert2.min.js')
+
+  //- - console.log(errUpdateMedia)
+
+  script.
+    $(document).ready( function () {
+      $('#media-table').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "responsive": false,
+        "ajax": {
+            "url": "/admin/media/get-medias",
+            "type": "POST",
+            "headers": {
+              'X-CSRF-Token': $('meta[name=_csrf]').attr('content')
+            },
+        },
+        "order": [[ 2, 'desc' ]],
+        "columns": [
+            { 
+              "data": "thumbNail",
+              "render": function(data, type, row, meta) {
+                return (
+                  `<a title="Phóng to hình" rel="gallery" href="/${row.url}" data-fancybox="" data-caption="${row.name}">
+                    <img class="img-thumbnail" src="/${row.thumbNail}"/>
+                  </a>`
+                );
+              },
+              "orderable": false,
+            },
+            { 
+              "data": "name",
+              "orderable": true,
+            },
+            { 
+              "data": "createdAt",
+              "render": function(data, type, row, meta) {
+                return moment(row.createdAt).format('DD/MM/YYYY HH:mm');
+              },
+              "orderable": true,
+            },
+            { 
+              "data": "_id",
+              "render": function(data, type, row, meta) {
+                return(
+                  `<a href="/admin/media/detail-media/${row._id}" class="btn btn-sm btn-primary">Xem</a>
+                  <button type="button" _id="${row._id}" class="btn btn-sm btn-danger btn-remove-media">Xoá</button>
+                  `
+                );
+              },
+              "orderable": false,
+            },
+        ],
+        "language": {
+          "lengthMenu": "Hiển thị _MENU_ mục",
+          "emptyTable":     "Không có dữ liệu nào trong bảng",
+          "loadingRecords": "Đang tải...",
+          "zeroRecords": "Không có mục nào được tìm thấy",
+          "info": "Hiển thị _START_ đến _END_ trong _TOTAL_ mục",
+          "infoEmpty": "Không có mục nào có sẵn",
+          "infoFiltered": "(Lọc từ _MAX_ mục)",
+          "search": "Tìm kiếm:",
+          "processing": "Đang tải...",
+          "paginate": {
+              "first":      "Đầu",
+              "last":       "Cuối",
+              "next":       "Sau",
+              "previous":   "Trước"
+          },
+        },
+        "pagingType": "full_numbers"
+      });
+
+      //- Alert error info media  
+      let errMedia = '#{errMedia ? errMedia : ''}';
+
+      if (errMedia && errMedia !== '') {
+        Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 5000,
+            type: 'error',
+            title: errMedia,
+          })();
+      }
+
+      //- Remove Media
+      $('#media-table').on('click', '.btn-remove-media', function() {
+        let _id = $(this).attr('_id');
+        if (_id !== '') {
+          Swal({
+            title: 'Bạn có chắc chắn?',
+            text: "Media này sẽ bị xoá vĩnh viễn!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Đồng ý',
+            cancelButtonText: 'Huỷ bỏ!',
+          }).then((result) => {
+            if (result.value) {
+              window.location.replace(`/admin/media/delete-media/${_id}`);
+            }
+
+          });
+
+        }
+
+      });
+
+    });
+    

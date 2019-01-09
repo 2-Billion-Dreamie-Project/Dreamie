@@ -1,0 +1,36 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    title Dreamie
+  body
+
+    h1 Đăng ký
+
+    h3 Có tài khoản rồi đăng nhập
+      a(href="/auth/login") Tại đây
+
+    form(action="register" method="POST")
+      input(type="hidden" name="_csrf" value=csrfToken)
+
+      | Họ tên: 
+      input(type="text" name="userName" placeholder="Hãy nhập Họ tên...")
+
+      br
+      br
+
+      | Email: 
+      input(type="text" name="email" placeholder="Hãy nhập Email...")
+
+      br
+      br
+
+      | Mật khẩu: 
+      input(type="password" name="password" placeholder="Hãy nhập Mật khẩu...")
+      
+      br
+      br
+
+      button(type="submit") Đăng ký

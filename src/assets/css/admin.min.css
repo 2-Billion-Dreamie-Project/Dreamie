@@ -1,0 +1,10 @@
+.sidebar .nav.sub-menu .nav-item .nav-link {
+  padding: 1rem 0;
+  font-size: 0.84rem;
+}
+
+.fancybox-slide--image {
+  cursor: url("../img/cursor.png"), auto;
+}
+
+/*# sourceMappingURL=admin.min.css.map */
